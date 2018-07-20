@@ -9,14 +9,34 @@
    - Authors: Georgios Bakirtzis, Brandon J. Simon, Cody H. Fleming, Carl R. Elks
 
 ** Instructions to use the code
+
+   To produce the data use [[https://github.com/bakirtzisg/cybok-cli][cybok-cli]] & [[https://github.com/bakirtzisg/graphml_export][graphml_export]].
+
+   After, to run the security analyst dashbaord:
+
+   (for GNU/Linux)
+   #+BEGIN_SRC bash
+   $ gradlew jar
+   $ java -jar ./build/libs/CyberAnalystDashboard.jar
+   #+END_SRC
+
+   (for Windows)
+   #+BEGIN_SRC bash
+   $ gradlew.bat jar
+   $ java -jar ./build/libs/CyberAnalystDashboard.jar
+   #+END_SRC
+
 ** Key bindings
-   =CTRL+S= - save node positions of the selected graph to a file
-   =CTRL+L= - load node positions of the selected graph from file
-   =CTRL+E= - exports the selected graph as a .graphml file
-   =CTRL+F= - freeze/unfreeze auto layout
-   =CTRL+G= - (Attack Vector Graph)  grows the current selection (selects the nodes related to it)
-   =CTRL+B= - (Attack Vector Graph) adds the selected nodes to the bucket
-   =CTRL+I= - (Attack Vector Graph) opens a panel with additional information of the selected node
-   =CTRL+A= - (Bucket) selects all visible nodes
-   =DEL= - deselects the current selection
-   =DEL= - (bucket) removes all checked entries from the bucket
+| Command  | Description                                                                          |
+|----------+--------------------------------------------------------------------------------------|
+| =CTRL+S= | save node positions of the selected graph to a file                                  |
+| =CTRL+L= | load node positions of the selected graph from file                                  |
+| =CTRL+E= | exports the selected graph as a .graphml file                                        |
+| =CTRL+F= | freeze/unfreeze auto layout                                                          |
+| =CTRL+G= | (attack vector space)  grows the current selection (selects the nodes related to it) |
+| =CTRL+B= | (attack vector space) adds the selected nodes to the bucket                      |
+| =CTRL+I= | (attack vector space) opens a panel with additional information of the selected node |
+| =CTRL+A= | (bucket) selects all visible nodes                                                   |
+| =DEL=    | deselects the current selection                                                      |
+| =DEL=    | (bucket) removes all checked entries from the bucket                                 |
+
