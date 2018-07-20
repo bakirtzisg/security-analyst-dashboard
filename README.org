@@ -9,6 +9,21 @@
    - Authors: Georgios Bakirtzis, Brandon J. Simon, Cody H. Fleming, Carl R. Elks
 
 ** Instructions to use the code
+
+   To run the security analyst dashbaord do the following.
+
+   For GNU/Linux:
+   #+BEGIN_SRC bash
+   $ gradlew jar
+   $ java -jar ./build/libs/CyberAnalystDashboard.jar
+   #+END_SRC
+
+   For windows:
+   #+BEGIN_SRC bash
+   $ gradlew.bat jar
+   $ java -jar ./build/libs/CyberAnalystDashboard.jar
+   #+END_SRC
+
 ** Key bindings
    =CTRL+S= - save node positions of the selected graph to a file
    =CTRL+L= - load node positions of the selected graph from file
