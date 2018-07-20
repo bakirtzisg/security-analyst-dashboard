@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--System Description Graph-->
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<!--Keys-->
+<!--Graph-->
+<graph id="requirements" edgedefault="directed">
+<!--Nodes-->
+<node id="FCS Radio Module">
+<data key="type">Structure</data>
+</node>
+<node id="SC4.1 Control Surfaces">
+<data key="type">Mission</data>
+<data key="text">Control Surfaces shall only move upon receiving authentic commands from the flight control system</data>
+<data key="id"/>
+</node>
+<node id="SC4.3 Send Feedback">
+<data key="type">Mission</data>
+<data key="text">The component shall relay feedback to the appropriate monitors at regular intervals </data>
+<data key="id"/>
+</node>
+<node id="CA3.1 Flight Control">
+<data key="type">Function</data>
+</node>
+<node id="H3 Loss of Control in Unacceptable Area">
+<data key="type">Mission</data>
+<data key="text">The system shall prevent the loss of control in an unsafe area</data>
+<data key="id"/>
+</node>
+<node id="Control Surface">
+<data key="type">Structure</data>
+</node>
+<node id="SC3.1 Safe &amp; Secure Flight Control ">
+<data key="type">Mission</data>
+<data key="text">The FCS shall maintain stable flight and only act on authentic commands from the operator </data>
+<data key="id"/>
+</node>
+<node id="Imagery Radio Module">
+<data key="type">Structure</data>
+</node>
+<node id="CA4.3 Send Feedback">
+<data key="type">Function</data>
+</node>
+<node id="SC4.2 Collect Data">
+<data key="type">Mission</data>
+<data key="text">Data collection shall only occur upon authentic command from the operator</data>
+<data key="id"/>
+</node>
+<node id="Primary Application Processor">
+<data key="type">Structure</data>
+</node>
+<node id="CA4.2 Collect Data">
+<data key="type">Function</data>
+</node>
+<node id="Imagery Application Processor">
+<data key="type">Structure</data>
+</node>
+<node id="SC2.1 Valid UAV Operation">
+<data key="type">Mission</data>
+<data key="text">The operator shall only enact commands that follow the mission parameters </data>
+<data key="id"/>
+</node>
+<node id="L1 Loss of Resources">
+<data key="type">Mission</data>
+<data key="text">The mission shall prevent the loss of resources due to inaccurate, wrong, or absent information</data>
+<data key="id">1</data>
+</node>
+<node id="H1 Absence of Information">
+<data key="type">Mission</data>
+<data key="text">The system shall prevent the absence of information via secure communication links to the ground station </data>
+<data key="id"/>
+</node>
+<node id="L2 Loss of Sensitive Information">
+<data key="type">Mission</data>
+<data key="text">The mission shall prevent the loss of classified or otherwise sensitive technology, knowledge, or system/s</data>
+<data key="id">2</data>
+</node>
+<node id="Laptop">
+<data key="type">Structure</data>
+</node>
+<node id="CA4.1 Move Control Surface">
+<data key="type">Function</data>
+</node>
+<node id="CA2.1 UAV Operation">
+<data key="type">Function</data>
+</node>
+<node id="H2 Inaccurate/Wrong Information">
+<data key="type">Mission</data>
+<data key="text">The system shall provide accurate real time location and visual information to the ground station at all times</data>
+<data key="id"/>
+</node>
+<node id="L3 Loss of Materiel">
+<data key="type">Mission</data>
+<data key="text">The mission shall prevent the loss of resources due to loss of control of the system</data>
+<data key="id">3</data>
+</node>
+<!--Edges-->
+<edge source="Control Surface" target="CA4.3 Send Feedback" label="requirement"/>
+<edge source="SC3.1 Safe &amp; Secure Flight Control " target="H3 Loss of Control in Unacceptable Area" label="requirement"/>
+<edge source="CA4.1 Move Control Surface" target="SC4.1 Control Surfaces" label="requirement"/>
+<edge source="SC2.1 Valid UAV Operation" target="H1 Absence of Information" label="requirement"/>
+<edge source="Control Surface" target="CA4.1 Move Control Surface" label="requirement"/>
+<edge source="FCS Radio Module" target="CA4.3 Send Feedback" label="requirement"/>
+<edge source="CA4.3 Send Feedback" target="SC4.3 Send Feedback" label="requirement"/>
+<edge source="H3 Loss of Control in Unacceptable Area" target="L3 Loss of Materiel" label="requirement"/>
+<edge source="H1 Absence of Information" target="L1 Loss of Resources" label="requirement"/>
+<edge source="SC4.1 Control Surfaces" target="SC3.1 Safe &amp; Secure Flight Control " label="requirement"/>
+<edge source="CA3.1 Flight Control" target="SC3.1 Safe &amp; Secure Flight Control " label="requirement"/>
+<edge source="SC4.2 Collect Data" target="SC2.1 Valid UAV Operation" label="requirement"/>
+<edge source="Imagery Application Processor" target="CA4.2 Collect Data" label="requirement"/>
+<edge source="Imagery Radio Module" target="CA4.3 Send Feedback" label="requirement"/>
+<edge source="SC4.3 Send Feedback" target="SC2.1 Valid UAV Operation" label="requirement"/>
+<edge source="CA4.2 Collect Data" target="SC4.2 Collect Data" label="requirement"/>
+<edge source="Laptop" target="CA2.1 UAV Operation" label="requirement"/>
+<edge source="H2 Inaccurate/Wrong Information" target="L1 Loss of Resources" label="requirement"/>
+<edge source="Primary Application Processor" target="CA3.1 Flight Control" label="requirement"/>
+<edge source="SC4.3 Send Feedback" target="SC3.1 Safe &amp; Secure Flight Control " label="requirement"/>
+<edge source="SC2.1 Valid UAV Operation" target="H2 Inaccurate/Wrong Information" label="requirement"/>
+<edge source="CA2.1 UAV Operation" target="SC2.1 Valid UAV Operation" label="requirement"/>
+<edge source="H3 Loss of Control in Unacceptable Area" target="L2 Loss of Sensitive Information" label="requirement"/>
+</graph>
+</graphml>

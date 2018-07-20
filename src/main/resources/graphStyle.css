@@ -1,0 +1,81 @@
+graph {
+    padding: 40px;
+}
+
+node {
+    size-mode: dyn-size;
+    shape: rounded-box;
+    fill-color: #DEE;
+    stroke-mode: plain;
+    stroke-width: 1px;
+    padding: 3px, 2px, 5px, 0px;
+    text-font: "Inter UI Bold";
+    size-mode: dyn-size;
+}
+
+edge {
+    stroke-width: 1px;
+}
+
+node.capec {
+    fill-color: rgb(255, 15, 25);
+    size: 5px;
+}
+
+node.cve {
+    fill-color: rgb(254, 188, 108);
+    size: 3px;
+}
+
+node.cwe {
+    fill-color: rgb(11, 36, 251);
+    size: 4px;
+}
+
+node.Requirement {
+    stroke-color: blue;
+}
+
+node.Diagram {
+    stroke-color: yellow;
+}
+
+node.Device {
+    stroke-color: green;
+}
+
+node.focus {
+    stroke-color: red;
+}
+
+node.path {
+    fill-color: #FAA;
+}
+
+edge.path {
+    fill-color: red;
+}
+
+edge.hide {
+    fill-color: #0007;
+}
+
+node.hide {
+    fill-color: #DEE7;
+    text-color: #0007;
+    stroke-color: #0007;
+}
+
+node:selected {
+    fill-color: #CCC;
+}
+
+edge.focus {
+    stroke-color: red;
+}
+
+edge {
+    arrow-shape: arrow;
+    fill-color: rgb(115, 115, 115);
+}
+

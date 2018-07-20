@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<save>
+    <viewer>
+        <camera x="24.31423964428077" y="-22.962941316092937" z="1.1500000000000001"/>
+    </viewer>
+    <nodes>
+        <node id="CA2.1 UAV Operation" x="16.666666666666668" y="-27.0"/>
+        <node id="CA3.1 Flight Control" x="43.834549878345506" y="-27.0"/>
+        <node id="CA4.1 Move Control Surface" x="34.63406326034064" y="-27.0"/>
+        <node id="CA4.2 Collect Data" x="8.333333333333334" y="-27.0"/>
+        <node id="CA4.3 Send Feedback" x="25.0" y="-27.0"/>
+        <node id="Control Surface" x="35.714285714285715" y="-36.0"/>
+        <node id="FCS Radio Module" x="19.856856100104267" y="-36.00000000000001"/>
+        <node id="H1 Absence of Information" x="10.906686046511627" y="-12.0"/>
+        <node id="H2 Inaccurate/Wrong Information" x="23.681395348837206" y="-12.0"/>
+        <node id="H3 Loss of Control in Unacceptable Area" x="37.5" y="-12.0"/>
+        <node id="Imagery Application Processor" x="7.142857142857143" y="-36.0"/>
+        <node id="Imagery Radio Module" x="28.08365484880084" y="-35.99999999999999"/>
+        <node id="L1 Loss of Resources" x="12.5" y="-9.0"/>
+        <node id="L2 Loss of Sensitive Information" x="37.5" y="-9.0"/>
+        <node id="L3 Loss of Materiel" x="25.0" y="-9.0"/>
+        <node id="Laptop" x="14.55669968717414" y="-35.99999999999999"/>
+        <node id="Primary Application Processor" x="44.80823774765381" y="-35.99999999999999"/>
+        <node id="SC2.1 Valid UAV Operation" x="16.666666666666668" y="-15.0"/>
+        <node id="SC3.1 Safe &amp; Secure Flight Control " x="34.21240310077519" y="-15.0"/>
+        <node id="SC4.1 Control Surfaces" x="31.21462824647768" y="-18.054941860465117"/>
+        <node id="SC4.2 Collect Data" x="11.730813953488372" y="-18.0"/>
+        <node id="SC4.3 Send Feedback" x="21.954536581225593" y="-18.0"/>
+    </nodes>
+</save>

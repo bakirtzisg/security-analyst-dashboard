@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+    <graph edgedefault="directed">
+        <node id="ZigBee"/>
+        <node id="Laptop">
+            <data key="attr.d4">Wi-Fi</data>
+            <data key="attr.d0">Dell Latitude E6420</data>
+        </node>
+        <node id="Wi-Fi"/>
+        <node id="Absolute Pressure Sensor">
+            <data key="attr.d4">N/A</data>
+            <data key="attr.d0">MS4525DO</data>
+        </node>
+        <node id="GPS"/>
+        <node id="GCS Radio Module">
+            <data key="attr.d4">ZigBee</data>
+            <data key="attr.d5">XBee Pro 900MHz ISM</data>
+            <data key="attr.d0">XBee</data>
+        </node>
+        <node id="Control Surface">
+            <data key="attr.d4">N/A</data>
+            <data key="attr.d0">Servos</data>
+        </node>
+        <node id="Accelerometer Gyroscope Magnetometer">
+            <data key="attr.d4">N/A</data>
+            <data key="attr.d0">MPU 9150</data>
+        </node>
+        <node id="Primary Application Processor">
+            <data key="attr.d4">N/A</data>
+            <data key="attr.d3">Autopilot navigation control algorithms</data>
+            <data key="attr.d0">ARM STM32F4</data>
+            <data key="attr.d2">I2C SPI UART SDIO low-level drivers</data>
+            <data key="attr.d1">ChibiOS RTOS</data>
+        </node>
+        <node id="Imagery Application Processor">
+            <data key="attr.d4">N/A</data>
+            <data key="attr.d0">Beaglebone Black</data>
+        </node>
+        <node id="FCS Radio Module">
+            <data key="attr.d4">ZigBee</data>
+            <data key="attr.d5">XBee Pro 900MHz ISM</data>
+            <data key="attr.d0">XBee</data>
+        </node>
+        <node id="NMEA GPS">
+            <data key="attr.d4">GPS</data>
+            <data key="attr.d5">Mediatek MTK 3339 chipset</data>
+            <data key="attr.d0">Adafruit Ultimate GPS</data>
+            <data key="attr.d2">I2C RS232 UART protocol drivers</data>
+        </node>
+        <node id="Camera">
+            <data key="attr.d4">N/A</data>
+            <data key="attr.d0">GoPro Hero5</data>
+        </node>
+        <node id="Differential Pressure Sensor">
+            <data key="attr.d4">N/A</data>
+            <data key="attr.d0">MS4525DO</data>
+        </node>
+        <node id="Imagery Radio Module">
+            <data key="attr.d4">ZigBee</data>
+            <data key="attr.d5">XBee Pro 900MHz ISM</data>
+            <data key="attr.d0">XBee</data>
+        </node>
+        <node id="Safety Switch Processor">
+            <data key="attr.d4">N/A</data>
+            <data key="attr.d0">ARM STM32F0</data>
+        </node>
+        <edge source="Laptop" target="GCS Radio Module"/>
+        <edge source="Control Surface" target="Safety Switch Processor"/>
+        <edge source="Accelerometer Gyroscope Magnetometer" target="Primary Application Processor"/>
+        <edge source="Primary Application Processor" target="Differential Pressure Sensor"/>
+        <edge source="Primary Application Processor" target="Absolute Pressure Sensor"/>
+        <edge source="Primary Application Processor" target="Safety Switch Processor"/>
+        <edge source="Primary Application Processor" target="Accelerometer Gyroscope Magnetometer"/>
+        <edge source="Primary Application Processor" target="NMEA GPS"/>
+        <edge source="Primary Application Processor" target="FCS Radio Module"/>
+        <edge source="Imagery Application Processor" target="Imagery Radio Module"/>
+        <edge source="FCS Radio Module" target="Primary Application Processor"/>
+        <edge source="FCS Radio Module" target="GCS Radio Module"/>
+        <edge source="NMEA GPS" target="Primary Application Processor"/>
+        <edge source="Absolute Pressure Sensor" target="Primary Application Processor"/>
+        <edge source="Camera" target="Imagery Application Processor"/>
+        <edge source="Differential Pressure Sensor" target="Primary Application Processor"/>
+        <edge source="Imagery Radio Module" target="GCS Radio Module"/>
+        <edge source="Imagery Radio Module" target="Imagery Application Processor"/>
+        <edge source="Safety Switch Processor" target="Primary Application Processor"/>
+        <edge source="GCS Radio Module" target="FCS Radio Module"/>
+        <edge source="GCS Radio Module" target="Imagery Radio Module"/>
+        <edge source="GCS Radio Module" target="Laptop"/>
+        <edge source="Wi-Fi" target="Laptop"/>
+        <edge source="ZigBee" target="GCS Radio Module"/>
+        <edge source="Safety Switch Processor" target="Control Surface"/>
+        <edge source="ZigBee" target="FCS Radio Module"/>
+        <edge source="GPS" target="NMEA GPS"/>
+        <edge source="Imagery Application Processor" target="Camera"/>
+        <edge source="ZigBee" target="Imagery Radio Module"/>
+    </graph>
+</graphml>
