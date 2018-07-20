@@ -143,7 +143,10 @@ public class DashboardUI extends JFrame implements ActionListener
 
 		menuBar.add(fileMenu);
 		menuBar.add(viewMenu);
-		menuBar.add(cybokMenu);
+		if (CybokQueryHandler.isCybokInstalled())
+		{
+			menuBar.add(cybokMenu);
+		}
 		menuBar.add(filterMenu);
 
 		setJMenuBar(menuBar);

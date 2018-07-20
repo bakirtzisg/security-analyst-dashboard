@@ -48,13 +48,7 @@ public class MainClass
 			SystemAnalysis.makePathDefaults();
 		}
 
-//		BucketPanel.test();
 		Application app = new Application();
 		app.run();
-//		SystemAnalysis.doAnalysis();
-
-//		NodeEditorDialog nd = new NodeEditorDialog(null);
-//		nd.setVisible(true);
-//		nd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }
