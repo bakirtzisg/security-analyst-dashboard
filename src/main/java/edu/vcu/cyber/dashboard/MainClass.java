@@ -14,17 +14,19 @@ public class MainClass
 
 	Key bindings
 
-	CTRL+S - save selected graph
-	CTRL+L - load selected graph from file (positions)
+	CTRL+S - save node positions of the selected graph to a file
+	CTRL+L - load node positions of the selected graph from file
 	CTRL+E - exports the selected graph as a .graphml file
 
 	CTRL+F - freeze/unfreeze auto layout
 
-	CTRL+G - grows the current selection
+	CTRL+G - (Attack Vector Graph)  grows the current selection (selects the nodes related to it)
 	CTRL+B - (Attack Vector Graph) adds the selected nodes to the bucket
+	CTRL+I - (Attack Vector Graph) opens a panel with additional information of the selected node
 	CTRL+A - (Bucket) selects all visible nodes
 
-	DELETE - deletes the current selection
+	DELETE - deselects the current selection
+	DELETE - (bucket) removes all checked entries from the bucket
 
 
 	 */

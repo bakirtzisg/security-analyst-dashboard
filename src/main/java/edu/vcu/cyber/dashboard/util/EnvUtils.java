@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Enumeration;
 import java.util.Objects;
 
 public class EnvUtils
@@ -31,13 +33,6 @@ public class EnvUtils
 		try
 		{
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-//			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-			UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
-			for (UIManager.LookAndFeelInfo look : looks) {
-				System.out.println(look.getClassName());
-			}
 		} catch (Exception e)
 		{
 			// handle exception
@@ -52,12 +47,18 @@ public class EnvUtils
 		{
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
+			Enumeration<URL> en = EnvUtils.class.getClassLoader().getResources("/font/");
+			while(en.hasMoreElements())
+			{
+				URL url = en.nextElement();
+				System.out.println(url);
+			}
+
 			for (File f : Objects.requireNonNull(new File("./src/main/resources/font/").listFiles()))
 			{
 				if (f.getName().endsWith(".ttf"))
 				{
 					Font font = Font.createFont(Font.TRUETYPE_FONT, f);
-//					System.out.println(font.getFontName());
 					ge.registerFont(font);
 				}
 			}
