@@ -1,12 +1,22 @@
 #+html: <p align="center"><img src=".github/logo.png" width="460" /></p>
-#+html: <p align="center"><strong>CYBOK.</strong> A security analyst dashboard for cyber-physical system design and analysis.</p>
+#+html: <p align="center"><strong>Security Analyst Dashboard.</strong> A dashboard for cyber-physical system design and analysis.</p>
 
 * Security Analyst Dashboard
 
 ** About the paper
 
-- Title: Looking for a Black Cat in a Dark Room: Security Visualization for Cyber-Physical System Design and Analysis
-- Authors: Georgios Bakirtzis, Brandon J. Simon, Cody H. Fleming, Carl R. Elks
-- Abstract: 
+   - Title: Looking for a Black Cat in a Dark Room: Security Visualization for Cyber-Physical System Design and Analysis
+   - Authors: Georgios Bakirtzis, Brandon J. Simon, Cody H. Fleming, Carl R. Elks
 
 ** Instructions to use the code
+** Key bindings
+   =CTRL+S= - save node positions of the selected graph to a file
+   =CTRL+L= - load node positions of the selected graph from file
+   =CTRL+E= - exports the selected graph as a .graphml file
+   =CTRL+F= - freeze/unfreeze auto layout
+   =CTRL+G= - (Attack Vector Graph)  grows the current selection (selects the nodes related to it)
+   =CTRL+B= - (Attack Vector Graph) adds the selected nodes to the bucket
+   =CTRL+I= - (Attack Vector Graph) opens a panel with additional information of the selected node
+   =CTRL+A= - (Bucket) selects all visible nodes
+   =DEL= - deselects the current selection
+   =DEL= - (bucket) removes all checked entries from the bucket
