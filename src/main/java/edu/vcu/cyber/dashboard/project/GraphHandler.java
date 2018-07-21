@@ -16,63 +16,50 @@ import java.util.Map;
 
 public class GraphHandler
 {
-	
+
 	private Map<GraphType, GraphData> graphs;
-	
+
 	public GraphHandler()
 	{
 		graphs = new HashMap<>();
 	}
-	
+
 	protected void registerGraph(GraphData graphData)
 	{
 		GraphType type = graphData.getGraphType();
 		graphs.put(type, graphData);
 	}
-	
-	public GraphData createIfNotExist(GraphType type)
-	{
-		return graphs.computeIfAbsent(type, GraphData::new);
-	}
-	
+
 	public GraphData getGraph(GraphType type)
 	{
 		return graphs.get(type);
 	}
-	
-	public void clear()
-	{
-		graphs.forEach((k, v) ->
-		{
-			v.getGraph().clear();
-			v.clear();
-		});
-	}
-	
+
+
 	private boolean isAttackSurfaceVisible;
-	
+
 	public void toggleAttackSurfaces()
 	{
 		if (isAttackSurfaceVisible)
 		{
 			// hide the description surface nodes
-			
+
 			Graph graph = getGraph(GraphType.TOPOLOGY).getGraph();
-			
+
 			graph.getEdgeSet().removeIf(edge -> edge.hasAttribute(Attributes.ATTACK_SURFACE));
 			graph.getNodeSet().removeIf(node -> node.hasAttribute(Attributes.ATTACK_SURFACE));
-			
+
 			graph.getNodeSet().forEach(node -> NodeUtil.removeCssClass(node, "attack_surface_target"));
-			
+
 		}
 		else
 		{
 			// show the description surface nodes
-			
+
 			Graph graph = getGraph(GraphType.TOPOLOGY).getGraph();
 			GraphData surfaces = getGraph(GraphType.ATTACK_SURFACE);
-			
-			
+
+
 			// add the nodes that don't already exist
 			for (NodeData asNode : surfaces.getNodes())
 			{
@@ -84,8 +71,8 @@ public class GraphHandler
 					System.out.println(_node.getId());
 				}
 			}
-			
-			
+
+
 			// add the edges that don't already exist
 			surfaces.getNodes().forEach(target ->
 			{
@@ -97,20 +84,20 @@ public class GraphHandler
 						Edge _edge = graph.addEdge(edgeId, source.getId(), target.getId(), true);
 						_edge.addAttribute(Attributes.ATTACK_SURFACE);
 						NodeUtil.addCssClass(_edge, Attributes.ATTACK_SURFACE);
-						
+
 						Node node = graph.getNode(target.getId());
 						if (node != null)
 						{
 							NodeUtil.addCssClass(node, "attack_surface_target");
 						}
 					}
-					
+
 				});
 			});
-			
+
 		}
-		
+
 		isAttackSurfaceVisible = !isAttackSurfaceVisible;
-		
+
 	}
 }

@@ -38,13 +38,10 @@ public class MainClass
 	public static void main(String[] args)
 	{
 
-		EnvUtils.listLookAndFeels();
 		EnvUtils.setLookAndFeel();
 		EnvUtils.setGraphStreamRenderer();
 		EnvUtils.registerFonts();
 		EnvUtils.setGlobalUIFont(new FontUIResource("Fira Sans Light", Font.PLAIN, 14));
-
-		CybokQueryHandler.setupHandler();
 
 		if (!CybokQueryHandler.isCybokInstalled())
 		{

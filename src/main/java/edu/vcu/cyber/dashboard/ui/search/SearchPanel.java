@@ -1,7 +1,5 @@
 package edu.vcu.cyber.dashboard.ui.search;
 
-import edu.vcu.cyber.dashboard.cybok2.info.SearchConfig;
-import edu.vcu.cyber.dashboard.ui.custom.HintTextField;
 import edu.vcu.cyber.dashboard.util.EnvUtils;
 
 import javax.swing.*;
@@ -15,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class SearchPanel extends JPanel implements ActionListener
+public class SearchPanel extends JPanel implements ActionListener, KeyListener, CaretListener
 {
 
 	public static void main(String[] args)
@@ -29,9 +27,9 @@ public class SearchPanel extends JPanel implements ActionListener
 		frame.setVisible(true);
 	}
 
-	private static final String columnNames[] = {" ", "Match", "Ancestral", "Descendant", "Source"};
+	private static final String columnNames[] = {" ", "CAPEC", "CWE", "CVE"};
 
-	private HintTextField queryText;
+	private JTextField queryText;
 	private JCheckBox searchCAPEC, searchCWE, searchCVE;
 	private JCheckBox reportCAPEC, reportCWE, reportCVE;
 	private JCheckBox taxCheckbox;
@@ -114,7 +112,7 @@ public class SearchPanel extends JPanel implements ActionListener
 
 	private void initComponents()
 	{
-		queryText = new HintTextField("Search Query");
+		queryText = new JTextField("Search Query");
 		searchCAPEC = new JCheckBox("CAPEC", true);
 		searchCWE = new JCheckBox("CWE", true);
 		searchCVE = new JCheckBox("CVE", true);
@@ -144,24 +142,14 @@ public class SearchPanel extends JPanel implements ActionListener
 		taxWeightTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		taxWeightTable.getColumn(" ").setPreferredWidth(100);
 
-	}
 
-	private void attemptCloseWindow()
-	{
-		try
-		{
-			Component parent = getParent();
-			while (!(parent instanceof Window))
-			{
-				parent = parent.getParent();
-				if (parent == null)
-					return;
-			}
-			((Window) parent).dispose();
-		} catch (Exception ex)
-		{
-			ex.printStackTrace();
-		}
+		queryText.addCaretListener(this);
+
+		queryText.setForeground(Color.LIGHT_GRAY);
+		queryText.setSelectionStart(0);
+		queryText.setSelectionEnd(0);
+		queryText.addKeyListener(this);
+
 	}
 
 	@Override
@@ -173,14 +161,14 @@ public class SearchPanel extends JPanel implements ActionListener
 
 				// TODO: Create the search query
 
-				SearchConfig.searchConfig.setSearchParams(new boolean[]{searchCAPEC.isSelected(), searchCWE.isSelected(), searchCVE.isSelected()});
-				SearchConfig.searchConfig.setReportedParams(new boolean[]{reportCAPEC.isSelected(), reportCWE.isSelected(), reportCVE.isSelected()});
-
-				attemptCloseWindow();
 				break;
 
 			case "Cancel":
-				attemptCloseWindow();
+				Component parent = getParent();
+				if (parent instanceof JFrame)
+				{
+					((JFrame) parent).dispose();
+				}
 				break;
 
 			case "Weighted":
@@ -198,26 +186,68 @@ public class SearchPanel extends JPanel implements ActionListener
 		}
 	}
 
+	@Override
+	public void keyTyped(KeyEvent e)
+	{
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e)
+	{
+		if (queryText.getText().equals("Search Query"))
+		{
+			queryText.setText("");
+			queryText.setForeground(Color.BLACK);
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e)
+	{
+
+		if (queryText.getText().equals(""))
+		{
+			queryText.setText("Search Query");
+			queryText.setForeground(Color.LIGHT_GRAY);
+			queryText.setSelectionStart(0);
+			queryText.setSelectionEnd(0);
+		}
+	}
+
+	@Override
+	public void caretUpdate(CaretEvent e)
+	{
+		if (queryText.getText().equals("Search Query"))
+		{
+			if (queryText.getSelectionStart() != 0)
+			{
+				queryText.setSelectionStart(0);
+				queryText.setSelectionEnd(0);
+			}
+		}
+	}
 
 	private class WeightTableModel extends AbstractTableModel
 	{
 		Object[][] data = {
-				{"CAPEC", 1.0f, 1.0f, 1.0f, 1.0f},
-				{"CWE", 1.0f, 1.0f, 1.0f, 1.0f},
-				{"CVE", 1.0f, 1.0f, 1.0f, 1.0f},
+				{"Match", 1.0f, 1.0f, 1.0f},
+				{"Ancestors", 1.0f, 1.0f, 1.0f},
+				{"Descendants", 1.0f, 1.0f, 1.0f},
+				{"Source", 1.0f, 1.0f, 1.0f},
 		};
 
 
 		@Override
 		public int getRowCount()
 		{
-			return 3;
+			return 4;
 		}
 
 		@Override
 		public int getColumnCount()
 		{
-			return 5;
+			return 4;
 		}
 
 		public String getColumnName(int col)

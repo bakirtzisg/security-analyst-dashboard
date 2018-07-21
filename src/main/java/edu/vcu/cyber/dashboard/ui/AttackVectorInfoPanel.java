@@ -5,7 +5,6 @@ import edu.vcu.cyber.dashboard.data.AttackVector;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class AttackVectorInfoPanel extends JPanel
@@ -22,24 +21,17 @@ public class AttackVectorInfoPanel extends JPanel
 
 	private JFrame frame;
 	private JTextPane textPane;
-	JEditorPane editorPane;
 	private JScrollPane sp;
-
 
 	public AttackVectorInfoPanel()
 	{
 		setLayout(new BorderLayout());
+		textPane = new JTextPane();
+		textPane.setPreferredSize(new Dimension(500, 300));
+		textPane.setContentType("text/html");
+		textPane.setEditable(false);
 
-		editorPane = new JEditorPane();
-
-
-//		textPane = new JTextPane();
-		editorPane.setPreferredSize(new Dimension(750, 500));
-//		textPane.setContentType("text/html");
-//		textPane.setEditable(false);
-//
-//		sp = new JScrollPane(textPane);
-		sp = new JScrollPane(editorPane);
+		sp = new JScrollPane(textPane);
 		add(sp, BorderLayout.CENTER);
 
 		frame = new JFrame("Node Info");
@@ -54,29 +46,17 @@ public class AttackVectorInfoPanel extends JPanel
 	{
 		frame.setTitle(av.qualifiedName);
 
-//		String sb = "<html><h1>" + av.qualifiedName + "</h1>\n" +
-//				"<h3>" + av.description + "</h3>\n" +
-//				"<a href=\"" + av.getURI() + "\">" + av.getURI() + "</a>" +
-//				"<p><h4> Violated Components </h4>" + av.violatedComponents.toString() + "</p>" +
-//				"<p><h4> Contents </h4>" + av.contents + "</p></html>";
-//
-//		textPane.setText(sb);
-		try
-		{
-			editorPane.setPage(new URL(av.getURI()));
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		String sb = "<html><h1>" + av.qualifiedName + "</h1>\n" +
+				"<h3>" + av.description + "</h3>\n" +
+				"<a href=\"" + av.getURI() + "\">" + av.getURI() + "</a>" +
+				"<p><h4> Violated Components </h4>" + av.violatedComponents.toString() + "</p>" +
+				"<p><h4> Contents </h4>" + av.contents + "</p></html>";
+
+		textPane.setText(sb);
 
 
 		SwingUtilities.invokeLater(() -> sp.getVerticalScrollBar().setValue(0));
 
-	}
-
-	private void filterEditorPane()
-	{
-		editorPane.getText();
 	}
 
 }

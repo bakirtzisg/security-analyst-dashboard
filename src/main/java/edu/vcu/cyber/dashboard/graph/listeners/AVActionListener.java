@@ -1,8 +1,5 @@
 package edu.vcu.cyber.dashboard.graph.listeners;
 
-import edu.vcu.cyber.dashboard.actions.ActionAVToBucket;
-import edu.vcu.cyber.dashboard.actions.ActionManager;
-import edu.vcu.cyber.dashboard.actions.ActionNodeDelete;
 import edu.vcu.cyber.dashboard.data.AttackVector;
 import edu.vcu.cyber.dashboard.data.AttackVectors;
 import edu.vcu.cyber.dashboard.data.NodeData;
@@ -10,7 +7,6 @@ import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.AttackVectorInfoPanel;
 import edu.vcu.cyber.dashboard.ui.BucketPanel;
 import edu.vcu.cyber.dashboard.util.NodeUtil;
-import edu.vcu.cyber.dashboard.util.Utils;
 import org.graphstream.algorithm.Toolkit;
 import org.graphstream.graph.Node;
 import org.graphstream.ui.geom.Point3;
@@ -20,20 +16,20 @@ import java.util.List;
 
 public class AVActionListener extends GraphActionListener
 {
-	
+
 	private AppSession session;
-	
+
 	public AVActionListener(AppSession session)
 	{
 		this.session = session;
 	}
-	
+
 	@Override
 	public void onMousePressed(Node node)
 	{
 		super.onMousePressed(node);
-		
-		
+
+
 		if (node != null)
 		{
 			node.addAttribute("ui.selected");
@@ -46,7 +42,7 @@ public class AVActionListener extends GraphActionListener
 			}
 		}
 	}
-	
+
 	private void returnOriginalPos(Node node)
 	{
 		if (node != null)
@@ -59,13 +55,13 @@ public class AVActionListener extends GraphActionListener
 			}
 		}
 	}
-	
+
 	public void onMouseRelease(Node node)
 	{
-		
+
 		super.onMouseRelease(node);
 	}
-	
+
 	@Override
 	public void onSingleClick(Node node)
 	{
@@ -75,26 +71,20 @@ public class AVActionListener extends GraphActionListener
 //			PropertiesPanel.setText(NodeUtil.generateHtmlString(graphData.getNode(node.getId())));
 		}
 	}
-	
+
 	@Override
 	public void onDoubleClick(Node node)
 	{
 		super.onDoubleClick(node);
-		
-		if (node != null)
+
+		AttackVector av = AttackVectors.getAttackVector(node.getId());
+		if (av != null)
 		{
-			AttackVector av = AttackVectors.getAttackVector(node.getId());
-			if (av != null)
-			{
-				if (!Utils.openWebPage(av.getURI()))
-				{
-					AttackVectorInfoPanel.display(av);
-				}
-			}
+			AttackVectorInfoPanel.display(av);
 		}
 	}
-	
-	
+
+
 	public void onMouseExit()
 	{
 		if (currentNode != null)
@@ -103,7 +93,7 @@ public class AVActionListener extends GraphActionListener
 			super.onMouseExit();
 		}
 	}
-	
+
 	public void onKeyPress(KeyEvent evt)
 	{
 		super.onKeyPress(evt);
@@ -113,34 +103,18 @@ public class AVActionListener extends GraphActionListener
 				graphData.clearSelected();
 				break;
 			case KeyEvent.VK_DELETE: // delete -> delete the selected nodes from the graph
-				
-				ActionNodeDelete act = new ActionNodeDelete(graphData);
-				for (NodeData node : graphData.getSelectedNodes())
-				{
-					AttackVector av = AttackVectors.getAttackVector(node.getId());
-					if (av != null)
-					{
-						act.addAttackVector(av);
-						av.setPos(graphPanel.getViewGraph().getNode(av.qualifiedName));
-					}
-				}
-				
-				ActionManager.action(act);
-
-//				graphData.getSelectedNodes().forEach(node -> deleteNode(node.getNode()));
+				graphData.getSelectedNodes().forEach(node -> deleteNode(node.getNode()));
 				graphData.clearSelected();
 				break;
 			case KeyEvent.VK_Z:// ctrl-Z -> undo last action (not implemented yet)
 				if (evt.isControlDown())
 				{
-					ActionManager.undo();
 					// TODO: undo
 				}
 				break;
 			case KeyEvent.VK_Y: // ctrl-Y -> redo last action (not implemented yet)
 				if (evt.isControlDown())
 				{
-					ActionManager.redo();
 					// TODO: redo
 				}
 				break;
@@ -163,7 +137,7 @@ public class AVActionListener extends GraphActionListener
 				break;
 		}
 	}
-	
+
 	private void deleteNode(Node node)
 	{
 		if (node != null)
@@ -171,38 +145,24 @@ public class AVActionListener extends GraphActionListener
 			NodeUtil.toggleConsumed(graphData, node.getId());
 			AttackVector av = AttackVectors.getAttackVector(node.getId());
 			av.deleted = true;
-			
+
 			graphData.flagRemoval(node.getId());
 			graphData.removeFlagged();
 		}
 	}
-	
+
 	public void moveToBucket()
 	{
-		
-		ActionAVToBucket act = new ActionAVToBucket();
-		for (NodeData nd : graphData.getSelectedNodes())
+
+		graphData.getSelectedNodes().forEach(node ->
 		{
-			AttackVector attack = AttackVectors.getAttackVector(nd.getId());
+			AttackVector attack = AttackVectors.getAttackVector(node.getId());
 			if (attack != null)
 			{
-				act.addAttackVector(attack);
+				BucketPanel.instance.addRow(attack);
 			}
-		}
-		if (act.getActionSize() > 0)
-		{
-			ActionManager.action(act);
-		}
+		});
 
-//		graphData.getSelectedNodes().forEach(node ->
-//		{
-//			AttackVector attack = AttackVectors.getAttackVector(node.getId());
-//			if (attack != null)
-//			{
-//				BucketPanel.instance.addRow(attack);
-//			}
-//		});
-	
-	
+
 	}
 }

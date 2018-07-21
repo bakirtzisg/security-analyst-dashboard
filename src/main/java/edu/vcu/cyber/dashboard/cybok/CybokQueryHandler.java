@@ -11,8 +11,6 @@ public class CybokQueryHandler implements Runnable
 
 	private static CybokQueryHandler queryHandler = new CybokQueryHandler();
 
-	public static boolean useCybok = true;
-
 	public static void sendQuery(CybokQuery<?> query)
 	{
 		queryHandler.addToQueue(query);
@@ -50,34 +48,28 @@ public class CybokQueryHandler implements Runnable
 
 	public static void setupHandler()
 	{
-		queryHandler = new CybokQueryHandler();
-		queryHandler.installDir = findCybokInstall();
+		CybokQueryHandler handler = new CybokQueryHandler();
+		handler.installDir = findCybokInstall();
 	}
 
 	private static File findCybokInstall()
 	{
 
-		if (useCybok)
-		{
-			File file;
-
-			String env = System.getProperty("CYBOK_INSTALL");
-			if (env != null)
-			{
-				file = new File(env);
-				if (dirContainsCybok(file))
-					return file;
-			}
-			else
-			{
-				file = new File("../cybok");
-				if (dirContainsCybok(file))
-					return file;
-				file = new File("../cybok-cli");
-				if (dirContainsCybok(file))
-					return file;
-			}
-		}
+//		File file;
+//
+//		String env = System.getProperty("CYBOK_INSTALL");
+//		if (env != null)
+//		{
+//			file = new File(env);
+//			if (dirContainsCybok(file))
+//				return file;
+//		}
+//		else
+//		{
+//			file = new File("../cybok");
+//			if (dirContainsCybok(file))
+//				return file;
+//		}
 
 		return null;
 	}

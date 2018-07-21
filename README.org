@@ -1,8 +1,6 @@
 #+html: <p align="center"><img src=".github/logo.png" width="460" /></p>
 #+html: <p align="center"><strong>Security Analyst Dashboard.</strong> A dashboard for cyber-physical system design and analysis.</p>
 
-* Security Analyst Dashboard
-
 ** About the paper
 
    - Title: Looking for a Black Cat in a Dark Room: Security Visualization for Cyber-Physical System Design and Analysis
@@ -40,3 +38,7 @@
 | =DEL=    | deselects the current selection                                                      |
 | =DEL=    | (bucket) removes all checked entries from the bucket                                 |
 
+* Authors
+
+Georgios Bakirtzis (bakirtzisg@ieee.org) [[bakirtzis.net]] \\
+Brandon Simon (simonbj@vcu.edu)
