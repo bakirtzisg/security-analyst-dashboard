@@ -1,0 +1,113 @@
+graph {
+    padding: 40px;
+    text-font: "Fira Sans Light";
+}
+
+node {
+    size-mode: fit;
+    shape: box;
+    fill-color: rgba(230, 230, 230, 255);
+    /*stroke-mode: plain;*/
+    /*stroke-width: 1px;*/
+    padding: 3px, 2px, 5px, 0px;
+    text-font: "Fira Sans Light";
+    text-size: 14px;
+    text-color: rgb(0, 0, 0);
+}
+
+edge {
+    shape: line;
+    size: 2px;
+}
+
+node.focus {
+    stroke-color: red;
+}
+
+node.path {
+    fill-color: #FAA;
+}
+
+node.attack_surface {
+    fill-color: rgba(255, 15, 25, 130);
+}
+
+node.attack_surface_target {
+    fill-color: rgba(255, 15, 25, 130);
+}
+
+node.attack_path {
+    fill-color: rgb(254, 188, 108);
+    stroke-mode: plain;
+    stroke-width: 2px;
+    stroke-color: rgb(254, 188, 108);
+    shadow-mode: plain;
+    shadow-width: 1px;
+    shadow-color: rgba(254, 188, 108, 100);
+    shadow-offset: 0px;
+}
+
+edge.attack_path {
+    fill-color: rgb(254, 188, 108);
+    shadow-mode: plain;
+    shadow-width: 1px;
+    shadow-color: rgba(254, 188, 108, 100);
+    shadow-offset: 0px;
+}
+
+edge.attack_surface {
+    fill-color: #FAA;
+}
+
+edge.path {
+    fill-color: red;
+}
+
+edge.hide {
+    fill-color: #0007;
+}
+
+node.hide {
+    fill-color: #DEE7;
+    text-color: #0007;
+    stroke-color: #0007;
+}
+
+node:selected {
+    stroke-mode: plain;
+    stroke-color: #222;
+    stroke-width: 1px;
+}
+
+edge.focus {
+    stroke-color: red;
+}
+
+edge {
+    arrow-shape: arrow;
+    fill-color: rgb(115, 115, 115);
+}
+
+node.av {
+    size-mode: dyn-size;
+    shape: circle;
+    text-visibility-mode: under-zoom;
+    text-visibility: 0.15;
+    text-alignment: above;
+}
+
+edge.av {
+    fill-color: rgb(185, 185, 185);
+}
+
+node.capec {
+    fill-color: rgb(255, 15, 25);
+}
+
+node.cve {
+    fill-color: rgb(254, 188, 108);
+}
+
+node.cwe {
+    fill-color: rgb(11, 36, 251);
+}

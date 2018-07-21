@@ -1,0 +1,90 @@
+graph {
+    padding: 40px;
+}
+
+node {
+    size-mode: dyn-size;
+    text-visibility-mode: under-zoom;
+    text-visibility: 0.15;
+    text-alignment: above;
+}
+
+edge {
+    shape: line;
+    size: 1px;
+    fill-color: rgb(115, 115, 115);
+}
+
+node.spec {
+    /*stroke-mode: plain;*/
+    /*stroke-color: white;*/
+    /*stroke-width: 1px;*/
+    /*shadow-mode: plain;*/
+    /*shadow-width: 1px;*/
+    /*shadow-color: black;*/
+    /*shadow-offset: 0px;*/
+}
+
+node:clicked {
+    stroke-mode: plain;
+    stroke-color: black;
+    stroke-width: 1px;
+}
+
+node:selected {
+    stroke-mode: plain;
+    stroke-color: black;
+    stroke-width: 1px;
+    text-visibility-mode: normal;
+    text-alignment: above;
+}
+
+node.top {
+    stroke-mode: plain;
+    stroke-color: rgb(80, 255, 0);
+    stroke-width: 1px;
+}
+
+node.capec {
+    fill-color: rgb(255, 15, 25);
+}
+
+node.cve {
+    fill-color: rgb(254, 188, 108);
+}
+
+node.cwe {
+    fill-color: rgb(11, 36, 251);
+}
+
+node.invis {
+    visibility-mode: hidden;
+}
+
+edge.invis {
+    visibility-mode: hidden;
+}
+
+edge.hide {
+    fill-color: #0007;
+}
+
+node.hide {
+    fill-color: #DEE7;
+    text-color: #0007;
+    stroke-color: #0007;
+}
+
+node.focus {
+    text-visibility-mode: normal;
+    text-alignment: above;
+    z-index: 5;
+
+    stroke-mode: plain;
+    stroke-color: white;
+    stroke-width: 1px;
+
+    shadow-mode: plain;
+    shadow-color: rgba(255, 255, 255, 200);
+    shadow-width: 1px;
+}

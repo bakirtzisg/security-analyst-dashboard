@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<save>
+    <viewer>
+        <camera x="-3.2017659469502595" y="-0.9668686139979812" z="1.0"/>
+    </viewer>
+    <nodes>
+        <node id="Absolute Pressure Sensor" x="-0.7049507571909697" y="-2.1100258338520197"/>
+        <node id="Accelerometer Gyroscope Magnetometer" x="-3.999415637933507" y="-4.696051135333949"/>
+        <node id="Camera" x="-1.2704042128684705" y="3.1087708082987477"/>
+        <node id="Control Surface" x="-6.906541274102604" y="-4.394422246475621"/>
+        <node id="Differential Pressure Sensor" x="-1.6299307627094066" y="-1.2893138628004972"/>
+        <node id="FCS Radio Module" x="-4.014395969105161" y="-1.3663157631847769"/>
+        <node id="GCS Radio Module" x="-4.176067415457441" y="-0.10462211741749972"/>
+        <node id="GPS" x="-1.0526634702144548" y="-3.8599754933921995"/>
+        <node id="Imagery Application Processor" x="-2.5236463129887534" y="2.2851699691517133"/>
+        <node id="Imagery Radio Module" x="-3.5654826982175933" y="1.171899873432571"/>
+        <node id="Laptop" x="-5.335664621193606" y="0.7377872929926546"/>
+        <node id="NMEA GPS" x="-2.389463141395222" y="-3.484767503365982"/>
+        <node id="Primary Application Processor" x="-3.1965791365365526" y="-2.4880439569746198"/>
+        <node id="Safety Switch Processor" x="-5.084823024366969" y="-3.1795007020734722"/>
+        <node id="Wi-Fi" x="-5.628174086839675" y="1.883195129218401"/>
+        <node id="ZigBee" x="-2.6620811123121184" y="-0.10231641934782498"/>
+    </nodes>
+</save>
