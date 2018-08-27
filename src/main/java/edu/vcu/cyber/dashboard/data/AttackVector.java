@@ -66,7 +66,7 @@ public class AttackVector
 			case CVE:
 				return "https://nvd.nist.gov/vuln/detail/" + qualifiedName;
 			case CWE:
-				return "http://cwe.mitre.org/data/definitions/" + id + ".html";
+				return "https://cwe.mitre.org/data/definitions/" + id + ".html";
 		}
 		return "https://" + type.name().toLowerCase() + ".mitre.org/data/definitions/" + id + ".html";
 	}

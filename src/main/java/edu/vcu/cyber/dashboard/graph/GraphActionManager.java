@@ -330,6 +330,8 @@ public class GraphActionManager extends DefaultMouseManager implements MouseWhee
 	@Override
 	public void focusLost(FocusEvent e)
 	{
+
 	}
+
 }
 

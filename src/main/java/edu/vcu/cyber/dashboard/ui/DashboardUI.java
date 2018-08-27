@@ -9,8 +9,8 @@ import edu.vcu.cyber.dashboard.ui.graphpanel.AVGraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.GraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.EditableGraphPanel;
 import edu.vcu.cyber.dashboard.util.ApplicationSettings;
+import edu.vcu.cyber.dashboard.util.BucketData;
 import edu.vcu.cyber.dashboard.util.GraphExporter;
-import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -122,10 +122,15 @@ public class DashboardUI extends JFrame implements ActionListener
 //		fileMenu.add("New").addActionListener(this);
 		fileMenu.add("Load").addActionListener(this);
 		fileMenu.add("Save").addActionListener(this);
-//		fileMenu.addSeparator();
-		fileMenu.add("Export Graph").addActionListener(this);
-//		fileMenu.add("Import").addActionListener(this);
-//		fileMenu.addSeparator();
+
+		JMenu exportMenu = (JMenu) fileMenu.add(new JMenu("Export"));
+		exportMenu.add("Graph to GraphML").addActionListener(this);
+		exportMenu.add("Bucket to CSV").addActionListener(this);
+
+		JMenu importMenu = (JMenu) fileMenu.add(new JMenu("Import"));
+		importMenu.add("Bucket from CSV").addActionListener(this);
+
+
 		fileMenu.add("Exit").addActionListener(this);
 
 		JMenu cybokMenu = new JMenu("Cybok");
@@ -241,8 +246,14 @@ public class DashboardUI extends JFrame implements ActionListener
 			case "Load":
 				ApplicationSettings.loadAll(this);
 				break;
+			case "Bucket to CSV":
+				BucketData.saveBukkitData();
+				break;
+			case "Bucket from CSV":
+				BucketData.loadBukkitData(bucket);
+				break;
 
-			case "Export Graph":
+			case "Graph to GraphML":
 				GraphData graphData = AppSession.getFocusedGraphData();
 				if (graphData != null)
 				{

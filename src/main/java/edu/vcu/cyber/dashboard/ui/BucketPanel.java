@@ -1,6 +1,7 @@
 package edu.vcu.cyber.dashboard.ui;
 
 import edu.vcu.cyber.dashboard.data.AttackVector;
+import edu.vcu.cyber.dashboard.data.AttackVectors;
 import edu.vcu.cyber.dashboard.data.GraphData;
 import edu.vcu.cyber.dashboard.project.AppSession;
 
@@ -173,6 +174,25 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 		}
 	}
 
+	public void clear()
+	{
+		tableModel.rows.clear();
+		tableModel.fireTableDataChanged();
+	}
+
+	public void bucketFromAVList()
+	{
+		clear();
+		AttackVectors.getAllAttackVectors().forEach(av ->
+		{
+			if (av.inBucket)
+			{
+				addRow(av);
+			}
+		});
+//		tableModel.fireTableDataChanged();
+	}
+
 	@Override
 	public void valueChanged(ListSelectionEvent e)
 	{
@@ -286,7 +306,7 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 		{
 			applyFilter();
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+		else if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
 		{
 			table.clearSelection();
 		}
