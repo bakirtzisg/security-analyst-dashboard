@@ -1,5 +1,7 @@
 package edu.vcu.cyber.dashboard.graph.listeners;
 
+import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
+import edu.vcu.cyber.dashboard.cybok.queries.TaxanomicSearch;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.AttackVectorInfoPanel;
@@ -12,6 +14,7 @@ import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
 import javax.swing.*;
+import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
@@ -115,6 +118,8 @@ public class IBDActionListener extends GraphActionListener
 					SwingUtilities.invokeLater(() ->
 					{
 
+						String inputFile = new File("data/topology.graphml").getAbsolutePath();
+						CybokQueryHandler.sendQuery(new TaxanomicSearch(inputFile, node.getId()));
 						GraphData avGraph = session.getAvGraph();
 
 						AttackVectors.showInGraph(avGraph, av -> av.violatedComponents.contains(node.getId()));

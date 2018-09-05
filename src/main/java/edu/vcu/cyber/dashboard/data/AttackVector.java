@@ -34,7 +34,12 @@ public class AttackVector
 
 	private boolean hasSpecRelation;
 
+	public double taxaScore;
+
 	public int size;
+
+	public double px;
+	public double py;
 
 	public AttackVector(String database, String id)
 	{
@@ -90,6 +95,11 @@ public class AttackVector
 			node.setAttribute(Attributes.HOVER_TEXT, description);
 			node.setAttribute(Attributes.ATTACK_VECTOR);
 
+			if (px != 0 && py != 0)
+			{
+				node.setAttribute("xyz", px, py, 0);
+			}
+
 
 //			int size = related_capec.length + related_cwe.length + related_cve.length;
 
@@ -129,7 +139,6 @@ public class AttackVector
 			}
 			else
 			{
-
 				node.setAttribute("ui.class", Attributes.ATTACK_VECTOR, type.css);
 			}
 			return node;
@@ -157,6 +166,17 @@ public class AttackVector
 					NodeUtil.addCssClass(edge, Attributes.CSS_ATTACK_VECTOR);
 				}
 			}
+		}
+	}
+
+	public void setPos(Node node)
+	{
+//		System.out.println(node.getAttributeKeySet());
+		if (node.hasAttribute("xyz"))
+		{
+			Object[] pos = node.getAttribute("xyz");
+			px = Double.valueOf(pos[0].toString());
+			py = Double.valueOf(pos[1].toString());
 		}
 	}
 }

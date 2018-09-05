@@ -8,6 +8,7 @@ import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.graphpanel.AVGraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.GraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.EditableGraphPanel;
+import edu.vcu.cyber.dashboard.ui.search.SearchPanel;
 import edu.vcu.cyber.dashboard.util.ApplicationSettings;
 import edu.vcu.cyber.dashboard.util.BucketData;
 import edu.vcu.cyber.dashboard.util.GraphExporter;
@@ -96,15 +97,17 @@ public class DashboardUI extends JFrame implements ActionListener
 
 		topGraphPanel = new EditableGraphPanel(GraphType.TOPOLOGY);
 		avGraphPanel = new AVGraphPanel(GraphType.ATTACKS);
-		specGraphPanel = new EditableGraphPanel(GraphType.SPECIFICATIONS);
+//		specGraphPanel = new EditableGraphPanel(GraphType.SPECIFICATIONS);
 
 		sp.setLeftComponent(topGraphPanel);
 
 
 		tabs = new JTabbedPane();
-		tabs.add("Specification", specGraphPanel);
+//		tabs.add("Specification", specGraphPanel);
 		tabs.add("Attack Vector Space", avGraphPanel);
 //		tabs.add("Search", new JPanel(new BorderLayout()));
+
+		tabs.add("Search Panel", new SearchPanel());
 
 		sp.setRightComponent(tabs);
 

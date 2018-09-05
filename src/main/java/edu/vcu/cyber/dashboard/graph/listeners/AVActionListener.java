@@ -1,5 +1,8 @@
 package edu.vcu.cyber.dashboard.graph.listeners;
 
+import edu.vcu.cyber.dashboard.actions.ActionAVToBucket;
+import edu.vcu.cyber.dashboard.actions.ActionManager;
+import edu.vcu.cyber.dashboard.actions.ActionNodeDelete;
 import edu.vcu.cyber.dashboard.data.AttackVector;
 import edu.vcu.cyber.dashboard.data.AttackVectors;
 import edu.vcu.cyber.dashboard.data.NodeData;
@@ -103,18 +106,34 @@ public class AVActionListener extends GraphActionListener
 				graphData.clearSelected();
 				break;
 			case KeyEvent.VK_DELETE: // delete -> delete the selected nodes from the graph
-				graphData.getSelectedNodes().forEach(node -> deleteNode(node.getNode()));
+
+				ActionNodeDelete act = new ActionNodeDelete(graphData);
+				for (NodeData node : graphData.getSelectedNodes())
+				{
+					AttackVector av = AttackVectors.getAttackVector(node.getId());
+					if (av != null)
+					{
+						act.addAttackVector(av);
+						av.setPos(graphPanel.getViewGraph().getNode(av.qualifiedName));
+					}
+				}
+
+				ActionManager.action(act);
+
+//				graphData.getSelectedNodes().forEach(node -> deleteNode(node.getNode()));
 				graphData.clearSelected();
 				break;
 			case KeyEvent.VK_Z:// ctrl-Z -> undo last action (not implemented yet)
 				if (evt.isControlDown())
 				{
+					ActionManager.undo();
 					// TODO: undo
 				}
 				break;
 			case KeyEvent.VK_Y: // ctrl-Y -> redo last action (not implemented yet)
 				if (evt.isControlDown())
 				{
+					ActionManager.redo();
 					// TODO: redo
 				}
 				break;
@@ -154,14 +173,28 @@ public class AVActionListener extends GraphActionListener
 	public void moveToBucket()
 	{
 
-		graphData.getSelectedNodes().forEach(node ->
+		ActionAVToBucket act = new ActionAVToBucket();
+		for (NodeData nd : graphData.getSelectedNodes())
 		{
-			AttackVector attack = AttackVectors.getAttackVector(node.getId());
+			AttackVector attack = AttackVectors.getAttackVector(nd.getId());
 			if (attack != null)
 			{
-				BucketPanel.instance.addRow(attack);
+				act.addAttackVector(attack);
 			}
-		});
+		}
+		if (act.getActionSize() > 0)
+		{
+			ActionManager.action(act);
+		}
+
+//		graphData.getSelectedNodes().forEach(node ->
+//		{
+//			AttackVector attack = AttackVectors.getAttackVector(node.getId());
+//			if (attack != null)
+//			{
+//				BucketPanel.instance.addRow(attack);
+//			}
+//		});
 
 
 	}

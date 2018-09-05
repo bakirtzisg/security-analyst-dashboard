@@ -1,5 +1,6 @@
 package edu.vcu.cyber.dashboard.ui.search;
 
+import edu.vcu.cyber.dashboard.ui.custom.HintTextField;
 import edu.vcu.cyber.dashboard.util.EnvUtils;
 
 import javax.swing.*;
@@ -13,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class SearchPanel extends JPanel implements ActionListener, KeyListener, CaretListener
+public class SearchPanel extends JPanel implements ActionListener
 {
 
 	public static void main(String[] args)
@@ -27,9 +28,9 @@ public class SearchPanel extends JPanel implements ActionListener, KeyListener, 
 		frame.setVisible(true);
 	}
 
-	private static final String columnNames[] = {" ", "CAPEC", "CWE", "CVE"};
+	private static final String columnNames[] = {" ", "Match", "Ancestral", "Descendant", "Source"};
 
-	private JTextField queryText;
+	private HintTextField queryText;
 	private JCheckBox searchCAPEC, searchCWE, searchCVE;
 	private JCheckBox reportCAPEC, reportCWE, reportCVE;
 	private JCheckBox taxCheckbox;
@@ -112,7 +113,7 @@ public class SearchPanel extends JPanel implements ActionListener, KeyListener, 
 
 	private void initComponents()
 	{
-		queryText = new JTextField("Search Query");
+		queryText = new HintTextField("Search Query");
 		searchCAPEC = new JCheckBox("CAPEC", true);
 		searchCWE = new JCheckBox("CWE", true);
 		searchCVE = new JCheckBox("CVE", true);
@@ -142,14 +143,24 @@ public class SearchPanel extends JPanel implements ActionListener, KeyListener, 
 		taxWeightTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		taxWeightTable.getColumn(" ").setPreferredWidth(100);
 
+	}
 
-		queryText.addCaretListener(this);
-
-		queryText.setForeground(Color.LIGHT_GRAY);
-		queryText.setSelectionStart(0);
-		queryText.setSelectionEnd(0);
-		queryText.addKeyListener(this);
-
+	private void attemptCloseWindow()
+	{
+		try
+		{
+			Component parent = getParent();
+			while (!(parent instanceof Window))
+			{
+				parent = parent.getParent();
+				if (parent == null)
+					return;
+			}
+			((Window) parent).dispose();
+		} catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
@@ -161,14 +172,11 @@ public class SearchPanel extends JPanel implements ActionListener, KeyListener, 
 
 				// TODO: Create the search query
 
+				attemptCloseWindow();
 				break;
 
 			case "Cancel":
-				Component parent = getParent();
-				if (parent instanceof JFrame)
-				{
-					((JFrame) parent).dispose();
-				}
+				attemptCloseWindow();
 				break;
 
 			case "Weighted":
@@ -186,68 +194,26 @@ public class SearchPanel extends JPanel implements ActionListener, KeyListener, 
 		}
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e)
-	{
-
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e)
-	{
-		if (queryText.getText().equals("Search Query"))
-		{
-			queryText.setText("");
-			queryText.setForeground(Color.BLACK);
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e)
-	{
-
-		if (queryText.getText().equals(""))
-		{
-			queryText.setText("Search Query");
-			queryText.setForeground(Color.LIGHT_GRAY);
-			queryText.setSelectionStart(0);
-			queryText.setSelectionEnd(0);
-		}
-	}
-
-	@Override
-	public void caretUpdate(CaretEvent e)
-	{
-		if (queryText.getText().equals("Search Query"))
-		{
-			if (queryText.getSelectionStart() != 0)
-			{
-				queryText.setSelectionStart(0);
-				queryText.setSelectionEnd(0);
-			}
-		}
-	}
 
 	private class WeightTableModel extends AbstractTableModel
 	{
 		Object[][] data = {
-				{"Match", 1.0f, 1.0f, 1.0f},
-				{"Ancestors", 1.0f, 1.0f, 1.0f},
-				{"Descendants", 1.0f, 1.0f, 1.0f},
-				{"Source", 1.0f, 1.0f, 1.0f},
+				{"CAPEC", 1.0f, 1.0f, 1.0f, 1.0f},
+				{"CWE", 1.0f, 1.0f, 1.0f, 1.0f},
+				{"CVE", 1.0f, 1.0f, 1.0f, 1.0f},
 		};
 
 
 		@Override
 		public int getRowCount()
 		{
-			return 4;
+			return 3;
 		}
 
 		@Override
 		public int getColumnCount()
 		{
-			return 4;
+			return 5;
 		}
 
 		public String getColumnName(int col)
