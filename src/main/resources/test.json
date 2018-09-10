@@ -1,0 +1,40 @@
+{
+  "RESULTS":[
+    {
+      "QID":0,
+      "QUERY":"GPS",
+      "RES":{
+        "CAPEC":{
+          "ID0":{"NAME":"ATTACK NAME 0", "SCORE":123.4, "CHILDREN":["ID0","ID1","ID2"]},
+          "ID1":{"NAME":"ATTACK NAME 1", "SCORE":123.4, "CHILDREN":["ID0","ID1","ID2"]}
+        },
+        "CWE":{
+          "ID0":{"NAME":"WEAK NAME 0", "SCORE":123.4, "CHILDREN":["ID0","ID1","ID2"]},
+          "ID1":{"NAME":"WEAK NAME 1", "SCORE":123.4, "CHILDREN":["ID0","ID1","ID2"]}
+        },
+        "CVE":{
+          "ID0":{"NAME":"VULN NAME 0", "SIM":123.4, "REL_WEAK":["ID0","ID1","ID2"]},
+          "ID1":{"NAME":"VULN NAME 1", "SIM":123.4, "REL_WEAK":["ID0","ID1","ID2"]}
+        }
+      }
+    },
+    {
+      "QID":1,
+      "QUERY":"MediaTek GPS",
+      "RES":{
+
+      }
+    }
+  ],
+  "PARAMS":{
+    "SEARCHED":{"A":true, "W":true, "V":true},
+    "REPORTED":{"A":true, "W":true, "V":true},
+    "FAM_WTS":{"A":{"M":1.5,"A":1.1,"D":0.9,"S":1.0},"W":{"M":1.5,"A":1.1,"D":0.9,"S":1.0},"V":{"M":1.5,"A":1.1,"D":0.9,"S":1.0}},
+    "TW":true,
+    "UT":true,
+    "SDT":true,
+    "NAME":"CYBOK MOD"
+  },
+  "EVAL":{},
+  "QUIT":false
+}

@@ -11,7 +11,7 @@ public class CybokQueryHandler implements Runnable
 
 	private static CybokQueryHandler queryHandler = new CybokQueryHandler();
 
-	public static boolean useCybok = false;
+	public static boolean useCybok = true;
 
 	public static void sendQuery(CybokQuery<?> query)
 	{
@@ -50,8 +50,8 @@ public class CybokQueryHandler implements Runnable
 
 	public static void setupHandler()
 	{
-		CybokQueryHandler handler = new CybokQueryHandler();
-		handler.installDir = findCybokInstall();
+		queryHandler = new CybokQueryHandler();
+		queryHandler.installDir = findCybokInstall();
 	}
 
 	private static File findCybokInstall()

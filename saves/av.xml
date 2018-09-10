@@ -12,6 +12,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5964" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-2956" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5963" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-13879" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-0131" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-0135" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-5331" shown="true" size="0"/>
@@ -68,6 +69,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-2912" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-3808" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-3809" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11259" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-309" shown="true" size="2"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-3800" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-3801" shown="true" size="0"/>
@@ -437,6 +439,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5835" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-485" shown="true" size="1"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5832" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10018" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5831" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5830" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17455" shown="true" size="0"/>
@@ -459,10 +462,14 @@
     <attack bucket="false" deleted="false" hidden="false" id="CWE-498" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5820" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-3809" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11314" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2001-0619" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11315" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11316" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-0978" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12642" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-4844" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-4851" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-0328" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-2986" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-0323" shown="true" size="0"/>
@@ -533,9 +540,13 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-6512" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-6513" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-0066" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12691" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-8732" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-5096" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12692" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11361" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12693" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12694" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-6033" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-6048" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-2938" shown="true" size="0"/>
@@ -543,6 +554,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-3186" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2000-1059" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-0913" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000547" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-4899" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-0918" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-1598" shown="true" size="0"/>
@@ -589,6 +601,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-11320" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1691" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1692" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000503" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1690" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-13989" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-13987" shown="true" size="0"/>
@@ -606,12 +619,15 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-9413" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-9411" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-0300" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12633" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2000-1023" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-9419" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1680" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1684" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000510" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-3513" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1682" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000511" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-4843" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1683" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-2956" shown="true" size="0"/>
@@ -620,6 +636,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-4279" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-0977" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-1999-0728" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000520" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-3129" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-3128" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-9409" shown="true" size="0"/>
@@ -639,7 +656,9 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-12622" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-1571" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2000-1002" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12613" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-0371" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000532" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-0323" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-0322" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-2984" shown="true" size="0"/>
@@ -888,14 +907,18 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1238" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-3704" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1237" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1243" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1242" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1244" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1241" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1240" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-1550" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-0079" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1249" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-6410" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-0077" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-0078" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1212" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1211" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-2879" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5707" shown="true" size="0"/>
@@ -933,6 +956,8 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0569" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0561" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0562" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17316" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17317" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-6431" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-554" shown="true" size="1"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-555" shown="true" size="0"/>
@@ -1025,6 +1050,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2000-1154" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2000-1155" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-3766" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000207" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000202" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-0010" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2004-0451" shown="true" size="0"/>
@@ -1033,6 +1059,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2004-1786" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2004-0459" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-3051" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000211" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-4543" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-3211" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-0309" shown="true" size="0"/>
@@ -1405,6 +1432,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-6933" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-1446" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-4810" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11574" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17225" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-15" shown="true" size="14"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-6388" shown="true" size="0"/>
@@ -1424,13 +1452,19 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10257" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10252" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-0241" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1129" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10251" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17216" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10256" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17217" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10255" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1128" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3752" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0439" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3753" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3750" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-8943" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3751" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-42" shown="true" size="3"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-41" shown="true" size="9"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0432" shown="true" size="0"/>
@@ -1446,6 +1480,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-6374" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0430" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17202" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-2427" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-6327" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-8941" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-0733" shown="true" size="0"/>
@@ -1476,7 +1511,11 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0440" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-4840" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0441" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12893" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1108" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12891" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11560" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12892" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-69" shown="true" size="3"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-8968" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-8966" shown="true" size="0"/>
@@ -1721,6 +1760,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-6656" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-2099" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-12319" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-9853" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-2763" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-2755" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1425" shown="true" size="0"/>
@@ -1906,7 +1946,9 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-4304" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-2169" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-0248" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3749" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-6216" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3748" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-2418" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-732" shown="true" size="13"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-733" shown="true" size="7"/>
@@ -1974,6 +2016,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0138" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-3167" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11682" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-8902" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0189" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-5779" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-0772" shown="true" size="0"/>
@@ -2073,6 +2116,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-5460" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-5468" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-5465" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12922" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-4420" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-494" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-0268" shown="true" size="0"/>
@@ -2122,6 +2166,8 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2000-0020" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-4127" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-445" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12997" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12999" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-1893" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-8998" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-443" shown="true" size="0"/>
@@ -2294,6 +2340,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-2271" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-6477" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2003-1309" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1431" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0101" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-0805" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-3084" shown="true" size="0"/>
@@ -2359,6 +2406,8 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1428" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17999" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1425" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1354" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0024" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-2339" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-2531" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-1201" shown="true" size="0"/>
@@ -2368,6 +2417,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-1648" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-4360" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-1645" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0027" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-1647" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-2098" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-3857" shown="true" size="0"/>
@@ -2377,6 +2427,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-1859" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-5688" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-4351" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0037" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-8513" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-8514" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-4976" shown="true" size="0"/>
@@ -2467,6 +2518,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-1941" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-0615" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-1747" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10407" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-4037" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-6699" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-5610" shown="true" size="0"/>
@@ -2538,6 +2590,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-1780" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-7533" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-312" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-7535" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-310" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-3817" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-0668" shown="true" size="0"/>
@@ -2684,6 +2737,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-2398" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-2392" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-0593" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3936" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16531" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-0977" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16532" shown="true" size="0"/>
@@ -2691,9 +2745,13 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16533" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16534" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-6583" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3932" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16535" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3933" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16536" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3930" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16537" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3931" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16538" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-5257" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0705" shown="true" size="0"/>
@@ -2736,6 +2794,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-7053" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-2365" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-7056" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-3929" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-2366" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-3698" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-2367" shown="true" size="0"/>
@@ -2809,11 +2868,14 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17875" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1301" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-4827" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0384" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-6623" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-114" shown="true" size="2"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0385" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-116" shown="true" size="7"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-119" shown="true" size="864"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-6629" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0383" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-2593" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-2592" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-110" shown="true" size="2"/>
@@ -3088,6 +3150,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-0545" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2001-1030" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-11589" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-14043" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-5147" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-5143" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-5142" shown="true" size="0"/>
@@ -3191,10 +3254,12 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-2379" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16419" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-1000003" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0309" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-5370" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-5990" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17746" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-5377" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0303" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-4677" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1923" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2003-1116" shown="true" size="0"/>
@@ -3250,6 +3315,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-1228" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-3374" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-1227" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-14010" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-1226" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-1225" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-1229" shown="true" size="0"/>
@@ -3308,6 +3374,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-2399" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-2453" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-4897" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-1000022" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-2233" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-2456" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-15102" shown="true" size="0"/>
@@ -3315,6 +3382,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0329" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0325" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-1909" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0331" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-1907" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-1908" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0332" shown="true" size="0"/>
@@ -3484,17 +3552,22 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16392" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16393" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-226" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0299" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0292" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16395" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-92" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0293" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-93" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16396" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-90" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0295" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16398" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-180" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-96" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-0086" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-0087" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-97" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0291" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-6484" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2004-0932" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-6483" shown="true" size="0"/>
@@ -3541,6 +3614,7 @@
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-127" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-126" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-5137" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10659" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-9792" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-9790" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-122" shown="true" size="0"/>
@@ -3552,6 +3626,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-9789" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-6178" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-1086" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10623" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-9786" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-9785" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CAPEC-139" shown="true" size="0"/>
@@ -3628,6 +3703,7 @@
     <attack bucket="false" deleted="false" hidden="false" id="CWE-291" shown="true" size="1"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-9287" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-7755" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10661" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-7757" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-8786" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-8784" shown="true" size="0"/>
@@ -3927,6 +4003,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-2408" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-3038" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-5382" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-3197" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-3033" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-3199" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-3897" shown="true" size="0"/>
@@ -4077,6 +4154,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-4891" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-4890" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5093" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-5428" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5092" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-4299" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-3513" shown="true" size="0"/>
@@ -4189,6 +4267,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-14431" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-3008" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-0918" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-0500" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-0919" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-6449" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5117" shown="true" size="0"/>
@@ -4380,6 +4459,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-8142" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-2177" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-0770" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-13096" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-1567" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-1468" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-2895" shown="true" size="0"/>
@@ -4483,6 +4563,8 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-4342" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-4343" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-3013" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10875" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10874" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-6206" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-5973" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-6205" shown="true" size="0"/>
@@ -4608,6 +4690,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-4444" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-4445" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-9516" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-10852" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-0169" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-0848" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16962" shown="true" size="0"/>
@@ -4637,6 +4720,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-8937" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-0802" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-0801" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-14324" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-1820" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-0171" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-2404" shown="true" size="0"/>
@@ -4648,6 +4732,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-13011" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-2783" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-1000139" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-14334" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-0183" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2000-0536" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-4325" shown="true" size="0"/>
@@ -5093,6 +5178,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-9105" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-5540" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16867" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-13101" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-4222" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-4738" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-4739" shown="true" size="0"/>
@@ -5124,6 +5210,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-4740" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-9162" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-15596" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-13169" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-6193" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-2093" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-5575" shown="true" size="0"/>
@@ -5133,6 +5220,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2001-0148" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-1999-0043" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-1386" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-13136" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-5573" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-2082" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2000-0605" shown="true" size="0"/>
@@ -5182,8 +5270,11 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-4059" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-4058" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-5234" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-6564" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-6567" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-5230" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-1999-1464" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-9067" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-1999-1465" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-1999-1466" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-9372" shown="true" size="0"/>
@@ -5205,9 +5296,16 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-5893" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-5514" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-3233" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-6855" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-6853" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-6852" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-5094" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-6851" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-6543" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-1800" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-6544" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-2522" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-6540" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-5218" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-2826" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-2825" shown="true" size="0"/>
@@ -5215,6 +5313,8 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-2823" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-2822" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-4556" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-6857" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-6856" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-1518" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-3292" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-1999-1414" shown="true" size="0"/>
@@ -5396,6 +5496,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-0946" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-1251" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-1250" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16726" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-1257" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-1256" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-1259" shown="true" size="0"/>
@@ -5413,6 +5514,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-3887" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-3888" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-0310" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-16718" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-1640" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-1647" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-3881" shown="true" size="0"/>
@@ -5559,6 +5661,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-3616" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-5176" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-2902" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-13406" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-9272" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-6080" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-4670" shown="true" size="0"/>
@@ -5634,6 +5737,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-6032" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-0089" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17140" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-5884" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-4840" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-4004" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-4989" shown="true" size="0"/>
@@ -5707,6 +5811,8 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-2225" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2005-2229" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2003-0819" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17173" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-17175" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-6414" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2004-1534" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-1737" shown="true" size="0"/>
@@ -5936,6 +6042,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5565" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-3567" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5564" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12028" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-0334" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-4895" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-8776" shown="true" size="0"/>
@@ -5946,6 +6053,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-6149" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-2276" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-6144" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12021" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12041" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-2097" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-2096" shown="true" size="0"/>
@@ -5973,6 +6081,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-12281" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-12282" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-12280" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-7466" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-6875" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-6616" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-12278" shown="true" size="0"/>
@@ -5993,9 +6102,12 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-1638" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-0308" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-12267" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12018" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12019" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-7478" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-6148" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-3597" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-7471" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-0309" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-830" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2004-0189" shown="true" size="0"/>
@@ -6410,6 +6522,8 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-1217" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-9030" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-1214" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000608" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000607" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-2730" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-4071" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-2532" shown="true" size="0"/>
@@ -6418,6 +6532,8 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-1801" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-1999-0487" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-1999-0489" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000604" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000602" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-3625" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-6357" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="false" id="CWE-6" shown="true" size="7"/>
@@ -6431,6 +6547,9 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-0484" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-0680" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-1212" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000615" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000616" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000614" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-3007" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-3006" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-0536" shown="true" size="0"/>
@@ -6448,6 +6567,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-6371" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-2494" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-2495" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12356" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1162" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2002-1256" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-2496" shown="true" size="0"/>
@@ -6468,6 +6588,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-2584" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-18203" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-5062" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12335" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-2467" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0138" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-0137" shown="true" size="0"/>
@@ -6532,6 +6653,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-3087" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-0677" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-3753" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-1000621" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-0668" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-4874" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2014-0667" shown="true" size="0"/>
@@ -6641,11 +6763,13 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-7197" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-0267" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-0266" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-8226" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-0787" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2010-2381" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2004-1207" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-3553" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-4022" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-8231" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-3552" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-0279" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-5419" shown="true" size="0"/>
@@ -6664,6 +6788,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-5405" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-0289" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-5408" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-8206" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-0284" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2004-2555" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-8926" shown="true" size="0"/>
@@ -6685,6 +6810,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5316" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2013-4845" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-1898" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-8276" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2001-0590" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-0551" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2006-5300" shown="true" size="0"/>
@@ -6730,6 +6856,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-2382" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-2381" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2001-0408" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-12426" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-2373" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-3977" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-1933" shown="true" size="0"/>
@@ -6765,6 +6892,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-0658" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-6159" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1051" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-13791" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2015-1086" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-4364" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-4365" shown="true" size="0"/>
@@ -6785,6 +6913,7 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2001-0429" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2011-4436" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2016-5686" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11116" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2008-0634" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2007-1074" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-1375" shown="true" size="0"/>
@@ -7080,7 +7209,9 @@
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-7563" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2017-14597" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2009-1268" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11053" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-0189" shown="true" size="0"/>
+    <attack bucket="false" deleted="false" hidden="true" id="CVE-2018-11052" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-0188" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-0191" shown="true" size="0"/>
     <attack bucket="false" deleted="false" hidden="true" id="CVE-2012-0190" shown="true" size="0"/>

@@ -43,6 +43,8 @@ public class MainClass
 		EnvUtils.registerFonts();
 		EnvUtils.setGlobalUIFont(new FontUIResource("Fira Sans Light", Font.PLAIN, 14));
 
+		CybokQueryHandler.setupHandler();
+
 		if (!CybokQueryHandler.isCybokInstalled())
 		{
 			SystemAnalysis.makePathDefaults();

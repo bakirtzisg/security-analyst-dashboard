@@ -54,6 +54,7 @@ public class EnvUtils
 				System.out.println(url);
 			}
 
+
 			for (File f : Objects.requireNonNull(new File("./src/main/resources/font/").listFiles()))
 			{
 				if (f.getName().endsWith(".ttf"))

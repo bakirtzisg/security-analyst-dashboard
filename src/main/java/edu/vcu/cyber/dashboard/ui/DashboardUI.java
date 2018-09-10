@@ -97,17 +97,17 @@ public class DashboardUI extends JFrame implements ActionListener
 
 		topGraphPanel = new EditableGraphPanel(GraphType.TOPOLOGY);
 		avGraphPanel = new AVGraphPanel(GraphType.ATTACKS);
-//		specGraphPanel = new EditableGraphPanel(GraphType.SPECIFICATIONS);
+		specGraphPanel = new EditableGraphPanel(GraphType.SPECIFICATIONS);
 
 		sp.setLeftComponent(topGraphPanel);
 
 
 		tabs = new JTabbedPane();
-//		tabs.add("Specification", specGraphPanel);
+		tabs.add("Specification", specGraphPanel);
 		tabs.add("Attack Vector Space", avGraphPanel);
 //		tabs.add("Search", new JPanel(new BorderLayout()));
 
-		tabs.add("Search Panel", new SearchPanel());
+//		tabs.add("Search Panel", new SearchPanel());
 
 		sp.setRightComponent(tabs);
 

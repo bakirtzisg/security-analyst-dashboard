@@ -83,18 +83,18 @@ public class Application
 	 */
 	private void setupSpecificationsGraph()
 	{
-//		GraphData graph = session.getSpecGraph();
-//		GraphPanel gp = gui.getSpecGraphPanel();
-//		gp.setGraph(graph);
-//		gp.setGraphActionListener(new IBDActionListener(session));
-//
-//		LayeredSectionsLayout sectionsLayout = new LayeredSectionsLayout(graph.getGraph());
-//		sectionsLayout.registerSections("Mission", "Function", "Structure");
-//		sectionsLayout.computePositions();
-//
-//		gp.getViewer().disableAutoLayout();
-//
-//		gp.setBackgroundRenderer(new SectionRenderer(sectionsLayout, gp));
+		GraphData graph = session.getSpecGraph();
+		GraphPanel gp = gui.getSpecGraphPanel();
+		gp.setGraph(graph);
+		gp.setGraphActionListener(new IBDActionListener(session));
+
+		LayeredSectionsLayout sectionsLayout = new LayeredSectionsLayout(graph.getGraph());
+		sectionsLayout.registerSections("Mission", "Function", "Structure");
+		sectionsLayout.computePositions();
+
+		gp.getViewer().disableAutoLayout();
+
+		gp.setBackgroundRenderer(new SectionRenderer(sectionsLayout, gp));
 	}
 
 	/**
