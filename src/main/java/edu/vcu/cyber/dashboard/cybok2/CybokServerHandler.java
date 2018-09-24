@@ -22,27 +22,38 @@ public class CybokServerHandler implements Runnable
 		{
 
 			Gson gson = new Gson();
-			AVQueryResponse res = new AVQueryResponse("testID", 0.5f, new String[]{"a", "b", "c"});
-
-			System.out.println(res);
-			String json = gson.toJson(res);
-			System.out.println(json);
-			res = gson.fromJson(json, AVQueryResponse.class);
-			System.out.println(res);
-
-			JsonElement ele = new JsonObject();
-
-
+//			AVQueryResponse res = new AVQueryResponse("testID", 0.5f, new String[]{"a", "b", "c"});
 //
-//			BufferedReader in = new BufferedReader(new FileReader(new File("./src/main/resources/test.json")));
-//			StringBuilder sb = new StringBuilder();
-//			String line;
-//			while ((line = in.readLine()) != null)
-//			{
-//				sb.append(line);
-//			}
+//
+//			System.out.println(res);
+//			String json = gson.toJson(res);
+//			System.out.println(json);
+//			res = new AVQueryResponse();
+//			res = gson.fromJson(json, AVQueryResponse.class);
+//			System.out.println(res);
+//
+//			JsonElement ele = new JsonObject();
+
+			AVQueryResponse res = new AVQueryResponse();
+
+///
+			BufferedReader in = new BufferedReader(new FileReader(new File("./src/main/resources/test.json")));
+			StringBuilder sb = new StringBuilder();
+			String line;
+			while ((line = in.readLine()) != null)
+			{
+				sb.append(line);
+			}
+
+			System.out.println(sb.toString());
+			res = gson.fromJson(sb.toString(), AVQueryResponse.class);
+
+
+
+			res.print();
 		} catch (Exception e)
 		{
+
 			e.printStackTrace();
 		}
 	}

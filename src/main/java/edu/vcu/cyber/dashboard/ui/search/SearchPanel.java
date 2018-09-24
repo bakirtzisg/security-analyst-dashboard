@@ -1,5 +1,6 @@
 package edu.vcu.cyber.dashboard.ui.search;
 
+import edu.vcu.cyber.dashboard.cybok2.info.SearchConfig;
 import edu.vcu.cyber.dashboard.ui.custom.HintTextField;
 import edu.vcu.cyber.dashboard.util.EnvUtils;
 
@@ -171,6 +172,9 @@ public class SearchPanel extends JPanel implements ActionListener
 			case "Search":
 
 				// TODO: Create the search query
+
+				SearchConfig.searchConfig.setSearchParams(new boolean[]{searchCAPEC.isSelected(), searchCWE.isSelected(), searchCVE.isSelected()});
+				SearchConfig.searchConfig.setReportedParams(new boolean[]{reportCAPEC.isSelected(), reportCWE.isSelected(), reportCVE.isSelected()});
 
 				attemptCloseWindow();
 				break;

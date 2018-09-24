@@ -47,8 +47,8 @@ public class AVGraphPanel extends GraphPanel implements ActionListener
 				cve_shown = !cve_shown;
 
 				List<NodeData> nodes = graph.getSelectedNodes();
-//				NodeData node = graph.getLastSelectedNode();
-				for (NodeData node : nodes)
+				NodeData node = graph.getLastSelectedNode();
+//				for (NodeData node : nodes)
 					if (node != null)
 					{
 						AttackVector av = AttackVectors.getAttackVector(node.getId());
@@ -58,20 +58,20 @@ public class AVGraphPanel extends GraphPanel implements ActionListener
 							AttackVectors.showAllRelated(av.qualifiedName, graph);
 						}
 					}
-//				else
-//				{
-//
-//					if (cve_shown)
-//					{
-//						AttackVectors.hideAttacks(av -> false);
-//						AttackVectors.showInGraph(graph, av -> av.shown | av.type == AttackType.CVE);
-//					}
-//					else
-//					{
-//						AttackVectors.hideAttacks(av -> av.type == AttackType.CVE);
-//						AttackVectors.showInGraph(graph, av -> av.shown && av.type != AttackType.CVE);
-//					}
-//				}
+				else
+				{
+
+					if (cve_shown)
+					{
+						AttackVectors.hideAttacks(av -> false);
+						AttackVectors.showInGraph(graph, av -> av.shown | av.type == AttackType.CVE);
+					}
+					else
+					{
+						AttackVectors.hideAttacks(av -> av.type == AttackType.CVE);
+						AttackVectors.showInGraph(graph, av -> av.shown && av.type != AttackType.CVE);
+					}
+				}
 
 
 				break;

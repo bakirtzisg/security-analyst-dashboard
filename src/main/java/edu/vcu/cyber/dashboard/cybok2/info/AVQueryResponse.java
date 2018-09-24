@@ -1,60 +1,148 @@
 package edu.vcu.cyber.dashboard.cybok2.info;
 
 
-import jdk.nashorn.internal.parser.JSONParser;
+import java.util.List;
 
-public class AVQueryResponse
+public class AVQueryResponse implements Result
 {
 
-	String id;
-	String name;
-	float score;
-
-	String[] related;
+	private ResultEntry[] RESULTS;
 
 	public AVQueryResponse()
 	{
 
 	}
 
-	public AVQueryResponse(String id, float score, String[] related)
+	public void print()
 	{
-		this.id = id;
-		this.score = score;
-		this.related = related;
-	}
-
-	public String toString()
-	{
-		StringBuilder sb = new StringBuilder();
-		sb.append(id).append(" [score: ").append(score).append(", children: {");
-		for (int i = 0; i < related.length; i++)
+		for (ResultEntry entry : RESULTS)
 		{
-			sb.append(related[i]);
-			if (i < related.length - 1)
-				sb.append(", ");
+			entry.print();
 		}
-		sb.append("}]");
-		return sb.toString();
+		RESULTS[0].print();
 	}
 
-	class ResultEntry
+	public ResultEntry[] getResults()
 	{
-		int qid;
-		String query;
-
+		return RESULTS;
 	}
 
-	class Meh
+	public static class ResultEntry implements Result
 	{
+		private int QID;
+		private String QUERY;
+		private ResultData RES;
 
+		public int getQueryID()
+		{
+			return QID;
+		}
+
+		public String getQuery()
+		{
+			return QUERY;
+		}
+
+		public ResultData getResult()
+		{
+			return RES;
+		}
+
+		public ResultEntry()
+		{
+			RES = new ResultData();
+		}
+
+		public void print()
+		{
+			System.out.printf("qid: %d, query: %s, res:{\n", QID, QUERY);
+//			for (ResultData dat : RES)
+//			{
+			RES.print();
+//			}
+			System.out.println("}");
+		}
 	}
 
-	class AVEntry
+	public static class ResultData implements Result
 	{
-		String id;
-		String name;
-		String[] related;
+		private List<AVEntry> CAPEC;
+		private List<AVEntry> CWE;
+		private List<AVEntry> CVE;
+
+		public List<AVEntry> getCapec()
+		{
+			return CAPEC;
+		}
+
+		public List<AVEntry> getCwe()
+		{
+			return CWE;
+		}
+
+		public List<AVEntry> getCVE()
+		{
+			return CVE;
+		}
+
+		public void print()
+		{
+			System.out.print("\tcapec: {");
+			for (AVEntry entry : CAPEC)
+			{
+				entry.print();
+			}
+			System.out.print("\n\t}\n\tcwe: {");
+			for (AVEntry entry : CWE)
+			{
+				entry.print();
+			}
+			System.out.print("\n\t}\n\tcve: {");
+			for (AVEntry entry : CVE)
+			{
+				entry.print();
+			}
+			System.out.println("\n\t}");
+		}
+	}
+
+	public static class AVEntry implements Result
+	{
+		private String ID;
+		private String NAME;
+		private double SCORE;
+		private String[] REL;
+
+		public String getID()
+		{
+			return ID;
+		}
+
+		public String getName()
+		{
+			return NAME;
+		}
+
+		public double getScore()
+		{
+			return SCORE;
+		}
+
+		public String[] getRelated()
+		{
+			return REL;
+		}
+
+		public void print()
+		{
+			System.out.printf("\n\t\t%s: [name: %s, score: %2.2f, rel:{", ID, NAME, SCORE);
+			if (REL != null)
+				for (String dat : REL)
+				{
+					System.out.printf("%s, ", dat);
+				}
+			System.out.print("}]");
+		}
 	}
 
 }
