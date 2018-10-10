@@ -44,7 +44,7 @@ public class DashboardUI extends JFrame implements ActionListener
 
 	public DashboardUI()
 	{
-		setTitle("Cyber Analyst Dashboard");
+		setTitle("Security Analyst Dashboard");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		initComponents();

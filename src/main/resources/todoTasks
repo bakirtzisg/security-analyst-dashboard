@@ -1,0 +1,14 @@
+TODO:
+
+UI Changes:
+    - filter bar improvement
+    - Project file selection (keep default project loading)
+
+General Feature QoL:
+    - Only show the graphs that has a file (ex: hide req graph if no req graph file exists)
+
+Bucket:
+    - add keep checkbox :: Row = hide | keep | info...
+
+Refactoring:
+    - clean Attack Vector class
