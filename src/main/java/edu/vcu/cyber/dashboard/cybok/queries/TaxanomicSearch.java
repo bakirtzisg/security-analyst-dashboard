@@ -44,7 +44,7 @@ public class TaxanomicSearch extends CybokQuery
 	@Override
 	public String[] searchQuery()
 	{
-		return new String[]{"-i", input, "-T", target};
+		return new String[]{"-i", input, "-t", target};
 	}
 
 	@Override

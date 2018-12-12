@@ -4,6 +4,8 @@ import edu.vcu.cyber.dashboard.cybok.CybokQuery;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.AttackChainSearchQuery;
 import edu.vcu.cyber.dashboard.cybok.queries.FullAnalysisQuery;
+import edu.vcu.cyber.dashboard.project.AppSession;
+import edu.vcu.cyber.dashboard.util.GraphExporter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -54,10 +56,21 @@ public class SystemAnalysis
 	}
 
 
+	static boolean initialAnalysisDone = false;
 	public static void doAnalysis()
 	{
-		String inputFile = new File("data/topology.graphml").getAbsolutePath();
-		CybokQueryHandler.sendQuery(new FullAnalysisQuery(inputFile));
+		if(!initialAnalysisDone)
+		{
+			String inputFile = new File("data/topology.graphml").getAbsolutePath();
+			CybokQueryHandler.sendQuery(new FullAnalysisQuery(inputFile));
+			initialAnalysisDone = true;
+		}
+		else
+		{
+//			GraphExporter.exportGraph(AppSession.getInstance().getTopGraph(), new File("./tmp/tmp.graphml"));
+			String inputFile = new File("./tmp/tmp.graphml").getAbsolutePath();
+			CybokQueryHandler.sendQuery(new FullAnalysisQuery(inputFile));
+		}
 
 	}
 

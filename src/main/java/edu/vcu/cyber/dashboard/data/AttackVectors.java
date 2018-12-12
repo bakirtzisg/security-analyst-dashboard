@@ -5,60 +5,61 @@ import java.util.function.Predicate;
 
 public class AttackVectors
 {
-
+	
 	private static Map<String, AttackVector> attacks = new HashMap<>();
 	private static Map<String, List<AttackVector>> componentMap = new HashMap<>();
-
+	
 	private static Predicate<AttackVector> filter;
-
+	
 	public static boolean showDeletedNodes;
 	public static boolean showHiddenNodes;
 	public static boolean showCVENodes;
-
+	
 	public AttackVectors()
 	{
 		attacks = new HashMap<>();
 		componentMap = new HashMap<>();
 	}
-
+	
 	public static AttackVector addAttack(AttackVector att, String violated)
 	{
 		AttackVector attack = attacks.computeIfAbsent(att.qualifiedName, key -> att);
 		attack = attacks.getOrDefault(attack.qualifiedName, attack);
-		attack.violatedComponents.add(violated);
+		if (!attack.violatedComponents.contains(violated))
+			attack.violatedComponents.add(violated);
 //		attacks.put(attack.qualifiedName, attack);
-
+		
 		List<AttackVector> attackList = componentMap.computeIfAbsent(violated, key -> new ArrayList<>());
 		attackList.add(attack);
-
+		
 		return attack;
 	}
-
+	
 	public static void printStats()
 	{
 		System.out.printf("Attack Vector Count: %d\nComponents: %d\n", attacks.size(), componentMap.size());
 	}
-
+	
 	public static AttackVector getAttackVector(String id)
 	{
 		return attacks.get(id);
 	}
-
+	
 	public static Collection<AttackVector> getAllAttackVectors()
 	{
 		return attacks.values();
 	}
-
+	
 	public static Collection<AttackVector> getAttackVectorsByComponent(String component)
 	{
 		return componentMap.computeIfAbsent(component, key -> new ArrayList<>());
 	}
-
+	
 	public static void filter(Predicate<AttackVector> predicate)
 	{
 		attacks.values().forEach(av -> av.hidden = predicate.test(av));
 	}
-
+	
 	public static void hideAttacks(Predicate<AttackVector> predicate)
 	{
 		for (AttackVector av : attacks.values())
@@ -66,7 +67,7 @@ public class AttackVectors
 			av.hidden = predicate.test(av);
 		}
 	}
-
+	
 	public static void showInGraph(GraphData graphData, Predicate<AttackVector> predicate)
 	{
 		filter = predicate;
@@ -85,10 +86,10 @@ public class AttackVectors
 				av.addToGraph(graphData.getGraph());
 			}
 		}
-
+		
 		graphData.removeFlagged();
 	}
-
+	
 	public static void updateExisting(GraphData graphData)
 	{
 		graphData.getNodes().forEach(node ->
@@ -100,7 +101,7 @@ public class AttackVectors
 			}
 		});
 	}
-
+	
 	public static void update(GraphData graphData)
 	{
 		if (filter != null)
@@ -122,16 +123,15 @@ public class AttackVectors
 			}
 		}
 	}
-
+	
 	/**
-	 *
 	 * @param attackId
 	 * @param graphData
 	 */
 	public static void showAllRelated(String attackId, GraphData graphData)
 	{
 		AttackVector attack = AttackVectors.getAttackVector(attackId);
-
+		
 		if (attack.related_cwe != null)
 			for (String rel : attack.related_cwe)
 			{
@@ -162,8 +162,8 @@ public class AttackVectors
 					av1.addToGraph(graphData.getGraph());
 				}
 			}
-
-
+		
+		
 		search:
 		for (AttackVector av : attacks.values())
 		{
@@ -200,16 +200,16 @@ public class AttackVectors
 					}
 				}
 		}
-
+		
 		attack.addToGraph(graphData.getGraph());
-
+		
 	}
-
+	
 	public static void computeSizes()
 	{
 		attacks.values().forEach(av ->
 		{
-
+			
 			AttackVector related;
 			if (av.related_cwe != null)
 				for (String s : av.related_cwe)
@@ -247,5 +247,5 @@ public class AttackVectors
 			}
 		});
 	}
-
+	
 }

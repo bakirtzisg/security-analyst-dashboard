@@ -103,11 +103,11 @@ public class AttackVector
 
 //			int size = related_capec.length + related_cwe.length + related_cve.length;
 
-			node.setAttribute("ui.size", Math.sqrt(size) + 4.0D);
+			node.setAttribute("ui.size", Math.sqrt(size) + 6.0D);
 			if (size > 2)
-				node.setAttribute("layout.weight", 1.0D / (Math.sqrt(size) + 1) + 0.15);
+				node.setAttribute("layout.weight", 2.0D / (Math.sqrt(size) + 1) + 0.15);
 			else
-				node.setAttribute("layout.weight", 0.05);
+				node.setAttribute("layout.weight", 0.1);
 
 
 			attemptAddEdge(graph, related_capec, node);

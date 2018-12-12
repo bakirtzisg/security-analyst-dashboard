@@ -38,6 +38,7 @@ public class MainClass
 	public static void main(String[] args)
 	{
 
+		EnvUtils.listLookAndFeels();
 		EnvUtils.setLookAndFeel();
 		EnvUtils.setGraphStreamRenderer();
 		EnvUtils.registerFonts();

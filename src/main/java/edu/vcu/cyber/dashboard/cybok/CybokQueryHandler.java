@@ -11,7 +11,7 @@ public class CybokQueryHandler implements Runnable
 
 	private static CybokQueryHandler queryHandler = new CybokQueryHandler();
 
-	public static boolean useCybok = false;
+	public static boolean useCybok = true;
 
 	public static void sendQuery(CybokQuery<?> query)
 	{

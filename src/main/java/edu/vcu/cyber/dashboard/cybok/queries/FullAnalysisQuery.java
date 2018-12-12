@@ -18,46 +18,46 @@ import java.util.regex.Pattern;
 public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements CybokQuery.Result<FullAnalysisQuery>
 {
 	private final String input;
-
+	
 	public FullAnalysisQuery(String input)
 	{
 		this(input, null);
 	}
-
+	
 	public FullAnalysisQuery(String input, CybokQuery.Result<FullAnalysisQuery> resultHandler)
 	{
 		super(resultHandler);
 		setResultHandler(this);
 		this.input = input;
 	}
-
+	
 	@Override
 	public void onExecute()
 	{
 		Application.getInstance().setStatusLabel("Analysing system topology...");
 	}
-
+	
 	@Override
 	public String[] searchQuery()
 	{
 		return new String[]{"-i", input};
 	}
-
-
+	
+	
 	private List<String> attackSurfaces = new ArrayList<>();
 	private Map<String, List<AttackVector>> components = new HashMap<>();
 	private List<AttackVector> activeList;
 	private String violated;
-
+	
 	private boolean isAttackSurfaceAnalysis = false;
-
+	
 	private static final String ATTACK_REGEX_PATTERN = "(CVE|CAPEC|CWE).([0-9]*[\\-]?[0-9]*)(.*)";
 	private static final Pattern pattern = Pattern.compile(ATTACK_REGEX_PATTERN);
-
+	
 	@Override
 	public void onMessage(String line)
 	{
-
+		
 		if (line.equals("Attack surface analysis"))
 		{
 			isAttackSurfaceAnalysis = true;
@@ -67,7 +67,7 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 		{
 			return;
 		}
-
+		
 		Matcher matcher = pattern.matcher(line);
 		if (matcher.find())
 		{
@@ -78,12 +78,12 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 			{
 				text = matcher.group(3);
 			}
-
+			
 			AttackVector tmp = AttackVectors.addAttack(new AttackVector(db, id, text), violated);
 //			activeList.add(tmp);
-
+			
 			tmp.hidden = !AttackVectors.showCVENodes && tmp.type == AttackType.CVE;
-
+			
 		}
 		else if (isAttackSurfaceAnalysis && line.contains(" -> "))
 		{
@@ -101,21 +101,24 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 			}
 		}
 	}
-
-
+	
+	
 	@Override
 	public void onFinish(boolean error)
 	{
 		super.onFinish(error);
-
+		
 		System.out.println(attackSurfaces);
 	}
-
+	
 	@Override
 	public void onResult(FullAnalysisQuery query)
 	{
 		System.out.println("Result");
 		Graph topGraph = AppSession.getInstance().getTopGraph().getGraph();
+		
+		NodeUtil.clearAllAttributesOf(topGraph, Attributes.ATTACK_SURFACE);
+		
 		for (int i = 0; i < attackSurfaces.size(); i += 2)
 		{
 			String asId = attackSurfaces.get(i);
@@ -140,21 +143,21 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 				{
 					edge = topGraph.addEdge(edgeId, asId, targetId, true);
 				}
-
+				
 				if (!edge.hasAttribute(Attributes.ATTACK_SURFACE))
 				{
 					edge.addAttribute(Attributes.ATTACK_SURFACE);
 					NodeUtil.addCssClass(edge, Attributes.ATTACK_SURFACE);
 				}
 			}
-
+			
 		}
-
+		
 		GraphData attackGraph = AppSession.getInstance().getAvGraph();
 		Graph graph = attackGraph.getGraph();
 		AttackVectors.computeSizes();
 		Collection<AttackVector> attackVectors = AttackVectors.getAllAttackVectors();
 		attackVectors.forEach(av -> av.addToGraph(graph));
-
+		
 	}
 }
