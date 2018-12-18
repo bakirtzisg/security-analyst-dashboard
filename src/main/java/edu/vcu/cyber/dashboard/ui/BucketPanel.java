@@ -4,6 +4,7 @@ import edu.vcu.cyber.dashboard.data.AttackVector;
 import edu.vcu.cyber.dashboard.data.AttackVectors;
 import edu.vcu.cyber.dashboard.data.GraphData;
 import edu.vcu.cyber.dashboard.project.AppSession;
+import edu.vcu.cyber.dashboard.ui.custom.HintTextField;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -69,7 +70,7 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 //		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 //		infoPane = new JTextPane();
 		JButton searchButton = new JButton("Filter Entries");
-		searchText = new JTextField();
+		searchText = new HintTextField("Filter Bucket Entries...");
 
 		filterMethodCombo = new JComboBox<>(new String[]{"All", "Attacks", "Description", "Component", "Contents"});
 

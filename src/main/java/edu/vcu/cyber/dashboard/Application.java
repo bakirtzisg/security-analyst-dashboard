@@ -88,13 +88,13 @@ public class Application
 		gp.setGraph(graph);
 		gp.setGraphActionListener(new IBDActionListener(session));
 
-		LayeredSectionsLayout sectionsLayout = new LayeredSectionsLayout(graph.getGraph());
-		sectionsLayout.registerSections("Mission", "Function", "Structure");
-		sectionsLayout.computePositions();
+//		LayeredSectionsLayout sectionsLayout = new LayeredSectionsLayout(graph.getGraph());
+//		sectionsLayout.registerSections("Mission", "Function", "Structure");
+//		sectionsLayout.computePositions();
 
 		gp.getViewer().disableAutoLayout();
 
-		gp.setBackgroundRenderer(new SectionRenderer(sectionsLayout, gp));
+//		gp.setBackgroundRenderer(new SectionRenderer(sectionsLayout, gp));
 	}
 
 	/**

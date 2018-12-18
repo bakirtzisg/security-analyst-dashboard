@@ -4,6 +4,7 @@ import edu.vcu.cyber.dashboard.data.AttackVectors;
 import edu.vcu.cyber.dashboard.data.GraphData;
 import edu.vcu.cyber.dashboard.data.GraphType;
 import edu.vcu.cyber.dashboard.project.AppSession;
+import edu.vcu.cyber.dashboard.ui.custom.HintTextField;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +31,7 @@ public class FilterToolbar extends JToolBar implements ActionListener, KeyListen
 
 	private void initComponents()
 	{
-		filterTextField = new JTextField();
+		filterTextField = new HintTextField("Filter Attack Vectors...");
 		filterTextField.setMinimumSize(new Dimension(300, 30));
 		filterMethod = new JComboBox<>(filterMethods);
 		filterButton = new JButton("Filter Graph");

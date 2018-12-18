@@ -16,6 +16,7 @@ import org.graphstream.ui.graphicGraph.GraphicGraph;
 import scala.collection.immutable.HashMap;
 import scala.collection.immutable.Map;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.Collection;
 
@@ -25,72 +26,102 @@ import java.util.Collection;
  */
 public class AppSession extends GraphHandler
 {
-
+	
 	private static AppSession instance;
-
+	
 	public static Node focusedNode;
-
+	
 	public static void setFocus(GraphType graphType)
 	{
 		instance.focusedGraph = graphType;
 	}
-
+	
 	public static GraphType getFocusedGraph()
 	{
 		return instance.focusedGraph;
 	}
-
+	
 	public static GraphData getFocusedGraphData()
 	{
 		return instance.getGraph(instance.selectedGraph);
 	}
-
+	
 	public static void setSelectedGraph(GraphType graphType)
 	{
 		if (instance.selectedGraph != null && instance.selectedGraph != graphType)
 		{
 			GraphPanel gp = Application.getInstance().getGui().getGraphPanel(instance.selectedGraph);
 			((GraphicGraph) gp.getViewGraph()).graphChanged = true;
-
+			
 		}
 		instance.selectedGraph = graphType;
 	}
-
+	
 	public static GraphType getSelectedGraph()
 	{
 		return instance.selectedGraph;
 	}
-
+	
 	public static GraphData getSelectedGraphData()
 	{
 		return instance.getGraph(instance.focusedGraph);
 	}
-
+	
 	private GraphType selectedGraph;
 	private GraphType focusedGraph;
-
+	
 	private File topologyGraphFile = new File("data/topology.graphml");
 	private File specificationsGraphFile = new File("data/specifications.graphml");
-
+	
 	public AppSession()
 	{
 		super();
 		instance = this;
 	}
-
+	
 	public static AppSession getInstance()
 	{
 		return instance;
 	}
-
+	
+	public void load()
+	{
+		load(topologyGraphFile, specificationsGraphFile);
+	}
+	
 	/**
 	 * Loads a previous session
 	 */
-	public void load()
+	public void load(File topGraphFile, File specGraphFile)
 	{
-		// TODO: Make this not hard coded
-		registerGraph(GraphMLParser.parse(topologyGraphFile, GraphType.TOPOLOGY));
-		registerGraph(GraphMLParser.parse(specificationsGraphFile, GraphType.SPECIFICATIONS));
+		clear();
+		
+		if (topGraphFile.exists())
+		{
+			System.out.println("Loading Topology Graph");
+			GraphData graph = createIfNotExist(GraphType.TOPOLOGY);
+			
+			GraphMLParser.parse(topGraphFile, graph);
+			
+			graph.refreshGraph();
+			
+			// analyze topology graph
+			CybokQueryHandler.sendQuery(new FullAnalysisQuery(topGraphFile.getAbsolutePath()));
+		}
+		
+		if (specGraphFile.exists())
+		{
+			System.out.println("Loading Specifications Graph");
+			GraphData graph = createIfNotExist(GraphType.SPECIFICATIONS);
+			graph.refreshGraph();
+			GraphMLParser.parse(specGraphFile, graph);
+		}
+		
+		GraphData graphData = createIfNotExist(GraphType.ATTACKS);
+		graphData.generateGraph();
+		
+		
+		/*
 		CSVParser.readCSV(new File("./data/", "attacks.csv"));
 		if (!CybokQueryHandler.isCybokInstalled())
 		{
@@ -101,12 +132,12 @@ public class AppSession extends GraphHandler
 		{
 			AttackVectors.getAllAttackVectors().forEach(av -> av.hidden = true);
 		}
-
-
+		
+		
 		GraphData graphData = new GraphData(GraphType.ATTACKS);
 		graphData.generateGraph();
 		registerGraph(graphData);
-
+		
 		if (!CybokQueryHandler.isCybokInstalled())
 		{
 			Graph graph = graphData.getGraph();
@@ -115,11 +146,11 @@ public class AppSession extends GraphHandler
 			attackVectors.forEach(av -> av.addToGraph(graph));
 		}
 		else
-		{
-			CybokQueryHandler.sendQuery(new FullAnalysisQuery(topologyGraphFile.getAbsolutePath()));
-		}
+		{*/
+//		CybokQueryHandler.sendQuery(new FullAnalysisQuery(topologyGraphFile.getAbsolutePath()));
+		//}
 	}
-
+	
 	/**
 	 * Saves the current session
 	 */
@@ -127,22 +158,22 @@ public class AppSession extends GraphHandler
 	{
 		//TODO: needs implementation
 	}
-
+	
 	public void setFocusedGraph()
 	{
-
+	
 	}
-
+	
 	public GraphData getTopGraph()
 	{
 		return getGraph(GraphType.TOPOLOGY);
 	}
-
+	
 	public GraphData getSpecGraph()
 	{
 		return getGraph(GraphType.SPECIFICATIONS);
 	}
-
+	
 	public GraphData getAvGraph()
 	{
 		return getGraph(GraphType.ATTACKS);

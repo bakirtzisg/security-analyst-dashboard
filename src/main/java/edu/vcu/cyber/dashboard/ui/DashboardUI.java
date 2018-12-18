@@ -1,5 +1,6 @@
 package edu.vcu.cyber.dashboard.ui;
 
+import edu.vcu.cyber.dashboard.Application;
 import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.UpdateQuery;
@@ -78,18 +79,9 @@ public class DashboardUI extends JFrame implements ActionListener
 	
 	private void initComponents()
 	{
-//		JToolBar toolBar = new JToolBar();
-//		toolBar.setFloatable(false);
-//		JButton as_btn = new JButton("Attack Surfaces");
-//		as_btn.addActionListener(this);
-//		toolBar.add(as_btn);
-		
 		statusLabel = new JLabel(" ");
 		
-		
 		contentPane = new JPanel(new BorderLayout(5, 5));
-
-//		contentPane.add(toolBar, BorderLayout.NORTH);
 		
 		sp = new JSplitPane();
 		sp.setPreferredSize(new Dimension(1400, 700));
@@ -109,9 +101,6 @@ public class DashboardUI extends JFrame implements ActionListener
 			tabs = new JTabbedPane();
 			tabs.add("Specification", specGraphPanel);
 			tabs.add("Attack Vector Space", avGraphPanel);
-//		tabs.add("Search", new JPanel(new BorderLayout()));
-
-//		tabs.add("Search Panel", new SearchPanel());
 			
 			sp.setRightComponent(tabs);
 		}
@@ -131,7 +120,7 @@ public class DashboardUI extends JFrame implements ActionListener
 		JMenuBar menuBar = new JMenuBar();
 		
 		JMenu fileMenu = new JMenu("File");
-//		fileMenu.add("New").addActionListener(this);
+//		fileMenu.add("Open").addActionListener(this);
 		fileMenu.add("Load").addActionListener(this);
 		fileMenu.add("Save").addActionListener(this);
 		
@@ -251,15 +240,26 @@ public class DashboardUI extends JFrame implements ActionListener
 			
 			// power to getting tired of repositioning all of the nodes!
 			case "Save":
-				ApplicationSettings.saveAll(this);
+//				ApplicationSettings.saveAll(this);
 				break;
 			
 			case "Load":
-				ApplicationSettings.loadAll(this);
-				break;
+			{
+//				ApplicationSettings.loadAll(this);
+				
+				LoadFileDialog lfd = new LoadFileDialog();
+				int result = lfd.ask(this);
+				if (result == JOptionPane.OK_OPTION)
+				{
+					AppSession.getInstance().load(lfd.getTopologyGraphFile(), lfd.getSpecificationGraphFile());
+				}
+			}
+			break;
+			
 			case "Bucket to CSV":
 				BucketData.saveBukkitData();
 				break;
+			
 			case "Bucket from CSV":
 				BucketData.loadBukkitData(bucket);
 				break;
@@ -279,12 +279,14 @@ public class DashboardUI extends JFrame implements ActionListener
 				}
 				break;
 			case "Update Cybok":
+			{
 				int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to do this?", "Confirm", JOptionPane.OK_CANCEL_OPTION);
 				if (result == JOptionPane.OK_OPTION)
 				{
 					CybokQueryHandler.sendQuery(new UpdateQuery());
 				}
-				break;
+			}
+			break;
 			case "Configure":
 				// TODO: allow to specify cybok install location
 				break;
