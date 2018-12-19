@@ -5,9 +5,7 @@ import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.cybok.CybokQuery;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.project.AppSession;
-import edu.vcu.cyber.dashboard.util.Attributes;
-import edu.vcu.cyber.dashboard.util.CSVParser;
-import edu.vcu.cyber.dashboard.util.NodeUtil;
+import edu.vcu.cyber.dashboard.util.*;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -48,14 +46,14 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 	
 	
 	private List<String> attackSurfaces = new ArrayList<>();
-	private Map<String, List<AttackVector>> components = new HashMap<>();
-	private List<AttackVector> activeList;
-	private String violated;
-	
-	private boolean isAttackSurfaceAnalysis = false;
-	
-	private static final String ATTACK_REGEX_PATTERN = "(CVE|CAPEC|CWE).([0-9]*[\\-]?[0-9]*)(.*)";
-	private static final Pattern pattern = Pattern.compile(ATTACK_REGEX_PATTERN);
+//	private Map<String, List<AttackVector>> components = new HashMap<>();
+//	private List<AttackVector> activeList;
+//	private String violated;
+//
+//	private boolean isAttackSurfaceAnalysis = false;
+
+//	private static final String ATTACK_REGEX_PATTERN = "(CVE|CAPEC|CWE).([0-9]*[\\-]?[0-9]*)(.*)";
+//	private static final Pattern pattern = Pattern.compile(ATTACK_REGEX_PATTERN);
 	
 	@Override
 	public void onMessage(String line)
@@ -110,15 +108,31 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 	public void onFinish(boolean error)
 	{
 		super.onFinish(error);
-		
-		
-		CSVParser.readCSV(Config.FILE_AV_GRAPH);
-		AttackVectors.getAllAttackVectors().forEach(av -> av.addToGraph(AppSession.getInstance().getAvGraph().getGraph()));
 	}
 	
 	@Override
 	public void onResult(FullAnalysisQuery query)
 	{
+		
+		// load attack vector information
+		CSVParser.readCSV(Config.FILE_AV_GRAPH);
+		AttackVectors.getAllAttackVectors().forEach(av -> av.addToGraph(AppSession.getInstance().getAvGraph().getGraph()));
+		
+		// load attack surface information
+		GraphData as = GraphMLParser.parse(Config.FILE_ATTACK_SURFACE, GraphType.ATTACK_SURFACE);
+		GraphData top = AppSession.getInstance().getTopGraph();
+		
+		as.getNodes().forEach(node ->
+		{
+			if (top.getNode(node.getId()) == null)
+			{
+				NodeData nd = top.addNode(node.getId());
+				node.getTargets().forEach(t -> top.addEdge(node.getId(), t.getId()));
+				nd.setAttribute(Attributes.ATTACK_SURFACE, "true");
+			}
+		});
+		
+		Utils.updateAttackSurfaces();
 //		System.out.println("Result");
 //		Graph topGraph = AppSession.getInstance().getTopGraph().getGraph();
 //

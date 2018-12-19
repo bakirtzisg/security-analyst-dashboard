@@ -170,6 +170,14 @@ public class GraphData implements Sink
 	}
 	
 	/**
+	 * creates and returns a node with the given id
+	 */
+	public NodeData addNode(NodeData node)
+	{
+		return nodes.computeIfAbsent(node.getId(), n -> node);
+	}
+	
+	/**
 	 * Creates an edge between two nodes
 	 */
 	public void addEdge(String source, String target)
@@ -179,6 +187,7 @@ public class GraphData implements Sink
 		if (sourceNode != null && targetNode != null)
 		{
 			targetNode.addSource(sourceNode);
+			sourceNode.addTarget(targetNode);
 		}
 	}
 	

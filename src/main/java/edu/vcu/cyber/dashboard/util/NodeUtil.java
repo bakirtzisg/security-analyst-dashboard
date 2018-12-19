@@ -4,6 +4,7 @@ import edu.vcu.cyber.dashboard.data.AttackType;
 import edu.vcu.cyber.dashboard.data.GraphData;
 import edu.vcu.cyber.dashboard.data.GraphType;
 import edu.vcu.cyber.dashboard.data.NodeData;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Element;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -18,7 +19,8 @@ public class NodeUtil
 	
 	/**
 	 * Prints all values of an attribute for a graph element
-	 * @param e - the graph element
+	 *
+	 * @param e   - the graph element
 	 * @param key - the key of the desired attribute
 	 */
 	public static void printAttribute(Element e, String key)
@@ -107,22 +109,22 @@ public class NodeUtil
 				}
 				element.setAttribute(key, current, cls);
 			}
-
+			
 		}
 		else
 		{
 			element.setAttribute(key, cls);
 		}
 	}
-
-
+	
+	
 	public static void setAttributesForNodeAndEdges(Element element, String key, Object val)
 	{
 		if (element instanceof Node)
 		{
 			addAttributeValue(element, key, val);
 		}
-
+		
 	}
 	
 	/**
@@ -177,17 +179,17 @@ public class NodeUtil
 	{
 		List<String> info = new ArrayList<>();
 		info.add(node.getId());
-
+		
 		Map<String, Object> attributes = node.getAttributes();
-
+		
 		for (Map.Entry<String, Object> entry : attributes.entrySet())
 		{
-
+			
 			if (!entry.getValue().equals(""))
 			{
-
+				
 				String key = entry.getKey().replace("attr.", "");
-
+				
 				switch (key)
 				{
 					case "text":
@@ -197,15 +199,15 @@ public class NodeUtil
 						break;
 					default:
 						info.add(key + ": " + entry.getValue());
-
+					
 				}
 			}
-
+			
 		}
-
+		
 		return info;
-
-
+		
+		
 	}
 	
 	/**
@@ -217,9 +219,9 @@ public class NodeUtil
 		if (nodeData != null && nodeData.getNode() != null)
 		{
 			Node node = nodeData.getNode();
-
+			
 			AttackType t1 = AttackType.getType(node);
-
+			
 			Iterator<Node> it = node.getNeighborNodeIterator();
 			while (it.hasNext())
 			{
@@ -230,12 +232,28 @@ public class NodeUtil
 					graphData.flagRemoval(o.getId());
 				}
 			}
-
+			
 		}
-
+		
 		graphData.removeFlagged();
-
+		
 	}
-
 	
+	public static Edge addEdge(Graph graph, String source, String target)
+	{
+		return addEdge(graph, source, target, false);
+	}
+	
+	public static Edge addEdge(Graph graph, String source, String target, boolean directed)
+	{
+		
+		String edgeId = source + "-" + target;
+		Edge edge = graph.getEdge(edgeId);
+		if (edge == null)
+		{
+			return graph.addEdge(edgeId, source, target, directed);
+		}
+		
+		return edge;
+	}
 }
