@@ -1,5 +1,7 @@
 package edu.vcu.cyber.dashboard.util;
 
+import com.alee.laf.WebLookAndFeel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -30,7 +32,6 @@ public class EnvUtils
 	
 	public static void listLookAndFeels()
 	{
-		
 		for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
 		{
 			System.out.println(info.getClassName());
@@ -39,15 +40,19 @@ public class EnvUtils
 	
 	public static void setLookAndFeel()
 	{
-		try
-		{
-//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-		}
-		catch (Exception e)
-		{
-			// handle exception
-		}
+		WebLookAndFeel.install();
+//		PlafOptions.setAsLookAndFeel();
+//		try
+//		{
+////			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+////			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+//			UIManager.setLookAndFeel("com.pagosoft.plaf.PgsLookAndFeel");
+//		}
+//		catch (Exception e)
+//		{
+//			e.printStackTrace();
+//			// handle exception
+//		}
 	}
 	
 	public static void registerFonts()

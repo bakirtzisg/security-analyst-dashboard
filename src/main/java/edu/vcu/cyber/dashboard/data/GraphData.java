@@ -39,6 +39,7 @@ public class GraphData implements Sink
 	private List<GraphKey> keys;
 	
 	private boolean frozen;
+	private boolean refreshing;
 	
 	/**
 	 * @param graphType determines where the graph is used
@@ -127,7 +128,7 @@ public class GraphData implements Sink
 	 */
 	public synchronized Graph getGraph()
 	{
-		if (graph == null)
+		if (graph == null || refreshing)
 			generateGraph();
 		return graph;
 	}
@@ -193,6 +194,7 @@ public class GraphData implements Sink
 	
 	public void refreshGraph()
 	{
+		refreshing = true;
 		SwingUtilities.invokeLater(this::getGraph);
 	}
 	
@@ -214,6 +216,7 @@ public class GraphData implements Sink
 		{
 			graph = new AdjacencyListGraph(graphType.name());
 		}
+		graph.removeSink(this);
 		
 		if (interpreter != null)
 		{
@@ -228,6 +231,8 @@ public class GraphData implements Sink
 		nodes.forEach((key, val) -> val.sources.forEach(node -> graph.addEdge(key + "-" + node.id, val.id, node.id, isDirectedEdges)));
 		
 		graph.addSink(this);
+		
+		refreshing = false;
 	}
 	
 	

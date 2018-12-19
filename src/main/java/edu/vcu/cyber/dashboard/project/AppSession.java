@@ -6,6 +6,7 @@ import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.FullAnalysisQuery;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.graph.layout.LayeredSectionsLayout;
+import edu.vcu.cyber.dashboard.ui.DashboardUI;
 import edu.vcu.cyber.dashboard.ui.graphpanel.GraphPanel;
 import edu.vcu.cyber.dashboard.util.Attributes;
 import edu.vcu.cyber.dashboard.util.CSVParser;
@@ -154,13 +155,14 @@ public class AppSession extends GraphHandler
 			Config.USE_SPEC_GRAPH = false;
 		}
 		
+		
 		GraphData graphData = createIfNotExist(GraphType.ATTACKS);
 		graphData.generateGraph();
-		
-		if (Config.USE_SPEC_GRAPH)
-		{
-			Application.getInstance().getGui().setUseSpecGraph(Config.USE_SPEC_GRAPH);
-		}
+
+//		if (Config.USE_SPEC_GRAPH)
+//		{
+		Application.getInstance().getGui().setUseSpecGraph(Config.USE_SPEC_GRAPH);
+//		}
 	}
 	
 	/**

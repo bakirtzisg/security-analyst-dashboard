@@ -84,6 +84,7 @@ public class DashboardUI extends JFrame implements ActionListener
 		statusLabel = new JLabel(" ");
 		
 		contentPane = new JPanel(new BorderLayout(5, 5));
+		contentPane.add(new ControlToolbar(), BorderLayout.NORTH);
 		
 		sp = new JSplitPane();
 		sp.setPreferredSize(new Dimension(1400, 700));
@@ -98,20 +99,6 @@ public class DashboardUI extends JFrame implements ActionListener
 		sp.setLeftComponent(topGraphPanel);
 		
 		setUseSpecGraph(false);
-
-//		if (Config.USE_SPEC_GRAPH)
-//		{
-//			tabs = new JTabbedPane();
-//			tabs.add("Specification", specGraphPanel);
-//			tabs.add("Attack Vector Space", avGraphPanel);
-//
-//			sp.setRightComponent(tabs);
-//		}
-//		else
-//		{
-//			sp.setRightComponent(avGraphPanel);
-//		}
-		
 		
 		contentPane.add(sp, BorderLayout.CENTER);
 		contentPane.add(statusLabel, BorderLayout.SOUTH);
@@ -122,19 +109,22 @@ public class DashboardUI extends JFrame implements ActionListener
 	{
 		if (usingSpecGraph != useSpecGraph)
 		{
-			//sp.setRightComponent(null);
-			tabs = new JTabbedPane();
-			tabs.add("Attack Vector Space", avGraphPanel);
-			tabs.add("Specifications", specGraphPanel);
-			sp.setRightComponent(tabs);
-		}
-		else
-		{
-			if (tabs != null)
+			if (useSpecGraph)
 			{
-				tabs = null;
+				//sp.setRightComponent(null);
+				tabs = new JTabbedPane();
+				tabs.add("Attack Vector Space", avGraphPanel);
+				tabs.add("Specifications", specGraphPanel);
+				sp.setRightComponent(tabs);
 			}
-			sp.setRightComponent(avGraphPanel);
+			else
+			{
+				if (tabs != null)
+				{
+					tabs = null;
+				}
+				sp.setRightComponent(avGraphPanel);
+			}
 		}
 		sp.setDividerLocation(700);
 		sp.setDividerSize(5);
@@ -272,13 +262,8 @@ public class DashboardUI extends JFrame implements ActionListener
 			case "Load":
 			{
 //				ApplicationSettings.loadAll(this);
+				askLoadTopology();
 				
-				LoadFileDialog lfd = new LoadFileDialog();
-				int result = lfd.ask(this);
-				if (result == JOptionPane.OK_OPTION)
-				{
-					AppSession.getInstance().load(lfd.getTopologyGraphFile(), lfd.getSpecificationGraphFile());
-				}
 			}
 			break;
 			
@@ -320,6 +305,16 @@ public class DashboardUI extends JFrame implements ActionListener
 			case "Redo Analysis":
 				SystemAnalysis.doAnalysis();
 				break;
+		}
+	}
+	
+	public static void askLoadTopology()
+	{
+		LoadFileDialog lfd = new LoadFileDialog();
+		int result = lfd.ask(null);
+		if (result == JOptionPane.OK_OPTION)
+		{
+			AppSession.getInstance().load(lfd.getTopologyGraphFile(), lfd.getSpecificationGraphFile());
 		}
 	}
 	

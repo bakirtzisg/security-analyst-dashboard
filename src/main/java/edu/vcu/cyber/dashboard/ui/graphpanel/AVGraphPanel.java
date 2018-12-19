@@ -31,8 +31,8 @@ public class AVGraphPanel extends GraphPanel implements ActionListener
 	{
 		super(graphType);
 		JPopupMenu popupMenu = new JPopupMenu();
-		popupMenu.add(CMD_SHOW_CVE).addActionListener(this);
-		popupMenu.add(CMD_HIDE_RELATED).addActionListener(this);
+//		popupMenu.add(CMD_SHOW_CVE).addActionListener(this);
+//		popupMenu.add(CMD_HIDE_RELATED).addActionListener(this);
 		popupMenu.addSeparator();
 		popupMenu.add(CMD_ADD_BUCKET).addActionListener(this);
 		popupMenu.add(CMD_DELETE).addActionListener(this);
