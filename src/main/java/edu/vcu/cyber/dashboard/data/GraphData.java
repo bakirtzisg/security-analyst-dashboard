@@ -125,7 +125,7 @@ public class GraphData implements Sink
 	/**
 	 * @return the graph object
 	 */
-	public Graph getGraph()
+	public synchronized Graph getGraph()
 	{
 		if (graph == null)
 			generateGraph();
@@ -217,7 +217,7 @@ public class GraphData implements Sink
 		
 		nodes.forEach((key, val) -> val.setNode(graph.addNode(key)));
 		nodes.forEach((key, val) -> val.sources.forEach(node -> graph.addEdge(key + "-" + node.id, val.id, node.id, isDirectedEdges)));
-
+		
 		graph.addSink(this);
 	}
 	

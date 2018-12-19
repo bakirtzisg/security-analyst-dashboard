@@ -39,6 +39,8 @@ public class DashboardUI extends JFrame implements ActionListener
 	
 	private JLabel statusLabel;
 	
+	private boolean usingSpecGraph;
+	
 	public void setStatusLabel(String statusText)
 	{
 		statusLabel.setText("\t" + statusText);
@@ -95,24 +97,48 @@ public class DashboardUI extends JFrame implements ActionListener
 		
 		sp.setLeftComponent(topGraphPanel);
 		
-		
-		if (Config.USE_SPEC_GRAPH)
-		{
-			tabs = new JTabbedPane();
-			tabs.add("Specification", specGraphPanel);
-			tabs.add("Attack Vector Space", avGraphPanel);
-			
-			sp.setRightComponent(tabs);
-		}
-		else
-		{
-			sp.setRightComponent(avGraphPanel);
-		}
+		setUseSpecGraph(false);
+
+//		if (Config.USE_SPEC_GRAPH)
+//		{
+//			tabs = new JTabbedPane();
+//			tabs.add("Specification", specGraphPanel);
+//			tabs.add("Attack Vector Space", avGraphPanel);
+//
+//			sp.setRightComponent(tabs);
+//		}
+//		else
+//		{
+//			sp.setRightComponent(avGraphPanel);
+//		}
 		
 		
 		contentPane.add(sp, BorderLayout.CENTER);
 		contentPane.add(statusLabel, BorderLayout.SOUTH);
 		
+	}
+	
+	public void setUseSpecGraph(boolean useSpecGraph)
+	{
+		if (usingSpecGraph != useSpecGraph)
+		{
+			//sp.setRightComponent(null);
+			tabs = new JTabbedPane();
+			tabs.add("Attack Vector Space", avGraphPanel);
+			tabs.add("Specifications", specGraphPanel);
+			sp.setRightComponent(tabs);
+		}
+		else
+		{
+			if (tabs != null)
+			{
+				tabs = null;
+			}
+			sp.setRightComponent(avGraphPanel);
+		}
+		sp.setDividerLocation(700);
+		sp.setDividerSize(5);
+		usingSpecGraph = useSpecGraph;
 	}
 	
 	private void setupMenu()

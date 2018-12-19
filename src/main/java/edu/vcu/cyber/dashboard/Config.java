@@ -5,7 +5,8 @@ import java.io.File;
 public class Config
 {
 	
-	public static final boolean USE_SPEC_GRAPH = false;
+	public static boolean USE_SPEC_GRAPH = true;
+	
 	public static final File TEMP_DATA = new File("./cybok/");
 	public static final String TEMP_DATA_NAME = "tmp";
 	
