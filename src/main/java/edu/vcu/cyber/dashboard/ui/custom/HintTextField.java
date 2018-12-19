@@ -37,6 +37,7 @@ public class HintTextField extends JTextField implements KeyListener, CaretListe
 		this.hint = hint;
 	}
 	
+	@Override
 	public String getText()
 	{
 		if (super.getText().equals(hint))
@@ -50,6 +51,15 @@ public class HintTextField extends JTextField implements KeyListener, CaretListe
 	}
 	
 	@Override
+	public void setText(String text)
+	{
+		if ("".equals(text))
+			super.setText(hint);
+		else
+			super.setText(text);
+	}
+	
+	@Override
 	public void keyTyped(KeyEvent e)
 	{
 	
@@ -60,7 +70,7 @@ public class HintTextField extends JTextField implements KeyListener, CaretListe
 	{
 		if (super.getText().equals(hint))
 		{
-			setText("");
+			super.setText("");
 			setForeground(DEFAULT_COLOR);
 		}
 	}

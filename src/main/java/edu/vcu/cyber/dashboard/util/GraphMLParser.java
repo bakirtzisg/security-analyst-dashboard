@@ -17,7 +17,6 @@ public class GraphMLParser
 	
 	public static GraphData parse(File file, GraphType graphType)
 	{
-		
 		GraphData graphData = new GraphData(graphType);
 		return parse(file, graphData);
 	}
@@ -42,6 +41,21 @@ public class GraphMLParser
 				}
 			}
 			
+			nodeList = doc.getElementsByTagName("key");
+			for (int i = 0; i < nodeList.getLength(); i++)
+			{
+				Node node = nodeList.item(i);
+				if (node.getNodeType() == Node.ELEMENT_NODE)
+				{
+					GraphData.GraphKey key = new GraphData.GraphKey();
+					key.attrName = ((Element) node).getAttribute("attr.name");
+					key.attrType = ((Element) node).getAttribute("attr.type");
+					key.forElement = ((Element) node).getAttribute("for");
+					key.id = ((Element) node).getAttribute("id");
+					graphData.addKey(key);
+				}
+			}
+			
 			
 			nodeList = doc.getElementsByTagName("node");
 			for (int i = 0; i < nodeList.getLength(); i++)
@@ -50,7 +64,6 @@ public class GraphMLParser
 				if (node.getNodeType() == Node.ELEMENT_NODE)
 				{
 					String nodeId = ((Element) node).getAttribute("id");
-//					graph.addNode(nodeId);
 					
 					NodeData ndata = graphData.addNode(nodeId);
 					NodeList dataList = ((Element) node).getElementsByTagName("data");
@@ -61,7 +74,7 @@ public class GraphMLParser
 						{
 							String key = ((Element) data).getAttribute("key");
 							String value = data.getTextContent();
-							ndata.setAttribute("attr." + key, value);
+							ndata.setAttribute(key, value);
 						}
 					}
 				}

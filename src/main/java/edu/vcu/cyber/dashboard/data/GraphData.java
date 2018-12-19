@@ -15,6 +15,20 @@ import java.util.function.Predicate;
 public class GraphData implements Sink
 {
 	
+	public static class GraphKey
+	{
+		
+		public String attrName;
+		public String attrType;
+		public String forElement;
+		public String id;
+		
+		public GraphKey()
+		{
+		
+		}
+	}
+	
 	private GraphType graphType;
 	private Map<String, NodeData> nodes;
 	private Graph graph;
@@ -22,6 +36,7 @@ public class GraphData implements Sink
 	private GraphInterpreter interpreter;
 	
 	private List<NodeData> selectedNodes;
+	private List<GraphKey> keys;
 	
 	private boolean frozen;
 	
@@ -37,9 +52,22 @@ public class GraphData implements Sink
 		interpreter = graphType.getInterpreter();
 	}
 	
+	public void addKey(GraphKey key)
+	{
+		if (keys == null)
+			keys = new ArrayList<>();
+		keys.add(key);
+	}
+	
+	public List<GraphKey> getKeys()
+	{
+		return keys;
+	}
+	
 	public void clear()
 	{
 		nodes.clear();
+		selectedNodes.clear();
 	}
 	
 	public void setSelectedNodes(List<Node> nodes)
@@ -156,26 +184,32 @@ public class GraphData implements Sink
 	
 	public void refreshGraph()
 	{
-		SwingUtilities.invokeLater(this::generateGraph);
+		SwingUtilities.invokeLater(this::getGraph);
+	}
+	
+	public void generateGraph()
+	{
+		generateGraph(false);
 	}
 	
 	/**
 	 * Uses the node data provided to generate a full graph
 	 */
-	public void generateGraph()
+	public void generateGraph(boolean clear)
 	{
+		if (clear && graph != null)
+		{
+			clear();
+		}
 		if (graph == null)
 		{
 			graph = new AdjacencyListGraph(graphType.name());
 		}
-//
+		
 		if (interpreter != null)
 		{
 			interpreter.init(graph);
 		}
-//
-
-//		interpreter.init(graph);
 		
 		graph.setAttribute(Attributes.GRAPH_ANTIALIAS, true);
 		graph.setAttribute(Attributes.GRAPH_STYLESHEET, "url('./src/main/resources/" + graphType.stylesheet + "')");
@@ -184,7 +218,7 @@ public class GraphData implements Sink
 		nodes.forEach((key, val) -> val.setNode(graph.addNode(key)));
 		nodes.forEach((key, val) -> val.sources.forEach(node -> graph.addEdge(key + "-" + node.id, val.id, node.id, isDirectedEdges)));
 
-//		graph.addSink(this);
+		graph.addSink(this);
 	}
 	
 	
@@ -249,7 +283,7 @@ public class GraphData implements Sink
 	{
 		selectedNodes.forEach(nd ->
 		{
-			if (nd.getNode() != null)
+			if (nd != null && nd.getNode() != null)
 				nd.getNode().removeAttribute(Attributes.NODE_SELECTED);
 		});
 		this.selectedNodes.clear();

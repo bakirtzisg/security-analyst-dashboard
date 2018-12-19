@@ -19,20 +19,20 @@ import java.util.List;
 
 public class AVActionListener extends GraphActionListener
 {
-
+	
 	private AppSession session;
-
+	
 	public AVActionListener(AppSession session)
 	{
 		this.session = session;
 	}
-
+	
 	@Override
 	public void onMousePressed(Node node)
 	{
 		super.onMousePressed(node);
-
-
+		
+		
 		if (node != null)
 		{
 			node.addAttribute("ui.selected");
@@ -45,7 +45,7 @@ public class AVActionListener extends GraphActionListener
 			}
 		}
 	}
-
+	
 	private void returnOriginalPos(Node node)
 	{
 		if (node != null)
@@ -58,13 +58,13 @@ public class AVActionListener extends GraphActionListener
 			}
 		}
 	}
-
+	
 	public void onMouseRelease(Node node)
 	{
-
+		
 		super.onMouseRelease(node);
 	}
-
+	
 	@Override
 	public void onSingleClick(Node node)
 	{
@@ -74,20 +74,23 @@ public class AVActionListener extends GraphActionListener
 //			PropertiesPanel.setText(NodeUtil.generateHtmlString(graphData.getNode(node.getId())));
 		}
 	}
-
+	
 	@Override
 	public void onDoubleClick(Node node)
 	{
 		super.onDoubleClick(node);
-
-		AttackVector av = AttackVectors.getAttackVector(node.getId());
-		if (av != null)
+		
+		if (node != null)
 		{
-			AttackVectorInfoPanel.display(av);
+			AttackVector av = AttackVectors.getAttackVector(node.getId());
+			if (av != null)
+			{
+				AttackVectorInfoPanel.display(av);
+			}
 		}
 	}
-
-
+	
+	
 	public void onMouseExit()
 	{
 		if (currentNode != null)
@@ -96,7 +99,7 @@ public class AVActionListener extends GraphActionListener
 			super.onMouseExit();
 		}
 	}
-
+	
 	public void onKeyPress(KeyEvent evt)
 	{
 		super.onKeyPress(evt);
@@ -106,7 +109,7 @@ public class AVActionListener extends GraphActionListener
 				graphData.clearSelected();
 				break;
 			case KeyEvent.VK_DELETE: // delete -> delete the selected nodes from the graph
-
+				
 				ActionNodeDelete act = new ActionNodeDelete(graphData);
 				for (NodeData node : graphData.getSelectedNodes())
 				{
@@ -117,7 +120,7 @@ public class AVActionListener extends GraphActionListener
 						av.setPos(graphPanel.getViewGraph().getNode(av.qualifiedName));
 					}
 				}
-
+				
 				ActionManager.action(act);
 
 //				graphData.getSelectedNodes().forEach(node -> deleteNode(node.getNode()));
@@ -156,7 +159,7 @@ public class AVActionListener extends GraphActionListener
 				break;
 		}
 	}
-
+	
 	private void deleteNode(Node node)
 	{
 		if (node != null)
@@ -164,15 +167,15 @@ public class AVActionListener extends GraphActionListener
 			NodeUtil.toggleConsumed(graphData, node.getId());
 			AttackVector av = AttackVectors.getAttackVector(node.getId());
 			av.deleted = true;
-
+			
 			graphData.flagRemoval(node.getId());
 			graphData.removeFlagged();
 		}
 	}
-
+	
 	public void moveToBucket()
 	{
-
+		
 		ActionAVToBucket act = new ActionAVToBucket();
 		for (NodeData nd : graphData.getSelectedNodes())
 		{
@@ -195,7 +198,7 @@ public class AVActionListener extends GraphActionListener
 //				BucketPanel.instance.addRow(attack);
 //			}
 //		});
-
-
+	
+	
 	}
 }

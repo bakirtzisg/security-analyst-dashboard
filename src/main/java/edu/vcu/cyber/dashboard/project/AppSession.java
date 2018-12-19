@@ -105,8 +105,7 @@ public class AppSession extends GraphHandler
 			
 			graph.refreshGraph();
 			
-			// analyze topology graph
-			CybokQueryHandler.sendQuery(new FullAnalysisQuery(topGraphFile.getAbsolutePath()));
+			GraphAnalysis.analyseTopologyGraph();
 		}
 		
 		if (specGraphFile.exists())
@@ -120,35 +119,6 @@ public class AppSession extends GraphHandler
 		GraphData graphData = createIfNotExist(GraphType.ATTACKS);
 		graphData.generateGraph();
 		
-		
-		/*
-		CSVParser.readCSV(new File("./data/", "attacks.csv"));
-		if (!CybokQueryHandler.isCybokInstalled())
-		{
-			registerGraph(GraphMLParser.parse(new File("./data/", "attack_surface.graphml"), GraphType.ATTACK_SURFACE));
-//			registerGraph(GraphMLParser.parse(new File("./data/", "fcs_attack_vector_graph.graphml"), GraphType.ATTACKS));
-		}
-		else
-		{
-			AttackVectors.getAllAttackVectors().forEach(av -> av.hidden = true);
-		}
-		
-		
-		GraphData graphData = new GraphData(GraphType.ATTACKS);
-		graphData.generateGraph();
-		registerGraph(graphData);
-		
-		if (!CybokQueryHandler.isCybokInstalled())
-		{
-			Graph graph = graphData.getGraph();
-			AttackVectors.computeSizes();
-			Collection<AttackVector> attackVectors = AttackVectors.getAllAttackVectors();
-			attackVectors.forEach(av -> av.addToGraph(graph));
-		}
-		else
-		{*/
-//		CybokQueryHandler.sendQuery(new FullAnalysisQuery(topologyGraphFile.getAbsolutePath()));
-		//}
 	}
 	
 	/**

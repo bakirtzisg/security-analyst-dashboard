@@ -111,7 +111,6 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 	{
 		super.onFinish(error);
 		
-//		System.out.println(attackSurfaces);
 		
 		CSVParser.readCSV(Config.FILE_AV_GRAPH);
 		AttackVectors.getAllAttackVectors().forEach(av -> av.addToGraph(AppSession.getInstance().getAvGraph().getGraph()));
