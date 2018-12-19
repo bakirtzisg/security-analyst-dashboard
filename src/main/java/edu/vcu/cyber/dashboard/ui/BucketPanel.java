@@ -46,16 +46,10 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 	private TableRowSorter<CustomTableModel> sorter;
 	
 	private JTable table;
-	//	private JTextPane infoPane;
 	private JTextField searchText;
-	//	private JSplitPane splitPane;
 	private JComboBox<String> filterMethodCombo;
 	
 	private JPanel contentPanel;
-
-//	private JScrollPane infoScrollPane;
-//
-//	private boolean detached;
 	
 	
 	public BucketPanel()
@@ -110,6 +104,9 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 		
 	}
 	
+	/**
+	 * Creates the table component
+	 */
 	private void createTable()
 	{
 		tableModel = new CustomTableModel();
@@ -133,6 +130,9 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 		
 	}
 	
+	/**
+	 * sets the column sizes to default values
+	 */
 	private void updateColumnSizes()
 	{
 		table.getColumnModel().getColumn(0).setMaxWidth(50);
@@ -144,6 +144,9 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 		table.getColumnModel().getColumn(1).setPreferredWidth(300);
 	}
 	
+	/**
+	 * Adds an attack vector to the bucket
+	 */
 	public void addRow(AttackVector av)
 	{
 		TableRow row = new TableRow();
@@ -158,6 +161,9 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 		}
 	}
 	
+	/**
+	 * Removes an attack vector from the bucket
+	 */
 	public void removeRow(AttackVector av)
 	{
 		if (av.inBucket)
@@ -167,12 +173,18 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 		}
 	}
 	
+	/**
+	 * Clears all items in the bucket
+	 */
 	public void clear()
 	{
 		tableModel.rows.clear();
 		tableModel.fireTableDataChanged();
 	}
 	
+	/**
+	 * Adds all attack vectors with the inBucket flag set
+	 */
 	public void bucketFromAVList()
 	{
 		clear();
@@ -186,6 +198,9 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 //		tableModel.fireTableDataChanged();
 	}
 	
+	/**
+	 * Fires any time an element in the table is selected (or focused)
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e)
 	{
@@ -208,6 +223,9 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 		}
 	}
 	
+	/**
+	 * Filters the *visible* items in the bucket
+	 */
 	private void applyFilter()
 	{
 		RowFilter<CustomTableModel, Object> rf = null;
@@ -225,8 +243,6 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 					return pred.test(tableModel.rows.get((Integer) entry.getIdentifier()).vector);
 				}
 			};
-			
-			
 		}
 		catch (Exception ex)
 		{
@@ -257,6 +273,9 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 	
 	}
 	
+	/**
+	 * Handles all key-presses for key actions (can't remember the name of this atm)
+	 */
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
