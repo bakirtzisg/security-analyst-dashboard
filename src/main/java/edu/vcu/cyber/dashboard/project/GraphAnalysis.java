@@ -13,6 +13,7 @@ public class GraphAnalysis
 	
 	public static void analyseTopologyGraph()
 	{
+		
 		GraphData graphData = AppSession.getInstance().getTopGraph();
 		
 		File file = new File("./.graph/");

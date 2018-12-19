@@ -16,6 +16,7 @@ public class FilterPredicate implements Predicate<AttackVector>
 	
 	public FilterPredicate(String filterText, FilterMode filterMode)
 	{
+		
 		this.filterText = filterText;
 		this.filterMode = filterMode;
 	}
