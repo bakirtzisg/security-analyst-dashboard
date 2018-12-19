@@ -5,6 +5,7 @@ import org.graphstream.graph.Graph;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.naming.directory.AttributeInUseException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -56,19 +57,26 @@ public class GraphExporter
 				
 				graphData.getNodes().forEach(node ->
 				{
-					Element ele = doc.createElement("node");
-					ele.setAttribute("id", node.getId());
-					
-					node.getAttributes().forEach((key, val) ->
+					if (!node.hasAttribute(Attributes.ATTACK_SURFACE))
 					{
-						Element data = doc.createElement("data");
-						data.setAttribute("key", key);
-						data.setTextContent(val.toString());
+						Element ele = doc.createElement("node");
+						ele.setAttribute("id", node.getId());
 						
-						ele.appendChild(data);
-					});
-					
-					graphNode.appendChild(ele);
+						node.getAttributes().forEach((key, val) ->
+						{
+							if (key.startsWith("attr."))
+							{
+								key = key.substring(5);
+								Element data = doc.createElement("data");
+								data.setAttribute("key", key);
+								data.setTextContent(val.toString());
+								
+								ele.appendChild(data);
+							}
+						});
+						
+						graphNode.appendChild(ele);
+					}
 				});
 				
 				graph.getEdgeSet().forEach(edge ->

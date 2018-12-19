@@ -121,9 +121,9 @@ public class AppSession extends GraphHandler
 			final List<NodeData> invalidNodes = new ArrayList<>();
 			graph.getNodes().forEach(node ->
 			{
-				if (node.hasAttribute("type"))
+				if (node.hasAttribute("attr.type"))
 				{
-					String type = node.getAttribute("type");
+					String type = node.getAttribute("attr.type");
 					if (!type.equals("Structure") && !type.equals("Mission") && !type.equals("Function"))
 					{
 						invalidNodes.add(node);

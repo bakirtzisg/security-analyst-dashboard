@@ -74,7 +74,7 @@ public class GraphMLParser
 						{
 							String key = ((Element) data).getAttribute("key");
 							String value = data.getTextContent();
-							ndata.setAttribute(key, value);
+							ndata.setAttribute("attr." + key, value);
 						}
 					}
 				}

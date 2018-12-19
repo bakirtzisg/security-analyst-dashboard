@@ -9,7 +9,7 @@ import java.util.*;
 public class LayeredSectionsLayout
 {
 
-	private static final String ATTR_SECTION = "type";
+	private static final String ATTR_SECTION = "attr.type";
 	private static final String ATTR_PLACED = "temp.placed";
 
 	private static final double LayoutWidth = 50D;
