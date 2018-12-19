@@ -10,6 +10,7 @@ import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.AttackVectorInfoPanel;
 import edu.vcu.cyber.dashboard.ui.BucketPanel;
 import edu.vcu.cyber.dashboard.util.NodeUtil;
+import edu.vcu.cyber.dashboard.util.Utils;
 import org.graphstream.algorithm.Toolkit;
 import org.graphstream.graph.Node;
 import org.graphstream.ui.geom.Point3;
@@ -85,7 +86,10 @@ public class AVActionListener extends GraphActionListener
 			AttackVector av = AttackVectors.getAttackVector(node.getId());
 			if (av != null)
 			{
-				AttackVectorInfoPanel.display(av);
+				if (!Utils.openWebPage(av.getURI()))
+				{
+					AttackVectorInfoPanel.display(av);
+				}
 			}
 		}
 	}
