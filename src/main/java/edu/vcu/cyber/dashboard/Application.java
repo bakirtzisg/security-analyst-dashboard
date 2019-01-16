@@ -1,6 +1,7 @@
 package edu.vcu.cyber.dashboard;
 
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
+import edu.vcu.cyber.dashboard.data.AttackVectors;
 import edu.vcu.cyber.dashboard.data.GraphData;
 import edu.vcu.cyber.dashboard.graph.listeners.AVActionListener;
 import edu.vcu.cyber.dashboard.graph.listeners.IBDActionListener;
@@ -8,6 +9,7 @@ import edu.vcu.cyber.dashboard.graph.layout.LayeredSectionsLayout;
 import edu.vcu.cyber.dashboard.graph.renderer.SectionRenderer;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.DashboardUI;
+import edu.vcu.cyber.dashboard.ui.custom.av.AVGraphVisHandler;
 import edu.vcu.cyber.dashboard.ui.graphpanel.GraphPanel;
 
 import javax.swing.*;
@@ -112,6 +114,8 @@ public class Application
 		gp.getViewer().enableAutoLayout();
 		
 		//TODO: parse the description vector stuff and set attributes for the visual stuffs
+		
+		AttackVectors.setVisualizer(new AVGraphVisHandler(graph));
 		
 	}
 	

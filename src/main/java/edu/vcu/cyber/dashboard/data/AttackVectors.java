@@ -1,10 +1,25 @@
 package edu.vcu.cyber.dashboard.data;
 
+import edu.vcu.cyber.dashboard.ui.custom.av.AttackVectorVisualizer;
+
 import java.util.*;
 import java.util.function.Predicate;
 
 public class AttackVectors
 {
+	
+	private static AttackVectorVisualizer vis;
+	
+	public static void setVisualizer(AttackVectorVisualizer vis)
+	{
+		AttackVectors.vis = vis;
+	}
+	
+	public static AttackVectorVisualizer vis()
+	{
+		return vis;
+	}
+	
 	
 	private static Map<String, AttackVector> attacks = new HashMap<>();
 	private static Map<String, List<AttackVector>> componentMap = new HashMap<>();
@@ -57,7 +72,9 @@ public class AttackVectors
 	
 	public static void filter(Predicate<AttackVector> predicate)
 	{
-		attacks.values().forEach(av -> av.hidden = predicate.test(av));
+		if (vis != null)
+			vis.filterAttacks(predicate);
+//		attacks.values().forEach(av -> av.hidden = predicate.test(av));
 	}
 	
 	public static void hideAttacks(Predicate<AttackVector> predicate)
@@ -70,58 +87,65 @@ public class AttackVectors
 	
 	public static void showInGraph(GraphData graphData, Predicate<AttackVector> predicate)
 	{
-		filter = predicate;
-		for (AttackVector av : attacks.values())
-		{
-			boolean pred = predicate.test(av);
-			NodeData existing = graphData.getNode(av.qualifiedName);
-			boolean shown = existing != null && existing.getNode() != null;
-			av.shown = pred;
-			if (shown && !pred)
-			{
-				graphData.flagRemoval(av.qualifiedName);
-			}
-			else if (!shown && pred)
-			{
-				av.addToGraph(graphData.getGraph());
-			}
-		}
 		
-		graphData.removeFlagged();
+		if (vis != null)
+			vis.filterAttacks(predicate);
+//		filter = predicate;
+//		for (AttackVector av : attacks.values())
+//		{
+//			boolean pred = predicate.test(av);
+//			NodeData existing = graphData.getNode(av.qualifiedName);
+//			boolean shown = existing != null && existing.getNode() != null;
+//			av.shown = pred;
+//			if (shown && !pred)
+//			{
+//				graphData.flagRemoval(av.qualifiedName);
+//			}
+//			else if (!shown && pred)
+//			{
+//				av.addToGraph(graphData.getGraph());
+//			}
+//		}
+//
+//		graphData.removeFlagged();
 	}
 	
 	public static void updateExisting(GraphData graphData)
 	{
-		graphData.getNodes().forEach(node ->
-		{
-			AttackVector av = AttackVectors.getAttackVector(node.getId());
-			if (av != null)
-			{
-				av.addToGraph(graphData.getGraph());
-			}
-		});
+		if (vis != null)
+			vis.update();
+//		graphData.getNodes().forEach(node ->
+//		{
+//			AttackVector av = AttackVectors.getAttackVector(node.getId());
+//			if (av != null)
+//			{
+//				av.addToGraph(graphData.getGraph());
+//			}
+//		});
 	}
 	
 	public static void update(GraphData graphData)
 	{
-		if (filter != null)
-		{
-			showInGraph(graphData, filter);
-		}
-		else
-		{
-			for (AttackVector av : attacks.values())
-			{
-				if (av.shown)
-				{
-					av.addToGraph(graphData.getGraph());
-				}
-				else
-				{
-					graphData.flagRemoval(av.qualifiedName);
-				}
-			}
-		}
+		if (vis != null)
+			vis.update();
+//		if (filter != null)
+//		{
+//			showInGraph(graphData, filter);
+//		}
+//		else
+//		{
+//			for (AttackVector av : attacks.values())
+//			{
+//				if (av.shown)
+//				{
+//					av.addToGraph(graphData.getGraph());
+//				}
+//				else
+//				{
+//					graphData.flagRemoval(av.qualifiedName);
+//				}
+//			}
+//		}
 	}
 	
 	/**
@@ -205,47 +229,47 @@ public class AttackVectors
 		
 	}
 	
-	public static void computeSizes()
-	{
-		attacks.values().forEach(av ->
-		{
-			
-			AttackVector related;
-			if (av.related_cwe != null)
-				for (String s : av.related_cwe)
-				{
-					related = attacks.get(s);
-					if (related != null)
-					{
-						av.size++;
-						related.size++;
-					}
-				}
-			if (av.related_capec != null)
-				for (String s : av.related_capec)
-				{
-					related = attacks.get(s);
-					if (related != null)
-					{
-						av.size++;
-						related.size++;
-					}
-				}
-			if (av.related_cve != null)
-				for (String s : av.related_cve)
-				{
-					related = attacks.get(s);
-					if (related != null)
-					{
-						av.size++;
-						related.size++;
-					}
-				}
-			if (av.type == AttackType.CAPEC)
-			{
-//				av.size += (av.related_cwe.length + av.related_cve.length) * 5 - 5;
-			}
-		});
-	}
+//	public static void computeSizes()
+//	{
+//		attacks.values().forEach(av ->
+//		{
+//
+//			AttackVector related;
+//			if (av.related_cwe != null)
+//				for (String s : av.related_cwe)
+//				{
+//					related = attacks.get(s);
+//					if (related != null)
+//					{
+//						av.size++;
+//						related.size++;
+//					}
+//				}
+//			if (av.related_capec != null)
+//				for (String s : av.related_capec)
+//				{
+//					related = attacks.get(s);
+//					if (related != null)
+//					{
+//						av.size++;
+//						related.size++;
+//					}
+//				}
+//			if (av.related_cve != null)
+//				for (String s : av.related_cve)
+//				{
+//					related = attacks.get(s);
+//					if (related != null)
+//					{
+//						av.size++;
+//						related.size++;
+//					}
+//				}
+//			if (av.type == AttackType.CAPEC)
+//			{
+////				av.size += (av.related_cwe.length + av.related_cve.length) * 5 - 5;
+//			}
+//		});
+//	}
 	
 }

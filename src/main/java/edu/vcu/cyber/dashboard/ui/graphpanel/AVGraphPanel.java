@@ -40,6 +40,8 @@ public class AVGraphPanel extends GraphPanel implements ActionListener
 		setComponentPopupMenu(popupMenu);
 		
 		add(new FilterToolbar(), BorderLayout.NORTH);
+		
+		
 	}
 	
 	@Override
@@ -76,8 +78,6 @@ public class AVGraphPanel extends GraphPanel implements ActionListener
 						AttackVectors.showInGraph(graph, av -> av.shown && av.type != AttackType.CVE);
 					}
 				}
-				
-				
 				break;
 			
 			case CMD_HIDE_RELATED:

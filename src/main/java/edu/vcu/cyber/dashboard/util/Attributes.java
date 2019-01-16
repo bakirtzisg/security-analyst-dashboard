@@ -33,4 +33,7 @@ public interface Attributes
 	String CSS_ATTACK_VECTOR = "av";
 
 	String CSS_SPEC_RELATION = "spec";
+	String UI_SIZE = "ui.size";
+	String LAYOUT_WEIGHT = "layout.weight";
+	String XYZ_POS = "xyz";
 }

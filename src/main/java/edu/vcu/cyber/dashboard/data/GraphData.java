@@ -15,6 +15,7 @@ import java.util.function.Predicate;
 public class GraphData implements Sink
 {
 	
+	
 	public static class GraphKey
 	{
 		
