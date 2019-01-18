@@ -1,6 +1,6 @@
 package edu.vcu.cyber.dashboard.util;
 
-import edu.vcu.cyber.dashboard.data.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVector;
 
 import java.util.function.Predicate;
 

@@ -1,9 +1,7 @@
 package edu.vcu.cyber.dashboard.util;
 
-import edu.vcu.cyber.dashboard.data.AttackVector;
-import edu.vcu.cyber.dashboard.data.AttackVectors;
-import org.graphstream.graph.Graph;
-import org.graphstream.graph.implementations.AdjacencyListGraph;
+import edu.vcu.cyber.dashboard.av.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,7 +21,7 @@ public class CSVParser
 				{
 					ParserData info = new ParserData();
 					info.parse(line);
-
+					
 					//resolve full related names since it's not consistent in the existing .csv files
 					for (int i = 0; i < info.related_cwe.length; i++)
 					{
@@ -46,24 +44,28 @@ public class CSVParser
 							info.related_capec[i] = "CWE-" + info.related_capec[i];
 						}
 					}
-
-
-				} catch (Exception e)
+					
+					
+				}
+				catch (Exception e)
 				{
 				}
 			}
 			in.close();
-
-		} catch (Exception e)
+			
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
-		} finally
+		}
+		finally
 		{
+			AttackVectors.resolveAttacks();
 			AttackVectors.printStats();
 		}
 	}
-
-
+	
+	
 	public static class ParserData
 	{
 		String violated_component;
@@ -75,9 +77,9 @@ public class CSVParser
 		String[] related_capec;
 		String[] related_cve;
 		String contents;
-
+		
 		int pos;
-
+		
 		String[] parseArray(String[] input)
 		{
 			String field = readField(input);
@@ -88,7 +90,7 @@ public class CSVParser
 			}
 			return field.split(",");
 		}
-
+		
 		private String readField(String[] input)
 		{
 			if (input[pos].startsWith("\""))
@@ -117,31 +119,31 @@ public class CSVParser
 			}
 			return input[pos++];
 		}
-
+		
 		void parse(String line)
 		{
 			pos = 0;
 			String[] data = line.split(",");
-
-
+			
+			
 			violated_component = readField(data);
 			hits_for_component = Integer.valueOf(readField(data));
 			attack_vector = readField(data);
 			database = readField(data);
 			id = readField(data);
-
+			
 			AttackVector attackVector = new AttackVector(database, id);
 			attackVector.description = attack_vector;
 			related_cwe = attackVector.related_cwe = parseArray(data);
 			related_capec = attackVector.related_capec = parseArray(data);
 			related_cve = attackVector.related_cve = parseArray(data);
 			contents = attackVector.contents = readField(data);
-
+			
 			AttackVectors.addAttack(attackVector, violated_component);
-
-
+			
+			
 		}
-
+		
 		public String toString()
 		{
 			StringBuilder sb = new StringBuilder();
@@ -173,9 +175,9 @@ public class CSVParser
 				}
 			}
 			sb.append("], ").append("\n\t\tContents: ").append(contents);
-
+			
 			return sb.toString();
 		}
 	}
-
+	
 }

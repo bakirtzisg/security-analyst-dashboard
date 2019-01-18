@@ -1,6 +1,6 @@
 package edu.vcu.cyber.dashboard.ui;
 
-import edu.vcu.cyber.dashboard.data.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVector;
 
 import javax.swing.*;
 import java.awt.*;

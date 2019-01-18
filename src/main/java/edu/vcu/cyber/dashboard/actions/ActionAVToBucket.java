@@ -1,6 +1,6 @@
 package edu.vcu.cyber.dashboard.actions;
 
-import edu.vcu.cyber.dashboard.data.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVector;
 import edu.vcu.cyber.dashboard.ui.BucketPanel;
 
 import java.util.ArrayList;

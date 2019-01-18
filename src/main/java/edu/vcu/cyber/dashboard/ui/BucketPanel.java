@@ -1,8 +1,11 @@
 package edu.vcu.cyber.dashboard.ui;
 
-import edu.vcu.cyber.dashboard.data.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.GraphData;
 import edu.vcu.cyber.dashboard.project.AppSession;
+import edu.vcu.cyber.dashboard.ui.custom.HintTextField;
+import edu.vcu.cyber.dashboard.util.FilterPredicate;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -17,153 +20,148 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class BucketPanel extends JPanel implements ListSelectionListener, ActionListener, KeyListener
 {
-
-
+	
+	
 	private static final Color CAPEC_COLOR = new Color(255, 15, 25, 125);
 	private static final Color CWE_COLOR = new Color(11, 36, 251, 125);
 	private static final Color CVE_COLOR = new Color(254, 188, 108, 125);
-
+	
 	private static final String[] columnNames = {"CB", "Attack", "Description", "Violated Components"};
 	public static BucketPanel instance = new BucketPanel();
-
-
+	
+	
 	public static BucketPanel showBucket(boolean visible)
 	{
 		return instance;
 	}
-
-
+	
+	
 	public CustomTableModel tableModel;
-
+	
 	private TableRowSorter<CustomTableModel> sorter;
-
+	
 	private JTable table;
-	//	private JTextPane infoPane;
 	private JTextField searchText;
-	//	private JSplitPane splitPane;
 	private JComboBox<String> filterMethodCombo;
-
+	
 	private JPanel contentPanel;
-
-//	private JScrollPane infoScrollPane;
-//
-//	private boolean detached;
-
-
+	
+	
 	public BucketPanel()
 	{
-
+		
 		instance = this;
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
-
+		
 		createTable();
 		contentPanel = new JPanel(new BorderLayout());
-
-//		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-//		infoPane = new JTextPane();
+		
 		JButton searchButton = new JButton("Filter Entries");
-		searchText = new JTextField();
-
+		searchText = new HintTextField("Filter Bucket Entries...");
+		
 		filterMethodCombo = new JComboBox<>(new String[]{"All", "Attacks", "Description", "Component", "Contents"});
-
+		
 		searchButton.addActionListener(this);
 		searchText.addKeyListener(this);
-
-//		infoPane.setContentType("text/html");
-//		infoPane.setEditable(false);
-//		infoPane.setText("<h> Attack Information </h>");
-
+		
 		JScrollPane tableScroll = new JScrollPane(table);
 		table.setFillsViewportHeight(true);
 		table.addKeyListener(this);
-
-//		splitPane.setTopComponent(tableScroll);
-//		infoScrollPane = new JScrollPane(infoPane);
-//		splitPane.setBottomComponent(infoScrollPane);
-//		splitPane.setDividerSize(3);
-//		SwingUtilities.invokeLater(() ->
-//		{
-//
-//			splitPane.setDividerLocation(getHeight() / 3);
-//		});
-
+		
 		contentPanel.add(tableScroll, BorderLayout.CENTER);
-
+		
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(2, 2, 2, 2);
 		c.fill = GridBagConstraints.BOTH;
-
+		
 		// search/filter
 		c.gridx = 0;
 		c.gridy = 0;
 		c.weightx = 1.0D;
 		add(searchText, c);
-
+		
 		c.gridx = 1;
 		c.weightx = 0.0D;
-
+		
 		add(filterMethodCombo, c);
-
+		
 		c.gridx = 2;
 		add(searchButton, c);
-
+		
 		// table/info content
 		c.gridwidth = 3;
 		c.gridx = 0;
 		c.gridy++;
 		c.weighty = 1.0D;
 		add(tableScroll, c);
-
-
+		
+		
 	}
-
+	
+	/**
+	 * Creates the table component
+	 */
 	private void createTable()
 	{
 		tableModel = new CustomTableModel();
 		table = new JTable(tableModel);
-
+		
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		table.setCellSelectionEnabled(false);
 		table.setUpdateSelectionOnSort(true);
 		table.setRowSelectionAllowed(true);
-
-
+		
+		
 		table.setDefaultRenderer(String.class, new CellRenderer());
-
-
+		
+		
 		sorter = new TableRowSorter<>(tableModel);
 		table.setRowSorter(sorter);
-
-		table.getSelectionModel().addListSelectionListener(this);
+		
+		updateColumnSizes();
+		
+		
+	}
+	
+	/**
+	 * sets the column sizes to default values
+	 */
+	private void updateColumnSizes()
+	{
 		table.getColumnModel().getColumn(0).setMaxWidth(50);
 		table.getColumnModel().getColumn(0).setHeaderValue(null);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
-
-
+		
+		table.getColumnModel().getColumn(1).setMaxWidth(300);
+		table.getColumnModel().getColumn(1).setPreferredWidth(300);
 	}
-
+	
+	/**
+	 * Adds an attack vector to the bucket
+	 */
 	public void addRow(AttackVector av)
 	{
 		TableRow row = new TableRow();
-
+		
 		if (!av.inBucket)
 		{
 			row.vector = av;
 			av.inBucket = true;
 			tableModel.addData(row);
-
+			
 			table.getColumnModel().getColumn(0).setMaxWidth(50);
 		}
 	}
-
+	
+	/**
+	 * Removes an attack vector from the bucket
+	 */
 	public void removeRow(AttackVector av)
 	{
 		if (av.inBucket)
@@ -172,95 +170,89 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 			tableModel.rows.removeIf(row -> !row.vector.inBucket);
 		}
 	}
-
+	
+	/**
+	 * Clears all items in the bucket
+	 */
+	public void clear()
+	{
+		tableModel.rows.clear();
+		tableModel.fireTableDataChanged();
+	}
+	
+	/**
+	 * Adds all attack vectors with the inBucket flag set
+	 */
+	public void bucketFromAVList()
+	{
+		clear();
+		AttackVectors.getAllAttackVectors().forEach(av ->
+		{
+			if (av.inBucket)
+			{
+				addRow(av);
+			}
+		});
+//		tableModel.fireTableDataChanged();
+	}
+	
+	/**
+	 * Fires any time an element in the table is selected (or focused)
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e)
 	{
 		GraphData graph = AppSession.getInstance().getAvGraph();
 		graph.clearFocus();
 		int[] selected = table.getSelectedRows();
-
+		
 		for (int i : selected)
 		{
 			if (i >= 0)
 			{
 				int modelRow = table.convertRowIndexToModel(i);
-
+				
 				AttackVector av = tableModel.rows.get(modelRow).vector;
-
+				
 				graph.setFocus(av.qualifiedName);
-
-
+				
+				
 			}
 		}
-
-//		int viewRow = table.getSelectedRow();
-//		if (viewRow >= 0)
-//		{
-//			int modelRow = table.convertRowIndexToModel(viewRow);
-//
-//			AttackVector av = tableModel.rows.get(modelRow).vector;
-//
-//			graph.setFocus(av.qualifiedName);
-//
-//
-//		}
-
 	}
-
+	
+	/**
+	 * Filters the *visible* items in the bucket
+	 */
 	private void applyFilter()
 	{
 		RowFilter<CustomTableModel, Object> rf = null;
 		try
 		{
 			int filterMode = filterMethodCombo.getSelectedIndex();
-			Pattern pattern = Pattern.compile(searchText.getText().toLowerCase());
+			
+			final FilterPredicate pred = new FilterPredicate(searchText.getText(), FilterPredicate.FilterMode.values()[filterMode]);
+			
 			rf = new RowFilter<CustomTableModel, Object>()
 			{
 				@Override
 				public boolean include(Entry<? extends CustomTableModel, ?> entry)
 				{
-					int index = (Integer) entry.getIdentifier();
-					TableRow row = tableModel.rows.get(index);
-
-					String searchString = "";
-
-					switch (filterMode)
-					{
-						case 0: // all
-							searchString = String.format("attack[ %s ]; description[ %s ]; components[ %s ]; contents[ %s ];",
-									row.vector.qualifiedName, row.vector.description,
-									row.vector.violatedComponents.toString(), row.vector.contents);
-							break;
-						case 1: // attack
-							searchString = String.format("attack[ %s ];", row.vector.qualifiedName);
-							break;
-						case 2: // description
-							searchString = String.format("description[ %s ];", row.vector.description);
-							break;
-						case 3: // component
-							searchString = String.format("components[ %s ];", row.vector.violatedComponents.toString());
-							break;
-						case 4: // contents
-							searchString = String.format("contents[ %s ];", row.vector.contents);
-							break;
-					}
-					searchString = searchString.toLowerCase();
-
-					Matcher matcher = pattern.matcher(searchString);
-					return matcher.find();
+					return pred.test(tableModel.rows.get((Integer) entry.getIdentifier()).vector);
 				}
 			};
-
-
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			ex.printStackTrace();
 		}
 		sorter.setRowFilter(rf);
 		tableModel.fireTableStructureChanged();
+		
+		updateColumnSizes();
+		
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -272,13 +264,16 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 			default:
 		}
 	}
-
+	
 	@Override
 	public void keyTyped(KeyEvent e)
 	{
-
+	
 	}
-
+	
+	/**
+	 * Handles all key-presses for key actions (can't remember the name of this atm)
+	 */
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
@@ -286,7 +281,7 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 		{
 			applyFilter();
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+		else if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
 		{
 			table.clearSelection();
 		}
@@ -313,7 +308,7 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 //					}
 //				}
 //			}
-
+		
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_A && (e.isControlDown() || e.isAltDown()))
 		{
@@ -326,41 +321,41 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 			tableModel.fireTableDataChanged();
 		}
 	}
-
+	
 	private void toggleInfoPane(boolean visible)
 	{
-
+	
 	}
-
+	
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-
+	
 	}
-
-
+	
+	
 	public static class CustomTableModel extends AbstractTableModel
 	{
-
+		
 		List<TableRow> rows = new ArrayList<>();
-
+		
 		@Override
 		public int getRowCount()
 		{
 			return rows.size();
 		}
-
+		
 		@Override
 		public int getColumnCount()
 		{
 			return columnNames.length;
 		}
-
+		
 		public String getColumnName(int col)
 		{
 			return columnNames[col];
 		}
-
+		
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex)
 		{
@@ -371,7 +366,7 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 			}
 			return "";
 		}
-
+		
 		@Override
 		public Class getColumnClass(int column)
 		{
@@ -383,19 +378,19 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 					return String.class;
 			}
 		}
-
+		
 		public boolean isCellEditable(int row, int col)
 		{
 			return col == 0;
 		}
-
+		
 		public void setValueAt(Object value, int row, int col)
 		{
 			TableRow r = rows.get(row);
 			r.selected = (boolean) value;
 			fireTableCellUpdated(row, col);
 		}
-
+		
 		public void addData(TableRow tableRow)
 		{
 			try
@@ -405,16 +400,17 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 					rows.add(tableRow);
 					fireTableRowsInserted(rows.size() - 2, rows.size() - 1);
 				}
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
-
+			
 			}
 		}
 	}
-
+	
 	private class CellRenderer extends DefaultTableCellRenderer
 	{
-
+		
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
 		{
@@ -432,26 +428,26 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 				case CVE:
 					c.setBackground(CVE_COLOR);
 			}
-
-
+			
+			
 			return c;
 		}
 	}
-
+	
 	public static class TableRow
 	{
 		public boolean selected; // checkbox
 		public AttackVector vector;
-
+		
 		Object[] contents()
 		{
 			return new Object[]{selected, vector.qualifiedName, vector.description, vector.violatedComponents};
 		}
-
+		
 		public boolean equals(Object obj)
 		{
 			return obj instanceof TableRow && ((TableRow) obj).vector.equals(vector);
 		}
 	}
-
+	
 }

@@ -1,6 +1,7 @@
 package edu.vcu.cyber.dashboard.graph.interpreters;
 
 import edu.vcu.cyber.dashboard.data.AttackType;
+import edu.vcu.cyber.dashboard.util.Attributes;
 import edu.vcu.cyber.dashboard.util.NodeUtil;
 import org.graphstream.graph.Node;
 
@@ -29,7 +30,7 @@ public class AVGraphInterpreter extends GraphInterpreter
 		graph.getNodeSet().forEach(node ->
 		{
 			int size = node.getLeavingEdgeSet().size();
-			node.setAttribute("ui.size", 4D + Math.sqrt(size));
+			node.setAttribute(Attributes.UI_SIZE, 4D + Math.sqrt(size));
 		});
 
 	}

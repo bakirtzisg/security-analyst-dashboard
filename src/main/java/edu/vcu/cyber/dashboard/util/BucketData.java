@@ -1,7 +1,7 @@
 package edu.vcu.cyber.dashboard.util;
 
-import edu.vcu.cyber.dashboard.data.AttackVector;
-import edu.vcu.cyber.dashboard.data.AttackVectors;
+import edu.vcu.cyber.dashboard.av.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.ui.BucketPanel;
 
 import java.io.*;
