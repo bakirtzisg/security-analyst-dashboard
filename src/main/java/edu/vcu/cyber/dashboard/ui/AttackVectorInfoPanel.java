@@ -1,11 +1,10 @@
 package edu.vcu.cyber.dashboard.ui;
 
-import edu.vcu.cyber.dashboard.data.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVector;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class AttackVectorInfoPanel extends JPanel

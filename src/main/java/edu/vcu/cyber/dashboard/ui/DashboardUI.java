@@ -1,18 +1,20 @@
 package edu.vcu.cyber.dashboard.ui;
 
 import edu.vcu.cyber.dashboard.Application;
-import edu.vcu.cyber.dashboard.Config;
+import edu.vcu.cyber.dashboard.av.AVGraphVisHandler;
+import edu.vcu.cyber.dashboard.av.AVListVisHandler;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.UpdateQuery;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.graph.interpreters.AVGraphInterpreter;
 import edu.vcu.cyber.dashboard.project.AppSession;
+import edu.vcu.cyber.dashboard.ui.custom.av.list.AVListPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.AVGraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.GraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.EditableGraphPanel;
-import edu.vcu.cyber.dashboard.ui.search.SearchPanel;
-import edu.vcu.cyber.dashboard.util.ApplicationSettings;
 import edu.vcu.cyber.dashboard.util.BucketData;
+import edu.vcu.cyber.dashboard.util.Config;
 import edu.vcu.cyber.dashboard.util.GraphExporter;
 
 import javax.swing.*;
@@ -28,6 +30,8 @@ public class DashboardUI extends JFrame implements ActionListener
 	private GraphPanel topGraphPanel;
 	private GraphPanel avGraphPanel;
 	private GraphPanel specGraphPanel;
+	
+	private AVListPanel avListPanel;
 	
 	private JPanel contentPane;
 	private JTabbedPane tabs;
@@ -95,9 +99,10 @@ public class DashboardUI extends JFrame implements ActionListener
 		avGraphPanel = new AVGraphPanel(GraphType.ATTACKS);
 		
 		specGraphPanel = new EditableGraphPanel(GraphType.SPECIFICATIONS);
+		avListPanel = new AVListPanel();
 		
 		sp.setLeftComponent(topGraphPanel);
-		
+		setAVVisComponent(false);
 		setUseSpecGraph(false);
 		
 		contentPane.add(sp, BorderLayout.CENTER);
@@ -113,6 +118,7 @@ public class DashboardUI extends JFrame implements ActionListener
 			{
 				//sp.setRightComponent(null);
 				tabs = new JTabbedPane();
+				tabs.add("AV List", avListPanel);
 				tabs.add("Attack Vector Space", avGraphPanel);
 				tabs.add("Specifications", specGraphPanel);
 				sp.setRightComponent(tabs);
@@ -209,6 +215,18 @@ public class DashboardUI extends JFrame implements ActionListener
 		return null;
 	}
 	
+	public void setAVVisComponent(boolean isGraph)
+	{
+		if (isGraph && !(AttackVectors.vis() instanceof AVGraphVisHandler))
+		{
+			AttackVectors.setVisualizer(new AVGraphVisHandler(Application.getInstance().getSession().getAvGraph()));
+		}
+		else if (!isGraph && !(AttackVectors.vis() instanceof AVListVisHandler))
+		{
+			AttackVectors.setVisualizer(new AVListVisHandler(avListPanel));
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -231,26 +249,19 @@ public class DashboardUI extends JFrame implements ActionListener
 				break;
 			
 			case "Show Deleted":
-				AttackVectors.showDeletedNodes = !AttackVectors.showDeletedNodes;
-				AttackVectors.update(AppSession.getInstance().getAvGraph());
+				Config.showDeletedNodes = !Config.showDeletedNodes;
+				AttackVectors.update();
 				break;
 			
 			case "Show Hidden":
-				AttackVectors.showDeletedNodes = !AttackVectors.showDeletedNodes;
-				AttackVectors.update(AppSession.getInstance().getAvGraph());
+				Config.showDeletedNodes = !Config.showDeletedNodes;
+				AttackVectors.update();
 				break;
 			
 			case "Show CVEs":
-				AttackVectors.showCVENodes = !AttackVectors.showCVENodes;
-				AttackVectors.getAllAttackVectors().forEach(av ->
-				{
-					if (av.type == AttackType.CVE)
-					{
-						av.hidden = !AttackVectors.showCVENodes;
-					}
-				});
+				Config.showCVENodes = !Config.showCVENodes;
 				
-				AttackVectors.update(AppSession.getInstance().getAvGraph());
+				AttackVectors.update();
 				break;
 			
 			

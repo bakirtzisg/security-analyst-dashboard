@@ -2,18 +2,13 @@ package edu.vcu.cyber.dashboard.cybok.queries;
 
 import edu.vcu.cyber.dashboard.Application;
 import edu.vcu.cyber.dashboard.Config;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.cybok.CybokQuery;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.util.*;
-import org.graphstream.graph.Edge;
-import org.graphstream.graph.Graph;
-import org.graphstream.graph.Node;
-import org.w3c.dom.Attr;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements CybokQuery.Result<FullAnalysisQuery>
 {
@@ -115,8 +110,12 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 	{
 		
 		// load attack vector information
+		AttackVectors.clearAll();
 		CSVParser.readCSV(Config.FILE_AV_GRAPH);
-		AttackVectors.getAllAttackVectors().forEach(av -> av.addToGraph(AppSession.getInstance().getAvGraph().getGraph()));
+//		AttackVectors.getAllAttackVectors().forEach(av -> av.addToGraph(AppSession.getInstance().getAvGraph().getGraph()));
+		
+		// reset the visualizer to and display all nodes
+		AttackVectors.vis().reset();
 		
 		// load attack surface information
 		GraphData as = GraphMLParser.parse(Config.FILE_ATTACK_SURFACE, GraphType.ATTACK_SURFACE);
@@ -133,50 +132,6 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 		});
 		
 		Utils.updateAttackSurfaces();
-//		System.out.println("Result");
-//		Graph topGraph = AppSession.getInstance().getTopGraph().getGraph();
-//
-//		NodeUtil.clearAllAttributesOf(topGraph, Attributes.ATTACK_SURFACE);
-//
-//		for (int i = 0; i < attackSurfaces.size(); i += 2)
-//		{
-//			String asId = attackSurfaces.get(i);
-//			String targetId = attackSurfaces.get(i + 1);
-//			Node as = topGraph.getNode(asId);
-//			Node target = topGraph.getNode(targetId);
-//			if (as == null)
-//			{
-//				as = topGraph.addNode(asId);
-//			}
-//			if (!as.hasAttribute(Attributes.ATTACK_SURFACE))
-//			{
-//				as.addAttribute(Attributes.ATTACK_SURFACE);
-//				NodeUtil.addCssClass(as, Attributes.ATTACK_SURFACE);
-//			}
-//			if (target != null)
-//			{
-//				NodeUtil.addCssClass(target, "attack_surface_target");
-//				String edgeId = asId + "-" + targetId;
-//				Edge edge = topGraph.getEdge(edgeId);
-//				if (edge == null)
-//				{
-//					edge = topGraph.addEdge(edgeId, asId, targetId, true);
-//				}
-//
-//				if (!edge.hasAttribute(Attributes.ATTACK_SURFACE))
-//				{
-//					edge.addAttribute(Attributes.ATTACK_SURFACE);
-//					NodeUtil.addCssClass(edge, Attributes.ATTACK_SURFACE);
-//				}
-//			}
-//
-//		}
-//
-//		GraphData attackGraph = AppSession.getInstance().getAvGraph();
-//		Graph graph = attackGraph.getGraph();
-//		AttackVectors.computeSizes();
-//		Collection<AttackVector> attackVectors = AttackVectors.getAllAttackVectors();
-//		attackVectors.forEach(av -> av.addToGraph(graph));
 		
 	}
 }

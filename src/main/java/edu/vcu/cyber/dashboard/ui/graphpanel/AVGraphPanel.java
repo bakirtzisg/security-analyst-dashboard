@@ -2,13 +2,12 @@ package edu.vcu.cyber.dashboard.ui.graphpanel;
 
 import edu.vcu.cyber.dashboard.actions.ActionManager;
 import edu.vcu.cyber.dashboard.actions.ActionNodeDelete;
+import edu.vcu.cyber.dashboard.av.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.graph.listeners.AVActionListener;
-import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.FilterToolbar;
-import org.graphstream.graph.Node;
-import org.graphstream.ui.graphicGraph.GraphicElement;
-import org.graphstream.ui.layout.springbox.implementations.SpringBox;
+import edu.vcu.cyber.dashboard.util.Config;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,8 +22,6 @@ public class AVGraphPanel extends GraphPanel implements ActionListener
 	private static final String CMD_HIDE_RELATED = "Hide Related";
 	private static final String CMD_ADD_BUCKET = "Add to bucket";
 	private static final String CMD_DELETE = "Delete Selected";
-	
-	private boolean cve_shown;
 	
 	
 	public AVGraphPanel(GraphType graphType)
@@ -50,39 +47,28 @@ public class AVGraphPanel extends GraphPanel implements ActionListener
 		switch (e.getActionCommand())
 		{
 			case CMD_SHOW_CVE:
-				cve_shown = !cve_shown;
+				Config.showCVENodes = !Config.showCVENodes;
 				
-				List<NodeData> nodes = graph.getSelectedNodes();
 				NodeData node = graph.getLastSelectedNode();
-//				for (NodeData node : nodes)
 				if (node != null)
 				{
 					AttackVector av = AttackVectors.getAttackVector(node.getId());
 					if (av != null)
 					{
 //
-						AttackVectors.showAllRelated(av.qualifiedName, graph);
+						AttackVectors.showRelated(av.qualifiedName, true);
 					}
 				}
 				else
 				{
 					
-					if (cve_shown)
-					{
-						AttackVectors.hideAttacks(av -> false);
-						AttackVectors.showInGraph(graph, av -> av.shown | av.type == AttackType.CVE);
-					}
-					else
-					{
-						AttackVectors.hideAttacks(av -> av.type == AttackType.CVE);
-						AttackVectors.showInGraph(graph, av -> av.shown && av.type != AttackType.CVE);
-					}
+					AttackVectors.update();
 				}
 				break;
 			
 			case CMD_HIDE_RELATED:
-				AttackVectors.hideAttacks(av -> av.type == AttackType.CVE);
-				AttackVectors.showInGraph(graph, av -> av.shown && av.type != AttackType.CVE);
+				//TODO:
+				AttackVectors.update();
 				break;
 			
 			case CMD_ADD_BUCKET:

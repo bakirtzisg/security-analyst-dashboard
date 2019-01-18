@@ -3,12 +3,11 @@ package edu.vcu.cyber.dashboard.graph.listeners;
 import edu.vcu.cyber.dashboard.actions.ActionAVToBucket;
 import edu.vcu.cyber.dashboard.actions.ActionManager;
 import edu.vcu.cyber.dashboard.actions.ActionNodeDelete;
-import edu.vcu.cyber.dashboard.data.AttackVector;
-import edu.vcu.cyber.dashboard.data.AttackVectors;
+import edu.vcu.cyber.dashboard.av.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.NodeData;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.AttackVectorInfoPanel;
-import edu.vcu.cyber.dashboard.ui.BucketPanel;
 import edu.vcu.cyber.dashboard.util.NodeUtil;
 import edu.vcu.cyber.dashboard.util.Utils;
 import org.graphstream.algorithm.Toolkit;
@@ -16,7 +15,6 @@ import org.graphstream.graph.Node;
 import org.graphstream.ui.geom.Point3;
 
 import java.awt.event.KeyEvent;
-import java.util.List;
 
 public class AVActionListener extends GraphActionListener
 {
@@ -172,8 +170,8 @@ public class AVActionListener extends GraphActionListener
 			AttackVector av = AttackVectors.getAttackVector(node.getId());
 			av.deleted = true;
 			
-			graphData.flagRemoval(node.getId());
-			graphData.removeFlagged();
+			AttackVectors.vis().removeAttack(av);
+			
 		}
 	}
 	

@@ -1,14 +1,12 @@
 package edu.vcu.cyber.dashboard.ui.graphpanel;
 
 import edu.vcu.cyber.dashboard.Config;
-import edu.vcu.cyber.dashboard.data.AttackVectors;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.GraphType;
 import edu.vcu.cyber.dashboard.data.NodeData;
 import edu.vcu.cyber.dashboard.ui.NodeEditorDialog;
 import edu.vcu.cyber.dashboard.util.Attributes;
 import edu.vcu.cyber.dashboard.util.Utils;
-import org.graphstream.graph.Edge;
-import org.graphstream.graph.Node;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -60,7 +58,7 @@ public class EditableGraphPanel extends GraphPanel implements ActionListener
 				break;
 			
 			case "Show Attack Vectors":
-				AttackVectors.showInGraph(graph, av -> av.inBucket);
+				AttackVectors.showInGraph(av -> av.inBucket);
 				break;
 			
 			case "Clear Attack Vectors":

@@ -1,8 +1,7 @@
 package edu.vcu.cyber.dashboard.ui;
 
-import edu.vcu.cyber.dashboard.data.AttackVectors;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.GraphData;
-import edu.vcu.cyber.dashboard.data.GraphType;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.custom.HintTextField;
 import edu.vcu.cyber.dashboard.util.FilterPredicate;
@@ -13,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FilterToolbar extends JToolBar implements ActionListener, KeyListener
 {
@@ -80,7 +77,7 @@ public class FilterToolbar extends JToolBar implements ActionListener, KeyListen
 			
 			if (filterMode == 5)
 			{
-				AttackVectors.showInGraph(graph, av -> av.inBucket);
+				AttackVectors.showInGraph(av -> av.inBucket);
 			}
 			else
 			{
@@ -88,7 +85,7 @@ public class FilterToolbar extends JToolBar implements ActionListener, KeyListen
 				
 				FilterPredicate predicate = new FilterPredicate(filterTextField.getText(), FilterPredicate.FilterMode.values()[filterMode]);
 				
-				AttackVectors.showInGraph(graph, predicate);
+				AttackVectors.showInGraph(predicate);
 
 //				AttackVectors.showInGraph(graph, av ->
 //				{
@@ -145,8 +142,7 @@ public class FilterToolbar extends JToolBar implements ActionListener, KeyListen
 			case "Clear":
 				System.out.println("Clear Filter");
 				filterTextField.setText("");
-				GraphData graph = AppSession.getInstance().getAvGraph();
-				AttackVectors.showInGraph(graph, av -> true);
+				AttackVectors.showInGraph(av -> true);
 				
 				break;
 			case "comboBoxChanged":

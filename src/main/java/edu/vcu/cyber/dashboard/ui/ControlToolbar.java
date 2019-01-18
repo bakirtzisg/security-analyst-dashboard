@@ -1,9 +1,12 @@
 package edu.vcu.cyber.dashboard.ui;
 
-import edu.vcu.cyber.dashboard.Config;
+import edu.vcu.cyber.dashboard.Application;
+import edu.vcu.cyber.dashboard.av.AttackVector;
+import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.project.GraphAnalysis;
+import edu.vcu.cyber.dashboard.util.Config;
 import edu.vcu.cyber.dashboard.util.Utils;
 
 import javax.imageio.ImageIO;
@@ -30,6 +33,7 @@ public class ControlToolbar extends JToolBar
 	
 	private static final String CMD_ADD_BUCKET = "Add to Bucket";
 	private static final String CMD_DELETE_ATTACKS = "Delete Attacks";
+	private static final String CMD_AV_LIST_VIEW = "AV List View";
 	
 	public ControlToolbar()
 	{
@@ -41,7 +45,7 @@ public class ControlToolbar extends JToolBar
 		// -------------- Analysis Tools --------------
 		addToggleButton(CMD_TOGGLE_ATTACK_SURFACES, null).addActionListener((evt) ->
 		{
-			Config.showAttackSurfaces = isSelected(evt);
+			edu.vcu.cyber.dashboard.Config.showAttackSurfaces = isSelected(evt);
 			Utils.updateAttackSurfaces();
 		});
 		addButton(CMD_REDO_ANALYSIS, "analysis.png").addActionListener((evt) -> GraphAnalysis.analyseTopologyGraph());
@@ -51,19 +55,19 @@ public class ControlToolbar extends JToolBar
 		
 		addToggleButton(CMD_SHOW_DELETED, null).addActionListener((evt) ->
 		{
-			AttackVectors.showDeletedNodes = isSelected(evt);
-			AttackVectors.update(AppSession.getInstance().getAvGraph());
+			Config.showDeletedNodes = isSelected(evt);
+			AttackVectors.update();
 		});
 		addToggleButton(CMD_SHOW_HIDDEN, "hidden.png").addActionListener((evt) ->
 		{
-			AttackVectors.showHiddenNodes = isSelected(evt);
-			AttackVectors.update(AppSession.getInstance().getAvGraph());
+			Config.showHiddenNodes = isSelected(evt);
+			AttackVectors.update();
 		});
 		addToggleButton(CMD_SHOW_CVE, "vcve.png").addActionListener((evt) ->
 		{
-			AttackVectors.showCVENodes = isSelected(evt);
-			AttackVectors.getAllAttackVectors().forEach(av -> av.hidden = av.type == AttackType.CVE ? !AttackVectors.showCVENodes : av.hidden);
-			AttackVectors.update(AppSession.getInstance().getAvGraph());
+			Config.showCVENodes = isSelected(evt);
+//			AttackVectors.getAllAttackVectors().forEach(av -> av.hidden = av.type == AttackType.CVE ? !Config.showCVENodes : av.hidden);
+			AttackVectors.update();
 		});
 		
 		
@@ -89,12 +93,13 @@ public class ControlToolbar extends JToolBar
 				if (attack != null)
 				{
 					attack.deleted = true;
-					if (nd.getNode() != null)
-					{
-						graphData.getGraph().removeNode(nd.getNode());
-					}
+					AttackVectors.vis().removeAttack(attack);
 				}
 			}
+		});
+		addToggleButton(CMD_AV_LIST_VIEW, "delete.png").addActionListener((evt) ->
+		{
+			Application.getInstance().getGui().setAVVisComponent(isSelected(evt));
 		});
 		
 		
