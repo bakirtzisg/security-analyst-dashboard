@@ -141,7 +141,8 @@ public class CybokQueryHandler implements Runnable
 
 			setupReaders();
 
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
@@ -165,10 +166,12 @@ public class CybokQueryHandler implements Runnable
 					{
 						eventHandler.onMessage(line);
 					}
-				} catch (Exception e)
+				}
+				catch (Exception e)
 				{
 					e.printStackTrace();
-				} finally
+				}
+				finally
 				{
 					eventHandler.onFinish(false);
 					eventHandler.done();
@@ -196,10 +199,12 @@ public class CybokQueryHandler implements Runnable
 //						err = true;
 						System.err.println("Error: " + line);
 					}
-				} catch (Exception e)
+				}
+				catch (Exception e)
 				{
 					e.printStackTrace();
-				} finally
+				}
+				finally
 				{
 					eventHandler.done();
 					if (process.isAlive())
@@ -253,7 +258,8 @@ public class CybokQueryHandler implements Runnable
 					try
 					{
 						Thread.sleep(10);
-					} catch (InterruptedException e)
+					}
+					catch (InterruptedException e)
 					{
 						e.printStackTrace();
 					}
