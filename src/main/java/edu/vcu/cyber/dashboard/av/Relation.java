@@ -2,28 +2,28 @@ package edu.vcu.cyber.dashboard.av;
 
 public class Relation
 {
-	
+
 	protected final AttackVector parent;
 	protected final AttackVector child;
-	
+
 	protected boolean shown;
-	
+
 	protected boolean isMember;
 	protected boolean isDirectionless;
-	
+
 	protected final String edgeId;
-	
-	
+
+
 	public Relation(AttackVector parent, AttackVector child)
 	{
 		this.parent = parent;
 		this.child = child;
-		
+
 		edgeId = parent.qualifiedName + "-" + child.qualifiedName;
-		
+
 		isMember = parent.type == child.type;
 	}
-	
+
 	/**
 	 * @return the parent attack
 	 */
@@ -31,7 +31,7 @@ public class Relation
 	{
 		return parent;
 	}
-	
+
 	/**
 	 * @return the child attack
 	 */
@@ -39,7 +39,7 @@ public class Relation
 	{
 		return child;
 	}
-	
+
 	/**
 	 * @return whether or not this relation is current shown in the visualizer
 	 */
@@ -47,7 +47,7 @@ public class Relation
 	{
 		return shown;
 	}
-	
+
 	/**
 	 * Used by the visualizer to set if it's currently visible
 	 */
@@ -55,7 +55,7 @@ public class Relation
 	{
 		this.shown = shown;
 	}
-	
+
 	/**
 	 * @return true only if both the parent and child are shown
 	 */
@@ -63,7 +63,7 @@ public class Relation
 	{
 		return parent.shown && child.shown;
 	}
-	
+
 	/**
 	 * @return true if the given AttackVector is the parent for this relation
 	 */
@@ -71,7 +71,12 @@ public class Relation
 	{
 		return parent.uid == av.uid;
 	}
-	
+
+	public AttackVector getOther(AttackVector av)
+	{
+		return av.equals(parent) ? child : parent;
+	}
+
 	/**
 	 * @return an edge ID that should be unique to just this relation
 	 */
@@ -79,7 +84,7 @@ public class Relation
 	{
 		return edgeId;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj)
 	{
