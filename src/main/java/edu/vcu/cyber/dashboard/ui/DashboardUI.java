@@ -1,15 +1,13 @@
 package edu.vcu.cyber.dashboard.ui;
 
 import edu.vcu.cyber.dashboard.Application;
-import edu.vcu.cyber.dashboard.av.AVGraphVisHandler;
-import edu.vcu.cyber.dashboard.av.AVListVisHandler;
-import edu.vcu.cyber.dashboard.av.AVTreeVisHandler;
-import edu.vcu.cyber.dashboard.av.AttackVectors;
+import edu.vcu.cyber.dashboard.av.*;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.UpdateQuery;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.graph.interpreters.AVGraphInterpreter;
 import edu.vcu.cyber.dashboard.project.AppSession;
+import edu.vcu.cyber.dashboard.ui.custom.QuickFrame;
 import edu.vcu.cyber.dashboard.ui.custom.av.list.AVListPanel;
 import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTreeModel;
 import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTreePanel;
@@ -105,11 +103,14 @@ public class DashboardUI extends JFrame implements ActionListener
 		avTreePanel = new AVTreePanel();
 
 		sp.setLeftComponent(topGraphPanel);
-		setAVVisComponent(false);
+//		setAVVisComponent(false);
 		setUseSpecGraph(false);
 
 		contentPane.add(sp, BorderLayout.CENTER);
 		contentPane.add(statusLabel, BorderLayout.SOUTH);
+
+		new QuickFrame(avTreePanel, 600, 600).display();
+
 
 	}
 
@@ -121,7 +122,7 @@ public class DashboardUI extends JFrame implements ActionListener
 			{
 				//sp.setRightComponent(null);
 				tabs = new JTabbedPane();
-				tabs.add("AV List", avTreePanel);
+//				tabs.add("AV Tree View", avTreePanel);
 				tabs.add("Attack Vector Space", avGraphPanel);
 				tabs.add("Specifications", specGraphPanel);
 				sp.setRightComponent(tabs);
@@ -218,17 +219,17 @@ public class DashboardUI extends JFrame implements ActionListener
 		return null;
 	}
 
-	public void setAVVisComponent(boolean isGraph)
-	{
-		if (isGraph && !(AttackVectors.vis() instanceof AVGraphVisHandler))
-		{
-			AttackVectors.setVisualizer(new AVGraphVisHandler(Application.getInstance().getSession().getAvGraph()));
-		}
-		else if (!isGraph && !(AttackVectors.vis() instanceof AVTreeVisHandler))
-		{
-			AttackVectors.setVisualizer(new AVTreeVisHandler(avTreePanel));
-		}
-	}
+//	public void setAVVisComponent(boolean isGraph)
+//	{
+//		if (isGraph && !(AttackVectors.vis() instanceof AVGraphVisHandler))
+//		{
+//			VisHandler.register(new AVGraphVisHandler(Application.getInstance().getSession().getAvGraph()));
+//		}
+//		else if (!isGraph && !(AttackVectors.vis() instanceof AVTreeVisHandler))
+//		{
+//			AttackVectors.setVisualizer(new AVTreeVisHandler(avTreePanel));
+//		}
+//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)

@@ -75,7 +75,13 @@ public class AVListVisHandler extends AttackVectorVisualizer
 	{
 		return list.contains(av);
 	}
-	
+
+	@Override
+	public boolean checkIfShown(AttackVector av)
+	{
+		return false;
+	}
+
 	@Override
 	public List<AttackVector> getShown()
 	{

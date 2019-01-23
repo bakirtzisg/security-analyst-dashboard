@@ -2,6 +2,8 @@ package edu.vcu.cyber.dashboard.project;
 
 import edu.vcu.cyber.dashboard.Application;
 import edu.vcu.cyber.dashboard.Config;
+import edu.vcu.cyber.dashboard.av.AVGraphVisHandler;
+import edu.vcu.cyber.dashboard.av.VisHandler;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.FullAnalysisQuery;
 import edu.vcu.cyber.dashboard.data.*;
@@ -158,6 +160,7 @@ public class AppSession extends GraphHandler
 		
 		GraphData graphData = createIfNotExist(GraphType.ATTACKS);
 		graphData.generateGraph();
+		VisHandler.register(new AVGraphVisHandler(Application.getInstance().getSession().getAvGraph()));
 
 //		if (Config.USE_SPEC_GRAPH)
 //		{

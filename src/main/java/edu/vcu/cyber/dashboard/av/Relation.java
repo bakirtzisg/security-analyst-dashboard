@@ -88,6 +88,11 @@ public class Relation
 	@Override
 	public boolean equals(Object obj)
 	{
-		return obj instanceof Relation && (((Relation) obj).parent.equals(parent) && ((Relation) obj).child.equals(child) || ((Relation) obj).parent.equals(child) && ((Relation) obj).child.equals(parent));
+		if(obj instanceof Relation)
+		{
+			Relation rel = (Relation) obj;
+			return (rel.parent.equals(parent) && rel.child.equals(child)) || (rel.parent.equals(child) && rel.child.equals(parent));
+		}
+		return false;
 	}
 }

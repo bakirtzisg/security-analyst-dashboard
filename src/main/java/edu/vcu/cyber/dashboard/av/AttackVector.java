@@ -58,6 +58,7 @@ public class AttackVector
 	 * Is the attack current visible on the visualizer
 	 */
 	public boolean shown;
+	public boolean shownInTree;
 
 	/**
 	 * Is the attack hidden?
@@ -232,7 +233,7 @@ public class AttackVector
 	@Override
 	public String toString()
 	{
-		if(type != AttackType.CVE)
+		if (type != AttackType.CVE)
 		{
 			return qualifiedName + " | " + description;
 		}

@@ -14,29 +14,19 @@ public class AVTreeVisHandler extends AttackVectorVisualizer
 		this.tree = tree;
 	}
 
-	@Override
-	public void dispose()
-	{
-
-	}
-
-	@Override
-	public void populate()
-	{
-		tree.populate();
-	}
 
 	@Override
 	public void showAttack(AttackVector av)
 	{
-		if (av.canShow())
-			tree.addTopNode(av);
+		tree.addTopNode(av);
+		av.shownInTree = true;
 	}
 
 	@Override
 	public void hideAttack(AttackVector av)
 	{
 		tree.removeNode(av);
+		av.shownInTree = false;
 	}
 
 	@Override
@@ -48,7 +38,13 @@ public class AVTreeVisHandler extends AttackVectorVisualizer
 	@Override
 	public boolean isShown(AttackVector av)
 	{
-		return false;
+		return av.shownInTree;
+	}
+
+	@Override
+	public boolean checkIfShown(AttackVector av)
+	{
+		return tree.locateNode(av) != null;
 	}
 
 	@Override
@@ -72,6 +68,7 @@ public class AVTreeVisHandler extends AttackVectorVisualizer
 	@Override
 	public void clearAll()
 	{
-
+		tree.clearAll();
+		AttackVectors.forEach(av -> av.shownInTree = false);
 	}
 }

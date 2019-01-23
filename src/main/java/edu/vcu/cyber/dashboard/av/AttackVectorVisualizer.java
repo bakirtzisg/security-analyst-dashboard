@@ -13,35 +13,9 @@ public abstract class AttackVectorVisualizer
 	// the filter itself
 	protected Predicate<AttackVector> filter;
 
-	/**
-	 * Called when the visualizer is removed or switched from
-	 * Removes all attack vectors from the visualizer
-	 */
-	public abstract void dispose();
-
-	/**
-	 * Called when the visualizer is first set.
-	 * Adds all the attack vectors that should be shown to the visualizer
-	 */
-	public abstract void populate();
-
-	/**
-	 * Only shows the attack vectors that the filter allows
-	 */
-	public void filterAttacks(Predicate<AttackVector> filter)
-	{
-		this.filter = filter;
-		AttackVectors.forEach(av ->
-		{
-			boolean pred = filter == null || filter.test(av);
-			if (pred && !av.shown)
-				showAttack(av);
-			else if (!pred && av.shown)
-				hideAttack(av);
-		});
-
-		purgeFlagged();
-	}
+	// ------------------------------------------
+	// ------------ Abstract Methods ------------
+	// ------------------------------------------
 
 	/**
 	 * Shows the attack on the visualizer
@@ -65,8 +39,17 @@ public abstract class AttackVectorVisualizer
 	public abstract boolean isShown(AttackVector av);
 
 	/**
+	 * Verifies the visibility of the node
+	 *
+	 * @return true if the attack is currently shown on the visualizer
+	 */
+	public abstract boolean checkIfShown(AttackVector av);
+
+	/**
 	 * @return a list of all Attack Vectors shown on the visualizer
 	 */
+	;;
+
 	public abstract List<AttackVector> getShown();
 
 	/**
@@ -84,6 +67,56 @@ public abstract class AttackVectorVisualizer
 	 */
 	public abstract void clearAll();
 
+
+	// ------------------------------------------
+	// ----------- Functional Methods -----------
+	// ------------------------------------------
+
+	public void attemptAddAttack(AttackVector av)
+	{
+		if (!isShown(av) && av.canShow())
+		{
+			showAttack(av);
+		}
+	}
+
+	/**
+	 * Called when the visualizer is removed or switched from
+	 * Removes all attack vectors from the visualizer
+	 */
+	public void dispose()
+	{
+		clearAll();
+	}
+
+	/**
+	 * Called when the visualizer is first set.
+	 * Adds all the attack vectors that should be shown to the visualizer
+	 */
+	public void populate()
+	{
+		AttackVectors.forEach(this::attemptAddAttack);
+	}
+
+	/**
+	 * Only shows the attack vectors that the filter allows
+	 */
+	public void filterAttacks(Predicate<AttackVector> filter)
+	{
+		this.filter = filter;
+		AttackVectors.forEach(av ->
+		{
+			boolean pred = filter == null || filter.test(av);
+			if (pred && !av.shown)
+				attemptAddAttack(av);
+			else if (!pred && av.shown)
+				hideAttack(av);
+		});
+
+		purgeFlagged();
+	}
+
+
 	/**
 	 * Does the actual node removal
 	 */
@@ -91,12 +124,12 @@ public abstract class AttackVectorVisualizer
 	{
 
 	}
-	
+
 	public void updateAttackStatus()
 	{
-		AttackVectors.forEach(av -> av.shown = isShown(av));
+		AttackVectors.forEach(av -> av.shown = checkIfShown(av));
 	}
-	
+
 	/**
 	 * Clears all visibility flags and adds all attacks to the visualizer
 	 */
@@ -108,10 +141,10 @@ public abstract class AttackVectorVisualizer
 		{
 			av.forceShow = false;
 			av.hidden = av.shouldHide();
-			showAttack(av);
+			attemptAddAttack(av);
 		});
 	}
-	
+
 	/**
 	 * Updates all the attacks based on the filter.
 	 * Adds the attacks that should be shown and removes the ones that should not.
@@ -128,11 +161,11 @@ public abstract class AttackVectorVisualizer
 			{
 				av.shown = isShown(av);
 			});
-			
+
 			purgeFlagged();
 		}
 	}
-	
+
 	/**
 	 * Creates the necessary edges between the provided node
 	 * and all the other visible nodes
@@ -145,7 +178,7 @@ public abstract class AttackVectorVisualizer
 				addEdge(rel);
 		});
 	}
-	
+
 	/**
 	 * Shows all attacks related to the specified attack
 	 *
@@ -156,7 +189,7 @@ public abstract class AttackVectorVisualizer
 		if (av != null)
 		{
 			resolveEdges(av);
-			
+
 			av.relations.forEach(rel ->
 			{
 				if (forceShow)
@@ -164,12 +197,12 @@ public abstract class AttackVectorVisualizer
 					rel.parent.forceShow = true;
 					rel.child.forceShow = true;
 				}
-				showAttack(rel.parent);
-				showAttack(rel.child);
+				attemptAddAttack(rel.parent);
+				attemptAddAttack(rel.child);
 			});
-			
+
 		}
-		
+
 	}
-	
+
 }
