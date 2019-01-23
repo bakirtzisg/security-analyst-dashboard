@@ -107,9 +107,10 @@ public abstract class AttackVectorVisualizer
 		AttackVectors.forEach(av ->
 		{
 			boolean pred = filter == null || filter.test(av);
-			if (pred && !av.shown)
+			boolean shown = isShown(av);
+			if (pred && !shown)
 				attemptAddAttack(av);
-			else if (!pred && av.shown)
+			else if (!pred && shown)
 				hideAttack(av);
 		});
 

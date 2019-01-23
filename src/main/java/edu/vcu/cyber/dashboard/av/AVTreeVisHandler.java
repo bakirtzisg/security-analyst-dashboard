@@ -1,15 +1,16 @@
 package edu.vcu.cyber.dashboard.av;
 
-import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTreePanel;
+import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTree;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class AVTreeVisHandler extends AttackVectorVisualizer
 {
 
-	private AVTreePanel tree;
+	private AVTree tree;
 
-	public AVTreeVisHandler(AVTreePanel tree)
+	public AVTreeVisHandler(AVTree tree)
 	{
 		this.tree = tree;
 	}
@@ -25,14 +26,15 @@ public class AVTreeVisHandler extends AttackVectorVisualizer
 	@Override
 	public void hideAttack(AttackVector av)
 	{
-		tree.removeNode(av);
+		tree.removeAttack(av);
 		av.shownInTree = false;
 	}
 
 	@Override
 	public void removeAttack(AttackVector av)
 	{
-		tree.removeNode(av);
+		tree.removeAttack(av);
+		av.shownInTree = false;
 	}
 
 	@Override
@@ -70,5 +72,16 @@ public class AVTreeVisHandler extends AttackVectorVisualizer
 	{
 		tree.clearAll();
 		AttackVectors.forEach(av -> av.shownInTree = false);
+	}
+
+	public void purgeFlagged()
+	{
+		tree.refresh();
+
+	}
+
+	public Predicate<AttackVector> getFilter()
+	{
+		return filter;
 	}
 }

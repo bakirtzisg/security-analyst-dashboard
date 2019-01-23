@@ -147,10 +147,10 @@ public class BucketPanel extends JPanel implements ListSelectionListener, Action
 	 */
 	public void addRow(AttackVector av)
 	{
-		TableRow row = new TableRow();
 		
 		if (!av.inBucket)
 		{
+			TableRow row = new TableRow();
 			row.vector = av;
 			av.inBucket = true;
 			tableModel.addData(row);
