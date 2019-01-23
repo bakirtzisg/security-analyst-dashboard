@@ -3,6 +3,7 @@ package edu.vcu.cyber.dashboard.ui.custom.av.tree;
 import edu.vcu.cyber.dashboard.av.AttackVector;
 import edu.vcu.cyber.dashboard.av.Relation;
 import edu.vcu.cyber.dashboard.data.AttackType;
+import edu.vcu.cyber.dashboard.util.AVSorter;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -11,6 +12,7 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class AVTreeNode extends DefaultMutableTreeNode
@@ -37,7 +39,7 @@ public class AVTreeNode extends DefaultMutableTreeNode
 		{
 			add(new DefaultMutableTreeNode("Loading...", false));
 			setAllowsChildren(true);
-			isLeaf = av.relations.size() <= 1;
+			isLeaf = av.relations.size() < 1;
 		}
 		else
 		{
@@ -110,12 +112,24 @@ public class AVTreeNode extends DefaultMutableTreeNode
 				setProgress(0);
 				List<AVTreeNode> children = new ArrayList<>();
 
+				List<AttackVector> relations = new ArrayList<>();
+
 				int i = 0;
 				for (Relation rel : av.relations)
 				{
 					AttackVector other = rel.getOther(av);
-					children.add(new AVTreeNode(i, depth + 1, other, isInPath(other)));
+					if (!isInPath(other))
+					{
+						relations.add(other);
+					}
 					setProgress(100 * i / av.relations.size());
+				}
+
+				AVSorter.sort(relations);
+
+				for (AttackVector av : relations)
+				{
+					children.add(new AVTreeNode(i, depth + 1, av, false));
 				}
 
 				setProgress(0);

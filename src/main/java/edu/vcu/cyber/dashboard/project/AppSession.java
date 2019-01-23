@@ -1,13 +1,16 @@
 package edu.vcu.cyber.dashboard.project;
 
 import edu.vcu.cyber.dashboard.Application;
+import edu.vcu.cyber.dashboard.Config;
+import edu.vcu.cyber.dashboard.av.AVGraphVisHandler;
+import edu.vcu.cyber.dashboard.av.VisHandler;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.FullAnalysisQuery;
-import edu.vcu.cyber.dashboard.data.AttackVector;
-import edu.vcu.cyber.dashboard.data.AttackVectors;
-import edu.vcu.cyber.dashboard.data.GraphData;
-import edu.vcu.cyber.dashboard.data.GraphType;
+import edu.vcu.cyber.dashboard.data.*;
+import edu.vcu.cyber.dashboard.graph.layout.LayeredSectionsLayout;
+import edu.vcu.cyber.dashboard.ui.DashboardUI;
 import edu.vcu.cyber.dashboard.ui.graphpanel.GraphPanel;
+import edu.vcu.cyber.dashboard.util.Attributes;
 import edu.vcu.cyber.dashboard.util.CSVParser;
 import edu.vcu.cyber.dashboard.util.GraphMLParser;
 import org.graphstream.graph.Graph;
@@ -16,8 +19,11 @@ import org.graphstream.ui.graphicGraph.GraphicGraph;
 import scala.collection.immutable.HashMap;
 import scala.collection.immutable.Map;
 
+import javax.swing.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Class containing all the data necessary for the current session.
@@ -25,101 +31,143 @@ import java.util.Collection;
  */
 public class AppSession extends GraphHandler
 {
-
+	
 	private static AppSession instance;
-
+	
 	public static Node focusedNode;
-
+	
 	public static void setFocus(GraphType graphType)
 	{
 		instance.focusedGraph = graphType;
 	}
-
+	
 	public static GraphType getFocusedGraph()
 	{
 		return instance.focusedGraph;
 	}
-
+	
 	public static GraphData getFocusedGraphData()
 	{
 		return instance.getGraph(instance.selectedGraph);
 	}
-
+	
 	public static void setSelectedGraph(GraphType graphType)
 	{
 		if (instance.selectedGraph != null && instance.selectedGraph != graphType)
 		{
 			GraphPanel gp = Application.getInstance().getGui().getGraphPanel(instance.selectedGraph);
 			((GraphicGraph) gp.getViewGraph()).graphChanged = true;
-
+			
 		}
 		instance.selectedGraph = graphType;
 	}
-
+	
 	public static GraphType getSelectedGraph()
 	{
 		return instance.selectedGraph;
 	}
-
+	
 	public static GraphData getSelectedGraphData()
 	{
 		return instance.getGraph(instance.focusedGraph);
 	}
-
+	
 	private GraphType selectedGraph;
 	private GraphType focusedGraph;
-
+	
 	private File topologyGraphFile = new File("data/topology.graphml");
 	private File specificationsGraphFile = new File("data/specifications.graphml");
-
+	
 	public AppSession()
 	{
 		super();
 		instance = this;
 	}
-
+	
 	public static AppSession getInstance()
 	{
 		return instance;
 	}
-
+	
+	public void load()
+	{
+		load(topologyGraphFile, specificationsGraphFile);
+	}
+	
 	/**
 	 * Loads a previous session
 	 */
-	public void load()
+	public void load(File topGraphFile, File specGraphFile)
 	{
-		// TODO: Make this not hard coded
-		registerGraph(GraphMLParser.parse(topologyGraphFile, GraphType.TOPOLOGY));
-		registerGraph(GraphMLParser.parse(specificationsGraphFile, GraphType.SPECIFICATIONS));
-		CSVParser.readCSV(new File("./data/", "attacks.csv"));
-		if (!CybokQueryHandler.isCybokInstalled())
+		clear();
+		
+		if (topGraphFile.exists())
 		{
-			registerGraph(GraphMLParser.parse(new File("./data/", "attack_surface.graphml"), GraphType.ATTACK_SURFACE));
-//			registerGraph(GraphMLParser.parse(new File("./data/", "fcs_attack_vector_graph.graphml"), GraphType.ATTACKS));
+			System.out.println("Loading Topology Graph");
+			GraphData graph = createIfNotExist(GraphType.TOPOLOGY);
+			
+			GraphMLParser.parse(topGraphFile, graph);
+			
+			graph.refreshGraph();
+			
+			GraphAnalysis.analyseTopologyGraph();
+		}
+		
+		if (specGraphFile.exists())
+		{
+			System.out.println("Loading Specifications Graph");
+			GraphData graph = createIfNotExist(GraphType.SPECIFICATIONS);
+			GraphMLParser.parse(specGraphFile, graph);
+			
+			
+			// verify that the graph is valid
+			final List<NodeData> invalidNodes = new ArrayList<>();
+			graph.getNodes().forEach(node ->
+			{
+				if (node.hasAttribute("attr.type"))
+				{
+					String type = node.getAttribute("attr.type");
+					if (!type.equals("Structure") && !type.equals("Mission") && !type.equals("Function"))
+					{
+						invalidNodes.add(node);
+					}
+				}
+				else
+				{
+					invalidNodes.add(node);
+				}
+			});
+			
+			if (!invalidNodes.isEmpty())
+			{
+				System.out.println("Invalid specification model!");
+				System.out.println("The following nodes are invalid: ");
+				invalidNodes.forEach(node -> System.out.println(node.getId() + " missing or invalid \"type\" attribute"));
+				Config.USE_SPEC_GRAPH = false;
+			}
+			else
+			{
+				Config.USE_SPEC_GRAPH = true;
+			}
+			
+			
 		}
 		else
 		{
-			AttackVectors.getAllAttackVectors().forEach(av -> av.hidden = true);
+			Config.USE_SPEC_GRAPH = false;
 		}
-
-
-		GraphData graphData = new GraphData(GraphType.ATTACKS);
+		
+		
+		GraphData graphData = createIfNotExist(GraphType.ATTACKS);
 		graphData.generateGraph();
-		registerGraph(graphData);
+		VisHandler.register(new AVGraphVisHandler(Application.getInstance().getSession().getAvGraph()));
 
-		if (!CybokQueryHandler.isCybokInstalled())
-		{
-			Graph graph = graphData.getGraph();
-			AttackVectors.computeSizes();
-			Collection<AttackVector> attackVectors = AttackVectors.getAllAttackVectors();
-			attackVectors.forEach(av -> av.addToGraph(graph));
-		}
-		else
-		{
-			CybokQueryHandler.sendQuery(new FullAnalysisQuery(topologyGraphFile.getAbsolutePath()));
-		}
+//		if (Config.USE_SPEC_GRAPH)
+//		{
+		Application.getInstance().getGui().setUseSpecGraph(Config.USE_SPEC_GRAPH);
+//		}
 	}
-
+	
 	/**
 	 * Saves the current session
 	 */
@@ -127,22 +175,22 @@ public class AppSession extends GraphHandler
 	{
 		//TODO: needs implementation
 	}
-
+	
 	public void setFocusedGraph()
 	{
-
+	
 	}
-
+	
 	public GraphData getTopGraph()
 	{
 		return getGraph(GraphType.TOPOLOGY);
 	}
-
+	
 	public GraphData getSpecGraph()
 	{
 		return getGraph(GraphType.SPECIFICATIONS);
 	}
-
+	
 	public GraphData getAvGraph()
 	{
 		return getGraph(GraphType.ATTACKS);

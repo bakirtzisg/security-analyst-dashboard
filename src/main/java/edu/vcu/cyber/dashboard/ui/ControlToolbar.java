@@ -97,10 +97,10 @@ public class ControlToolbar extends JToolBar
 				}
 			}
 		});
-		addToggleButton(CMD_AV_LIST_VIEW, "delete.png").addActionListener((evt) ->
-		{
-			Application.getInstance().getGui().setAVVisComponent(isSelected(evt));
-		});
+//		addToggleButton(CMD_AV_LIST_VIEW, "delete.png").addActionListener((evt) ->
+//		{
+//			Application.getInstance().getGui().setAVVisComponent(isSelected(evt));
+//		});
 		
 		
 	}

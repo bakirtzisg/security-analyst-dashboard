@@ -20,9 +20,9 @@ public class AVListPanel extends JPanel
 	
 	protected static AVListPanel inst;
 	
-	protected static final Color CAPEC_COLOR = new Color(255, 15, 25, 125);
-	protected static final Color CWE_COLOR = new Color(11, 36, 251, 125);
-	protected static final Color CVE_COLOR = new Color(254, 188, 108, 125);
+	public static final Color CAPEC_COLOR = new Color(255, 15, 25, 125);
+	public static final Color CWE_COLOR = new Color(11, 36, 251, 125);
+	public static final Color CVE_COLOR = new Color(254, 188, 108, 125);
 	
 	protected static final String[] TABLE_HEADERS = {"B", "I", "Attack", "Name"};
 	protected static final Class[] COLUMN_CLASS = {Boolean.class, Boolean.class, String.class, String.class};

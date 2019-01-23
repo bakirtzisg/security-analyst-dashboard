@@ -32,16 +32,16 @@ public class CSVParser
 					}
 					for (int i = 0; i < info.related_cve.length; i++)
 					{
-						if (!info.related_cve[i].contains("CWE-"))
+						if (!info.related_cve[i].contains("CVE-"))
 						{
-							info.related_cve[i] = "CWE-" + info.related_cve[i];
+							info.related_cve[i] = "CVE-" + info.related_cve[i];
 						}
 					}
 					for (int i = 0; i < info.related_capec.length; i++)
 					{
-						if (!info.related_capec[i].contains("CWE-"))
+						if (!info.related_capec[i].contains("CAPEC-"))
 						{
-							info.related_capec[i] = "CWE-" + info.related_capec[i];
+							info.related_capec[i] = "CAPEC-" + info.related_capec[i];
 						}
 					}
 					

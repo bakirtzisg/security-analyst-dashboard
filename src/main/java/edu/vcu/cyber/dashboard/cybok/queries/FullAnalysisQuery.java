@@ -3,6 +3,7 @@ package edu.vcu.cyber.dashboard.cybok.queries;
 import edu.vcu.cyber.dashboard.Application;
 import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.av.AttackVectors;
+import edu.vcu.cyber.dashboard.av.VisHandler;
 import edu.vcu.cyber.dashboard.cybok.CybokQuery;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.project.AppSession;
@@ -115,7 +116,7 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 //		AttackVectors.getAllAttackVectors().forEach(av -> av.addToGraph(AppSession.getInstance().getAvGraph().getGraph()));
 		
 		// reset the visualizer to and display all nodes
-		AttackVectors.vis().reset();
+		VisHandler.dataUpdate();
 		
 		// load attack surface information
 		GraphData as = GraphMLParser.parse(Config.FILE_ATTACK_SURFACE, GraphType.ATTACK_SURFACE);
