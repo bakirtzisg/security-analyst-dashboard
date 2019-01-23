@@ -169,7 +169,7 @@ public class AttackVector
 	 */
 	public boolean canShow()
 	{
-		return forceShow || ((!deleted || Config.showDeletedNodes) && (!hidden || Config.showHiddenNodes) && type.canShow());
+		return (forceShow || inBucket) || ((!deleted || Config.showDeletedNodes) && (!hidden || Config.showHiddenNodes) && type.canShow());
 	}
 
 	/**

@@ -2,6 +2,7 @@ package edu.vcu.cyber.dashboard.ui.custom.av.tree;
 
 import edu.vcu.cyber.dashboard.av.AttackVector;
 import edu.vcu.cyber.dashboard.av.Relation;
+import edu.vcu.cyber.dashboard.av.VisHandler;
 import edu.vcu.cyber.dashboard.data.AttackType;
 import edu.vcu.cyber.dashboard.util.AVSorter;
 
@@ -12,8 +13,8 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class AVTreeNode extends DefaultMutableTreeNode
 {
@@ -47,6 +48,8 @@ public class AVTreeNode extends DefaultMutableTreeNode
 			setAllowsChildren(false);
 		}
 		setUserObject(av);
+
+
 	}
 
 	public AVTreeNode(int index, int depth, AttackVector av, boolean exists)
@@ -97,6 +100,12 @@ public class AVTreeNode extends DefaultMutableTreeNode
 		return false;
 	}
 
+	public void dispose()
+	{
+		loaded = false;
+		removeAllChildren();
+	}
+
 	public void loadChildren(final DefaultTreeModel model, final PropertyChangeListener progress)
 	{
 		if (loaded)
@@ -114,11 +123,17 @@ public class AVTreeNode extends DefaultMutableTreeNode
 
 				List<AttackVector> relations = new ArrayList<>();
 
+				Predicate<AttackVector> filter = VisHandler.treeVis().getFilter();
+
 				int i = 0;
 				for (Relation rel : av.relations)
 				{
 					AttackVector other = rel.getOther(av);
-					if (!isInPath(other))
+					if (filter != null && !filter.test(other))
+					{
+						continue;
+					}
+					if (!isInPath(other) && !other.deleted)
 					{
 						relations.add(other);
 					}

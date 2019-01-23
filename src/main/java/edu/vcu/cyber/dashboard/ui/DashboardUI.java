@@ -1,6 +1,5 @@
 package edu.vcu.cyber.dashboard.ui;
 
-import edu.vcu.cyber.dashboard.Application;
 import edu.vcu.cyber.dashboard.av.*;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.UpdateQuery;
@@ -8,9 +7,7 @@ import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.graph.interpreters.AVGraphInterpreter;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.custom.QuickFrame;
-import edu.vcu.cyber.dashboard.ui.custom.av.list.AVListPanel;
-import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTreeModel;
-import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTreePanel;
+import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTree;
 import edu.vcu.cyber.dashboard.ui.graphpanel.AVGraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.GraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.EditableGraphPanel;
