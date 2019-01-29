@@ -138,7 +138,8 @@ public class AttackVector
 		switch (type)
 		{
 			case CVE:
-				return "https://nvd.nist.gov/vuln/detail/" + qualifiedName;
+				return "http://cve.mitre.org/cgi-bin/cvename.cgi?name=" + qualifiedName;
+//				return "https://nvd.nist.gov/vuln/detail/" + qualifiedName;
 			case CWE:
 				return "https://cwe.mitre.org/data/definitions/" + id + ".html";
 		}
@@ -237,6 +238,6 @@ public class AttackVector
 		{
 			return qualifiedName + " | " + description;
 		}
-		return qualifiedName;
+		return qualifiedName + " | + " + contents.substring(0, Math.min(75, contents.length()));
 	}
 }

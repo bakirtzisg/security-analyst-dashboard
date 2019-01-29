@@ -1,9 +1,8 @@
 package edu.vcu.cyber.dashboard.ui.custom.av.tree;
 
-import org.w3c.dom.css.Rect;
+import edu.vcu.cyber.dashboard.av.AttackVector;
 
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
@@ -45,15 +44,23 @@ public class AVTreeCellRenderer extends DefaultTreeCellRenderer
 	public Component getTreeCellRendererComponent(JTree tree, Object val, boolean selected, boolean expanded, boolean leaf, int row, boolean focus)
 	{
 		Component c = super.getTreeCellRendererComponent(tree, val, selected, expanded, leaf, row, focus);
-		setBorder(new LineBorder(Color.lightGray));
-		setOpaque(true);
 		if (val instanceof AVTreeNode)
 		{
+			setOpaque(true);
+			AttackVector av = ((AVTreeNode) val).av;
+			if (av.inBucket)
+			{
+				setBorder(new LineBorder(Color.darkGray, 2));
+			}
+			else
+			{
+				setBorder(new LineBorder(Color.lightGray));
+			}
+
 			switch (((AVTreeNode) val).av.type)
 			{
 				case CAPEC:
 					setBackground(CAPEC_COLOR);
-
 					break;
 				case CWE:
 					setBackground(CWE_COLOR);
@@ -61,6 +68,10 @@ public class AVTreeCellRenderer extends DefaultTreeCellRenderer
 				case CVE:
 					setBackground(CVE_COLOR);
 			}
+		}
+		else
+		{
+			setOpaque(false);
 		}
 
 		return c;

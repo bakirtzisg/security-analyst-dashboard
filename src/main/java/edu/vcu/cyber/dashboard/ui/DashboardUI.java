@@ -106,7 +106,7 @@ public class DashboardUI extends JFrame implements ActionListener
 		contentPane.add(sp, BorderLayout.CENTER);
 		contentPane.add(statusLabel, BorderLayout.SOUTH);
 
-		new QuickFrame(avTreePanel, 600, 600).display();
+//		new QuickFrame(avTreePanel, 600, 600).display();
 
 
 	}
@@ -121,6 +121,7 @@ public class DashboardUI extends JFrame implements ActionListener
 				tabs = new JTabbedPane();
 //				tabs.add("AV Tree View", avTreePanel);
 				tabs.add("Attack Vector Space", avGraphPanel);
+				tabs.add("Attack Vector Tree", avTreePanel);
 				tabs.add("Specifications", specGraphPanel);
 				sp.setRightComponent(tabs);
 			}
@@ -303,10 +304,12 @@ public class DashboardUI extends JFrame implements ActionListener
 				break;
 			case "Update Cybok":
 			{
-				int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to do this?", "Confirm", JOptionPane.OK_CANCEL_OPTION);
+				int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to do this?\n This will take a while to finish!", "Update Cybok Database", JOptionPane.OK_CANCEL_OPTION);
 				if (result == JOptionPane.OK_OPTION)
 				{
 					CybokQueryHandler.sendQuery(new UpdateQuery());
+
+					UpdateQuery.showDialog(this);
 				}
 			}
 			break;
