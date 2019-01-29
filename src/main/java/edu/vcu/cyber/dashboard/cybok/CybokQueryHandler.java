@@ -165,6 +165,7 @@ public class CybokQueryHandler implements Runnable
 					while ((line = in.readLine()) != null)
 					{
 						eventHandler.onMessage(line);
+						System.out.println(line);
 					}
 				}
 				catch (Exception e)
@@ -269,6 +270,19 @@ public class CybokQueryHandler implements Runnable
 				{
 					process.destroyForcibly();
 				}
+
+				while (process.isAlive())
+				{
+					try
+					{
+						Thread.sleep(10);
+					}
+					catch (InterruptedException e)
+					{
+						e.printStackTrace();
+					}
+				}
+				process = null;
 			}
 
 			synchronized (queue)

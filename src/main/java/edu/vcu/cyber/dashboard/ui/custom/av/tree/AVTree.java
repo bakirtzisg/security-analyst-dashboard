@@ -12,16 +12,14 @@ import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeWillExpandListener;
 import javax.swing.tree.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.util.Enumeration;
 import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
-public class AVTree extends JPanel implements TreeWillExpandListener, MouseListener, ActionListener
+public class AVTree extends JPanel implements TreeWillExpandListener, MouseListener, ActionListener, KeyListener
 {
 
 	private static final String CMD_BUCKET_ADD = "Add to Bucket";
@@ -30,7 +28,13 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 	private static final String CMD_GRAPH_ADD = "Add to Graph";
 	private static final String CMD_GRAPH_ADD_PATH = "Add path to Graph";
 
+	private static final String CMD_GOTO_WEBSITE = "Website";
 	private static final String CMD_DELETE = "Delete";
+
+	private boolean showDeleted;
+	private boolean filterChildren;
+
+	private Predicate<AttackVector> filter;
 
 	private JTree tree;
 
@@ -53,6 +57,11 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 		VisHandler.register(vis = new AVTreeVisHandler(this));
 
 		tree.addMouseListener(this);
+		tree.addKeyListener(this);
+
+
+		showDeleted = false;
+		filterChildren = false;
 	}
 
 	private void createTree()
@@ -64,7 +73,7 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 		tree.setCellRenderer(new AVTreeCellRenderer());
 
 		tree.setModel(model);
-		tree.setRootVisible(false);
+		tree.setRootVisible(true);
 
 		tree.addTreeWillExpandListener(this);
 
@@ -75,13 +84,12 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 	{
 		popup = new JPopupMenu();
 
-		Utils.addButton(popup, CMD_BUCKET_ADD, "CTRL-B", this);
+		Utils.addButton(popup, CMD_BUCKET_ADD, "Ctrl + B", this);
+		Utils.addButton(popup, CMD_BUCKET_ADD_PATH, "Ctrl + Shift + B", this);
+		Utils.addButton(popup, CMD_GOTO_WEBSITE, "Opens the website for this attack", this);
 
-		popup.add(CMD_BUCKET_ADD).addActionListener(this);
-		popup.add(CMD_BUCKET_ADD_PATH).addActionListener(this);
-
-		popup.add(CMD_GRAPH_ADD).addActionListener(this);
-		popup.add(CMD_GRAPH_ADD_PATH).addActionListener(this);
+//		popup.add(CMD_GRAPH_ADD).addActionListener(this);
+//		popup.add(CMD_GRAPH_ADD_PATH).addActionListener(this);
 		popup.addSeparator();
 		popup.add(CMD_DELETE).addActionListener(this);
 	}
@@ -130,6 +138,11 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 
 	}
 
+	public void setFilter(Predicate<AttackVector> filter)
+	{
+		this.filter = filter;
+	}
+
 	public void forEachTopLevel(Consumer<AVTreeNode> consumer)
 	{
 		Enumeration children = rootNode.children();
@@ -150,31 +163,11 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 	}
 
 
-	@Override
-	public void treeWillExpand(TreeExpansionEvent evt) throws ExpandVetoException
-	{
-		AVTreeNode node = resolveNode(evt.getPath());
-		if (node != null)
-		{
-			node.loadChildren(model, null);
-		}
-
-	}
-
 	public void refresh()
 	{
 		tree.revalidate();
 	}
 
-	@Override
-	public void treeWillCollapse(TreeExpansionEvent evt) throws ExpandVetoException
-	{
-		AVTreeNode node = resolveNode(evt.getPath());
-		if (node != null)
-		{
-			node.dispose();
-		}
-	}
 
 	public AVTreeNode resolveNode(Object obj)
 	{
@@ -187,6 +180,92 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 			return resolveNode(((TreePath) obj).getLastPathComponent());
 		}
 		return null;
+	}
+
+
+	public void updateVisibleNodes()
+	{
+		updateNode(rootNode);
+	}
+
+	public void updateNode(MutableTreeNode node)
+	{
+		Enumeration en = node.children();
+		while (en.hasMoreElements())
+		{
+			MutableTreeNode tn = (MutableTreeNode) en.nextElement();
+			if (tn instanceof AVTreeNode)
+			{
+				if (!canShow(((AVTreeNode) tn).av))
+				{
+					removeNode(tn);
+					continue;
+				}
+			}
+			updateNode(tn);
+		}
+	}
+
+	public void setFilterChildren(boolean filterChildren)
+	{
+		this.filterChildren = filterChildren;
+		updateVisibleNodes();
+	}
+
+	public void setShowDeleted(boolean showDeleted)
+	{
+		this.showDeleted = showDeleted;
+		updateVisibleNodes();
+	}
+
+	private boolean canShow(AttackVector av)
+	{
+		return (!av.deleted || showDeleted) && (!filterChildren && (filter == null || filter.test(av)));
+	}
+
+	private void addSelectedToBucket(boolean addPath)
+	{
+		for (TreePath path : Objects.requireNonNull(tree.getSelectionPaths()))
+		{
+			AVTreeNode node = resolveNode(path);
+			if (node != null)
+			{
+				BucketPanel.instance.addRow(node.av);
+			}
+			if (addPath)
+			{
+				Object[] items = path.getPath();
+				for (Object obj : items)
+				{
+					node = resolveNode(obj);
+					if (node != null)
+					{
+						BucketPanel.instance.addRow(node.av);
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public void treeWillExpand(TreeExpansionEvent evt) throws ExpandVetoException
+	{
+		AVTreeNode node = resolveNode(evt.getPath());
+		if (node != null)
+		{
+			node.loadChildren(model, null);
+		}
+
+	}
+
+	@Override
+	public void treeWillCollapse(TreeExpansionEvent evt) throws ExpandVetoException
+	{
+		AVTreeNode node = resolveNode(evt.getPath());
+		if (node != null)
+		{
+			node.dispose();
+		}
 	}
 
 	@Override
@@ -236,31 +315,20 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 		switch (e.getActionCommand())
 		{
 			case CMD_BUCKET_ADD_PATH:
-				for (TreePath path : Objects.requireNonNull(tree.getSelectionPaths()))
-				{
-					Object[] items = path.getPath();
-					for (Object obj : items)
-					{
-						AVTreeNode node = resolveNode(obj);
-						if (node != null)
-						{
-							BucketPanel.instance.addRow(node.av);
-						}
-					}
-				}
-			case CMD_BUCKET_ADD:
-			{
-				for (TreePath path : Objects.requireNonNull(tree.getSelectionPaths()))
-				{
-					AVTreeNode node = resolveNode(path);
-					if (node != null)
-					{
-						BucketPanel.instance.addRow(node.av);
-					}
-				}
-			}
+				addSelectedToBucket(true);
+				break;
 
-			break;
+			case CMD_BUCKET_ADD:
+				addSelectedToBucket(false);
+				break;
+
+			case CMD_GOTO_WEBSITE:
+				Object obj = tree.getLastSelectedPathComponent();
+				if(obj instanceof AVTreeNode)
+				{
+					Utils.openWebPage(((AVTreeNode) obj).av.getURI());
+				}
+				break;
 
 
 			case CMD_GRAPH_ADD_PATH:
@@ -275,5 +343,41 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 				}
 				break;
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e)
+	{
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e)
+	{
+		if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_B)
+		{
+			if (e.isShiftDown()) // ctrl + shift + B = add path to bucket
+			{
+				addSelectedToBucket(true);
+			}
+			else // ctrl + B = add to bucket
+			{
+				addSelectedToBucket(false);
+			}
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_DELETE)
+		{
+			for (TreePath path : Objects.requireNonNull(tree.getSelectionPaths()))
+			{
+				removeNode(resolveNode(path));
+			}
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e)
+	{
+
 	}
 }

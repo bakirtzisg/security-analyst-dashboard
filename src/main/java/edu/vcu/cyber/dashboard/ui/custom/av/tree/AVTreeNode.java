@@ -49,7 +49,6 @@ public class AVTreeNode extends DefaultMutableTreeNode
 		}
 		setUserObject(av);
 
-
 	}
 
 	public AVTreeNode(int index, int depth, AttackVector av, boolean exists)
@@ -128,14 +127,17 @@ public class AVTreeNode extends DefaultMutableTreeNode
 				int i = 0;
 				for (Relation rel : av.relations)
 				{
-					AttackVector other = rel.getOther(av);
-					if (filter != null && !filter.test(other))
+					if(!rel.isParent(av))
 					{
-						continue;
-					}
-					if (!isInPath(other) && !other.deleted)
-					{
-						relations.add(other);
+						AttackVector other = rel.getOther(av);
+						if (filter != null && !filter.test(other))
+						{
+							continue;
+						}
+						if (!isInPath(other) && !other.deleted)
+						{
+							relations.add(other);
+						}
 					}
 					setProgress(100 * i / av.relations.size());
 				}
