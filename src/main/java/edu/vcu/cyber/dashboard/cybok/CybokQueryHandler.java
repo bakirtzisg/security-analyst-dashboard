@@ -76,6 +76,12 @@ public class CybokQueryHandler implements Runnable
 				file = new File("../cybok-cli");
 				if (dirContainsCybok(file))
 					return file;
+				file = new File("./cybok");
+				if (dirContainsCybok(file))
+					return file;
+				file = new File("./cybok-cli");
+				if (dirContainsCybok(file))
+					return file;
 			}
 		}
 
