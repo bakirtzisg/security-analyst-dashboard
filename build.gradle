@@ -20,7 +20,7 @@ dependencies {
 }
 
 jar {
-	archiveName "CyberAnalystDashboard.jar"
+	archiveName "SecurityAnalystDashboard.jar"
 	manifest {
 		attributes 'Class-Path': configurations.compile.files.collect{project.uri(it)}.join(' ')
 		attributes 'Main-Class': 'edu.vcu.cyber.dashboard.MainClass'
