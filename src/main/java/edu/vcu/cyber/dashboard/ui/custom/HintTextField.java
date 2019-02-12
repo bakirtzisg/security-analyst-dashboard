@@ -9,34 +9,42 @@ import java.awt.event.KeyListener;
 
 public class HintTextField extends JTextField implements KeyListener, CaretListener
 {
-	
+
 	private static final Color HINT_COLOR = Color.lightGray;
 	private static final Color DEFAULT_COLOR = Color.black;
-	
+
 	private String hint;
-	
+
 	public HintTextField(String hint)
 	{
 		super(hint);
 		this.hint = hint;
 		addCaretListener(this);
 		addKeyListener(this);
-		
+
 		setForeground(HINT_COLOR);
 		setSelectionStart(0);
 		setSelectionEnd(0);
 	}
-	
+
 	public String getHint()
 	{
 		return hint;
 	}
-	
+
 	public void setHint(String hint)
 	{
 		this.hint = hint;
 	}
-	
+
+	public void resetText()
+	{
+		super.setText(hint);
+		setForeground(HINT_COLOR);
+		setSelectionStart(0);
+		setSelectionEnd(0);
+	}
+
 	@Override
 	public String getText()
 	{
@@ -49,22 +57,26 @@ public class HintTextField extends JTextField implements KeyListener, CaretListe
 			return super.getText();
 		}
 	}
-	
+
 	@Override
 	public void setText(String text)
 	{
 		if ("".equals(text))
-			super.setText(hint);
+		{
+			resetText();
+		}
 		else
+		{
 			super.setText(text);
+		}
 	}
-	
+
 	@Override
 	public void keyTyped(KeyEvent e)
 	{
-	
+
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
@@ -74,11 +86,11 @@ public class HintTextField extends JTextField implements KeyListener, CaretListe
 			setForeground(DEFAULT_COLOR);
 		}
 	}
-	
+
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		
+
 		if (super.getText().equals(""))
 		{
 			setText(hint);
@@ -87,7 +99,7 @@ public class HintTextField extends JTextField implements KeyListener, CaretListe
 			setSelectionEnd(0);
 		}
 	}
-	
+
 	@Override
 	public void caretUpdate(CaretEvent e)
 	{
@@ -100,5 +112,5 @@ public class HintTextField extends JTextField implements KeyListener, CaretListe
 			}
 		}
 	}
-	
+
 }

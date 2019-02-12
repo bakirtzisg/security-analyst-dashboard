@@ -125,15 +125,16 @@ public class FilterToolbar extends JPanel implements ActionListener, KeyListener
 		switch (e.getActionCommand())
 		{
 			case "Filter Graph":
-				System.out.println("Filter Graph: " + filterTextField.getText());
+//				System.out.println("Filter Graph: " + filterTextField.getText());
 
 				filter();
 				break;
 
 			case "Clear":
-				System.out.println("Clear Filter");
+//				System.out.println("Clear Filter");
 				filterTextField.setText("");
-				AttackVectors.showInGraph(av -> true);
+				filter();
+//				AttackVectors.showInGraph(av -> true);
 
 				break;
 			case "comboBoxChanged":

@@ -37,17 +37,17 @@ public class AVTreePanel extends JPanel implements ActionListener
 
 		add(tree, BorderLayout.CENTER);
 
-		JPanel checkboxes = new JPanel(new WrapFlowLayout(10, 10));
-
-		JCheckBox cb_deleted = new JCheckBox("Show Deleted");
-		JCheckBox cb_filter_children = new JCheckBox("Filter Children");
-
-		cb_deleted.addActionListener(this);
-		cb_filter_children.addActionListener(this);
-
-		checkboxes.add(cb_deleted);
-		checkboxes.add(cb_filter_children);
-		controlPanel.add(checkboxes, BorderLayout.CENTER);
+//		JPanel checkboxes = new JPanel(new WrapFlowLayout(10, 10));
+//
+//		JCheckBox cb_deleted = new JCheckBox("Show Deleted");
+//		JCheckBox cb_filter_children = new JCheckBox("Filter Children");
+//
+//		cb_deleted.addActionListener(this);
+//		cb_filter_children.addActionListener(this);
+//
+//		checkboxes.add(cb_deleted);
+//		checkboxes.add(cb_filter_children);
+//		controlPanel.add(checkboxes, BorderLayout.CENTER);
 
 
 	}
