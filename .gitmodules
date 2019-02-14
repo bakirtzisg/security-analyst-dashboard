@@ -1,0 +1,3 @@
+[submodule "cybok"]
+	path = cybok
+	url = https://github.com/bakirtzisg/cybok-cli.git
