@@ -90,7 +90,7 @@ public class CybokQueryHandler implements Runnable
 
 	private static boolean dirContainsCybok(File dir)
 	{
-		if (dir != null)
+		if (dir != null && dir.exists())
 		{
 			String list[] = dir.list();
 			if (list != null)
