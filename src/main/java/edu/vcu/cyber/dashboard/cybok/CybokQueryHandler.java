@@ -137,7 +137,7 @@ public class CybokQueryHandler implements Runnable
 		try
 		{
 			String[] command = new String[2 + query.searchQuery().length];
-			command[0] = "python3.6";
+			command[0] = "python3";
 			command[1] = "cybok";
 			System.arraycopy(query.searchQuery(), 0, command, 2, query.searchQuery().length);
 
