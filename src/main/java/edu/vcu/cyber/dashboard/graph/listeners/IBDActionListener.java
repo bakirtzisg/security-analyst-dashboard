@@ -1,5 +1,6 @@
 package edu.vcu.cyber.dashboard.graph.listeners;
 
+import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.av.AttackVector;
 import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.*;
@@ -71,8 +72,11 @@ public class IBDActionListener extends GraphActionListener
 		}
 
 		resetGraphAttributes(graphData.getGraph());
-		resetGraphAttributes(other.getGraph());
-		other.clearSelected();
+		if (Config.USE_SPEC_GRAPH)
+		{
+			resetGraphAttributes(other.getGraph());
+			other.clearSelected();
+		}
 
 		SwingUtilities.invokeLater(() ->
 		{
@@ -84,11 +88,15 @@ public class IBDActionListener extends GraphActionListener
 				{
 					markPaths(graphData, node);
 					node.setAttribute(Attributes.NODE_SELECTED);
-					NodeData data = other.getNode(node.getId());
-					if (data != null)
+
+					if (Config.USE_SPEC_GRAPH)
 					{
-						data.getNode().setAttribute(Attributes.NODE_SELECTED);
-						markPaths(other, data.getNode());
+						NodeData data = other.getNode(node.getId());
+						if (data != null)
+						{
+							data.getNode().setAttribute(Attributes.NODE_SELECTED);
+							markPaths(other, data.getNode());
+						}
 					}
 				}
 			}

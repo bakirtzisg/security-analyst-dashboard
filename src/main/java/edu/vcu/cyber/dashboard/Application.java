@@ -1,8 +1,10 @@
 package edu.vcu.cyber.dashboard;
 
+import edu.vcu.cyber.dashboard.av.VisHandler;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.GraphData;
+import edu.vcu.cyber.dashboard.data.GraphType;
 import edu.vcu.cyber.dashboard.graph.listeners.AVActionListener;
 import edu.vcu.cyber.dashboard.graph.listeners.IBDActionListener;
 import edu.vcu.cyber.dashboard.graph.layout.LayeredSectionsLayout;
@@ -53,11 +55,19 @@ public class Application
 	public void openProject(AppSession session)
 	{
 		this.session = session;
-		session.load();
-		
+//		session.load();
+		session.createIfNotExist(GraphType.TOPOLOGY);
+		session.createIfNotExist(GraphType.ATTACK_SURFACE);
+		session.createIfNotExist(GraphType.SPECIFICATIONS);
+
+		GraphData graphData = session.createIfNotExist(GraphType.ATTACKS);
+		graphData.generateGraph();
+		VisHandler.register(new AVGraphVisHandler(Application.getInstance().getSession().getAvGraph()));
+
 		setupTopologyGraph();
 		setupSpecificationsGraph();
 		setupAttackVectorGraph();
+		Application.getInstance().getGui().setUseSpecGraph(false);
 		
 	}
 	
@@ -84,21 +94,21 @@ public class Application
 	 */
 	private void setupSpecificationsGraph()
 	{
-		if (Config.USE_SPEC_GRAPH)
-		{
+//		if (Config.USE_SPEC_GRAPH)
+//		{
 			GraphData graph = session.getSpecGraph();
 			GraphPanel gp = gui.getSpecGraphPanel();
 			gp.setGraph(graph);
 			gp.setGraphActionListener(new IBDActionListener(session));
 			
-			LayeredSectionsLayout sectionsLayout = new LayeredSectionsLayout(graph.getGraph());
-			sectionsLayout.registerSections("Mission", "Function", "Structure");
-			sectionsLayout.computePositions();
-			
+//			LayeredSectionsLayout sectionsLayout = new LayeredSectionsLayout(graph.getGraph());
+//			sectionsLayout.registerSections("Mission", "Function", "Structure");
+//			sectionsLayout.computePositions();
+//
 			gp.getViewer().disableAutoLayout();
-			
-			gp.setBackgroundRenderer(new SectionRenderer(sectionsLayout, gp));
-		}
+//
+//			gp.setBackgroundRenderer(new SectionRenderer(sectionsLayout, gp));
+//		}
 	}
 	
 	/**
@@ -142,7 +152,10 @@ public class Application
 	{
 		SwingUtilities.invokeLater(() ->
 		{
+			if(gui != null)
 			gui.setStatusLabel(text);
+			else
+				System.out.println("Status: " + text);
 		});
 	}
 	

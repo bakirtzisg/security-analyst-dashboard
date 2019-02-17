@@ -28,10 +28,13 @@ public class UpdateQuery extends CybokQuery<UpdateQuery>
 	@Override
 	public void onMessage(String line)
 	{
-		status = line;
-		System.out.println(line);
-		Application.getInstance().setStatusLabel(status);
-		SwingUtilities.invokeLater(() -> label.setText(line));
+		if(!line.equals(""))
+		{
+			status = line;
+			System.out.println(line);
+			Application.getInstance().setStatusLabel(status);
+			SwingUtilities.invokeLater(() -> label.setText(line));
+		}
 	}
 
 	@Override
@@ -49,17 +52,19 @@ public class UpdateQuery extends CybokQuery<UpdateQuery>
 
 	public static void showDialog(JFrame frame)
 	{
-//		JOptionPane optionPane = new JOptionPane();
-//		JDialog dialog = optionPane.createDialog("Updating Cybok Databases...");
-//
-//		dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-//		updateInProgress = dialog;
-//
-//
-//		JPanel panel = new JPanel(new BorderLayout());
-//		panel.add(label = new JLabel("Updating Cybok Databases..."), BorderLayout.CENTER);
-//		dialog.setContentPane(panel);
-//
-//		dialog.setVisible(true);
+		JOptionPane optionPane = new JOptionPane();
+		JDialog dialog = optionPane.createDialog("Updating Cybok Databases...");
+
+		dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		updateInProgress = dialog;
+
+
+		JPanel panel = new JPanel(new BorderLayout());
+		panel.add(label = new JLabel("Updating Cybok Databases..."), BorderLayout.CENTER);
+		dialog.setContentPane(panel);
+		dialog.setPreferredSize(new Dimension(200, 40));
+//		dialog.pack();
+
+		dialog.setVisible(true);
 	}
 }

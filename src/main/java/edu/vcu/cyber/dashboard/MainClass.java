@@ -4,6 +4,7 @@ import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.data.SystemAnalysis;
 import edu.vcu.cyber.dashboard.util.EnvUtils;
 
+import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
@@ -38,17 +39,24 @@ public class MainClass
 	public static void main(String[] args)
 	{
 
-		EnvUtils.setLookAndFeel();
-		EnvUtils.setGraphStreamRenderer();
-		EnvUtils.registerFonts();
-		EnvUtils.setGlobalUIFont(new FontUIResource("Fira Sans Light", Font.PLAIN, 14));
-
-		if (!CybokQueryHandler.isCybokInstalled())
+		if (SystemConfiguration.verifyDependancies())
 		{
-			SystemAnalysis.makePathDefaults();
-		}
 
-		Application app = new Application();
-		app.run();
+			EnvUtils.listLookAndFeels();
+			EnvUtils.setLookAndFeel();
+			EnvUtils.setGraphStreamRenderer();
+			EnvUtils.registerFonts();
+			EnvUtils.setGlobalUIFont(new FontUIResource("Fira Sans Light", Font.PLAIN, 14));
+
+			CybokQueryHandler.setupHandler();
+
+			if (!CybokQueryHandler.isCybokInstalled())
+			{
+				SystemAnalysis.makePathDefaults();
+			}
+
+			Application app = new Application();
+			app.run();
+		}
 	}
 }

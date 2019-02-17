@@ -101,6 +101,14 @@ public class DashboardUI extends JFrame implements ActionListener
 
 		sp.setLeftComponent(topGraphPanel);
 //		setAVVisComponent(false);
+
+		tabs = new JTabbedPane();
+		tabs.add("Attack Vector Space", avGraphPanel);
+		tabs.add("Attack Vector Tree", avTreePanel);
+		sp.setRightComponent(tabs);
+		sp.setDividerLocation(700);
+		sp.setDividerSize(5);
+
 		setUseSpecGraph(false);
 
 		contentPane.add(sp, BorderLayout.CENTER);
@@ -113,25 +121,28 @@ public class DashboardUI extends JFrame implements ActionListener
 
 	public void setUseSpecGraph(boolean useSpecGraph)
 	{
+		edu.vcu.cyber.dashboard.Config.USE_SPEC_GRAPH = useSpecGraph;
 		if (usingSpecGraph != useSpecGraph)
 		{
 			if (useSpecGraph)
 			{
-				//sp.setRightComponent(null);
-				tabs = new JTabbedPane();
-//				tabs.add("AV Tree View", avTreePanel);
-				tabs.add("Attack Vector Space", avGraphPanel);
-				tabs.add("Attack Vector Tree", avTreePanel);
 				tabs.add("Specifications", specGraphPanel);
-				sp.setRightComponent(tabs);
+//				//sp.setRightComponent(null);
+//				tabs = new JTabbedPane();
+////				tabs.add("AV Tree View", avTreePanel);
+//				tabs.add("Attack Vector Space", avGraphPanel);
+//				tabs.add("Attack Vector Tree", avTreePanel);
+//				tabs.add("Specifications", specGraphPanel);
+//				sp.setRightComponent(tabs);
 			}
 			else
 			{
-				if (tabs != null)
-				{
-					tabs = null;
-				}
-				sp.setRightComponent(avGraphPanel);
+				tabs.remove(specGraphPanel);
+//				if (tabs != null)
+//				{
+//					tabs = null;
+//				}
+//				sp.setRightComponent(avGraphPanel);
 			}
 		}
 		sp.setDividerLocation(700);
@@ -329,7 +340,7 @@ public class DashboardUI extends JFrame implements ActionListener
 		int result = lfd.ask(null);
 		if (result == JOptionPane.OK_OPTION)
 		{
-			AppSession.getInstance().load(lfd.getTopologyGraphFile(), lfd.getSpecificationGraphFile());
+			AppSession.getInstance().load(lfd.getTopologyGraphFile(), lfd.getSpecificationGraphFile(), lfd.doAnalysis());
 		}
 	}
 
