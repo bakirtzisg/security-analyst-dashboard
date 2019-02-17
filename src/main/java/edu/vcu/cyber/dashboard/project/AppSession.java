@@ -8,6 +8,8 @@ import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.FullAnalysisQuery;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.graph.layout.LayeredSectionsLayout;
+import edu.vcu.cyber.dashboard.graph.listeners.IBDActionListener;
+import edu.vcu.cyber.dashboard.graph.renderer.SectionRenderer;
 import edu.vcu.cyber.dashboard.ui.DashboardUI;
 import edu.vcu.cyber.dashboard.ui.graphpanel.GraphPanel;
 import edu.vcu.cyber.dashboard.util.Attributes;
@@ -31,95 +33,98 @@ import java.util.List;
  */
 public class AppSession extends GraphHandler
 {
-	
+
 	private static AppSession instance;
-	
+
 	public static Node focusedNode;
-	
+
 	public static void setFocus(GraphType graphType)
 	{
 		instance.focusedGraph = graphType;
 	}
-	
+
 	public static GraphType getFocusedGraph()
 	{
 		return instance.focusedGraph;
 	}
-	
+
 	public static GraphData getFocusedGraphData()
 	{
 		return instance.getGraph(instance.selectedGraph);
 	}
-	
+
 	public static void setSelectedGraph(GraphType graphType)
 	{
 		if (instance.selectedGraph != null && instance.selectedGraph != graphType)
 		{
 			GraphPanel gp = Application.getInstance().getGui().getGraphPanel(instance.selectedGraph);
 			((GraphicGraph) gp.getViewGraph()).graphChanged = true;
-			
+
 		}
 		instance.selectedGraph = graphType;
 	}
-	
+
 	public static GraphType getSelectedGraph()
 	{
 		return instance.selectedGraph;
 	}
-	
+
 	public static GraphData getSelectedGraphData()
 	{
 		return instance.getGraph(instance.focusedGraph);
 	}
-	
+
 	private GraphType selectedGraph;
 	private GraphType focusedGraph;
-	
+
 	private File topologyGraphFile = new File("data/topology.graphml");
 	private File specificationsGraphFile = new File("data/specifications.graphml");
-	
+
 	public AppSession()
 	{
 		super();
 		instance = this;
 	}
-	
+
 	public static AppSession getInstance()
 	{
 		return instance;
 	}
-	
+
 	public void load()
 	{
-		load(topologyGraphFile, specificationsGraphFile);
+		load(topologyGraphFile, specificationsGraphFile, true);
 	}
-	
+
 	/**
 	 * Loads a previous session
 	 */
-	public void load(File topGraphFile, File specGraphFile)
+	public void load(File topGraphFile, File specGraphFile, boolean analysis)
 	{
 		clear();
-		
+
 		if (topGraphFile.exists())
 		{
 			System.out.println("Loading Topology Graph");
 			GraphData graph = createIfNotExist(GraphType.TOPOLOGY);
-			
+
 			GraphMLParser.parse(topGraphFile, graph);
-			
+
 			graph.refreshGraph();
-			
-			GraphAnalysis.analyseTopologyGraph();
+
+			if (analysis)
+			{
+				GraphAnalysis.analyseTopologyGraph();
+			}
 		}
-		
+
 		if (specGraphFile.exists())
 		{
 			System.out.println("Loading Specifications Graph");
 			GraphData graph = createIfNotExist(GraphType.SPECIFICATIONS);
 			GraphMLParser.parse(specGraphFile, graph);
-			
-			
+
+
 			// verify that the graph is valid
 			final List<NodeData> invalidNodes = new ArrayList<>();
 			graph.getNodes().forEach(node ->
@@ -137,7 +142,7 @@ public class AppSession extends GraphHandler
 					invalidNodes.add(node);
 				}
 			});
-			
+
 			if (!invalidNodes.isEmpty())
 			{
 				System.out.println("Invalid specification model!");
@@ -149,15 +154,24 @@ public class AppSession extends GraphHandler
 			{
 				Config.USE_SPEC_GRAPH = true;
 			}
-			
-			
+
+			GraphPanel gp = Application.getInstance().getGui().getSpecGraphPanel();
+
+			graph.generateGraph();
+
+			LayeredSectionsLayout sectionsLayout = new LayeredSectionsLayout(graph.getGraph());
+			sectionsLayout.registerSections("Mission", "Function", "Structure");
+			sectionsLayout.computePositions();
+
+			gp.setBackgroundRenderer(new SectionRenderer(sectionsLayout, gp));
+
 		}
 		else
 		{
 			Config.USE_SPEC_GRAPH = false;
 		}
-		
-		
+
+
 		GraphData graphData = createIfNotExist(GraphType.ATTACKS);
 		graphData.generateGraph();
 		VisHandler.register(new AVGraphVisHandler(Application.getInstance().getSession().getAvGraph()));
@@ -167,7 +181,7 @@ public class AppSession extends GraphHandler
 		Application.getInstance().getGui().setUseSpecGraph(Config.USE_SPEC_GRAPH);
 //		}
 	}
-	
+
 	/**
 	 * Saves the current session
 	 */
@@ -175,22 +189,22 @@ public class AppSession extends GraphHandler
 	{
 		//TODO: needs implementation
 	}
-	
+
 	public void setFocusedGraph()
 	{
-	
+
 	}
-	
+
 	public GraphData getTopGraph()
 	{
 		return getGraph(GraphType.TOPOLOGY);
 	}
-	
+
 	public GraphData getSpecGraph()
 	{
 		return getGraph(GraphType.SPECIFICATIONS);
 	}
-	
+
 	public GraphData getAvGraph()
 	{
 		return getGraph(GraphType.ATTACKS);

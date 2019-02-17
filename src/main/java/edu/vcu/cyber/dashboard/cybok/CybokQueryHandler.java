@@ -1,6 +1,9 @@
 package edu.vcu.cyber.dashboard.cybok;
 
+import edu.vcu.cyber.dashboard.SystemConfiguration;
 import edu.vcu.cyber.dashboard.cybok.queries.AttackChainSearchQuery;
+import edu.vcu.cyber.dashboard.cybok.queries.UpdateQuery;
+import sun.rmi.log.LogOutputStream;
 
 import java.io.*;
 import java.util.Queue;
@@ -26,95 +29,41 @@ public class CybokQueryHandler implements Runnable
 	public static void main(String[] args)
 	{
 		CybokQueryHandler handler = new CybokQueryHandler();
-		handler.installDir = findCybokInstall();
+		handler.installDir = SystemConfiguration.findCybokInstall();
 
-		String inputFile = new File("./data/topology.graphml").getAbsolutePath();
-
-		handler.addToQueue(new AttackChainSearchQuery(inputFile, "Primary Application Processor", query ->
-		{
-			if (!query.hadError())
-			{
-				System.out.println("Attack Chains: ");
-				for (String[] chains : query.getAttackChains())
-				{
-					for (String attack : chains)
-					{
-						System.out.print(attack + "\t>\t");
-					}
-					System.out.print("\n");
-				}
-			}
-		}));
+//		String inputFile = new File("./data/topology.graphml").getAbsolutePath();
+//
+//		handler.addToQueue(new AttackChainSearchQuery(inputFile, "Primary Application Processor", query ->
+//		{
+//			if (!query.hadError())
+//			{
+//				System.out.println("Attack Chains: ");
+//				for (String[] chains : query.getAttackChains())
+//				{
+//					for (String attack : chains)
+//					{
+//						System.out.print(attack + "\t>\t");
+//					}
+//					System.out.print("\n");
+//				}
+//			}
+//		}));
+		handler.addToQueue(new UpdateQuery());
 
 	}
 
 	public static void setupHandler()
 	{
 		queryHandler = new CybokQueryHandler();
-		queryHandler.installDir = findCybokInstall();
+//		queryHandler.installDir = findCybokInstall();
 	}
 
-	private static File findCybokInstall()
-	{
-
-		if (useCybok)
-		{
-			File file;
-
-			String env = System.getProperty("CYBOK_INSTALL");
-			if (env != null)
-			{
-				file = new File(env);
-				if (dirContainsCybok(file))
-					return file;
-			}
-			else
-			{
-				file = new File("../cybok");
-				if (dirContainsCybok(file))
-					return file;
-				file = new File("../cybok-cli");
-				if (dirContainsCybok(file))
-					return file;
-				file = new File("./cybok");
-				if (dirContainsCybok(file))
-					return file;
-				file = new File("./cybok-cli");
-				if (dirContainsCybok(file))
-					return file;
-			}
-		}
-
-		return null;
-	}
-
-	private static boolean dirContainsCybok(File dir)
-	{
-		if (dir != null && dir.exists())
-		{
-			String list[] = dir.list();
-			if (list != null)
-			{
-				for (String f : list)
-				{
-					if (f.equals("cybok"))
-					{
-						if (new File(dir, f + "/__main__.py").exists())
-						{
-							return true;
-						}
-					}
-				}
-			}
-		}
-		return false;
-	}
 
 	public CybokQueryHandler()
 	{
 		queue = new LinkedBlockingQueue<>();
 
-		installDir = findCybokInstall();
+		installDir = SystemConfiguration.findCybokInstall();
 		if (installDir != null)
 		{
 			queueThread = new Thread(this);
@@ -143,9 +92,26 @@ public class CybokQueryHandler implements Runnable
 
 			query.onExecute();
 
-			process = Runtime.getRuntime().exec(command, new String[]{}, installDir);
+//			process = Runtime.getRuntime().exec(command, new String[]{}, installDir);
 
+
+
+
+			ProcessBuilder ps = new ProcessBuilder(command).directory(installDir);
+//			ps.redirectOutput(new LogOutputStream());
+			ps.redirectErrorStream(true);
+
+			process = ps.start();
 			setupReaders();
+
+			try
+			{
+				process.waitFor();
+			}
+			catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			}
 
 		}
 		catch (IOException e)
@@ -158,21 +124,28 @@ public class CybokQueryHandler implements Runnable
 	{
 		if (process.isAlive())
 		{
+			System.out.println("setup Readers");
 			InputStream inputStream = process.getInputStream();
-			InputStream errorStream = process.getErrorStream();
 
 			// Data Thread
-			new Thread(() ->
-			{
+//			Thread t = new Thread(() ->
+//			{
 				try
 				{
 					BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-					String line;
-					while ((line = in.readLine()) != null)
+					in.lines().forEach(line->
 					{
 						eventHandler.onMessage(line);
 						System.out.println(line);
-					}
+					});
+//					String line;
+//					while ((line = in.readLine()) != null)
+//					{
+//						eventHandler.onMessage(line);
+//						System.out.println(line);
+//					}
+
+					in.close();
 				}
 				catch (Exception e)
 				{
@@ -188,39 +161,49 @@ public class CybokQueryHandler implements Runnable
 						process.destroy();
 					}
 				}
+				System.out.println("DAT Done.");
 
-			}).start();
+//			});
+//			t.setPriority(Thread.MAX_PRIORITY);
+//			t.setDaemon(true);
+//			t.start();
 
-			// Error Thread
-			new Thread(() ->
-			{
-				try
-				{
-					BufferedReader in = new BufferedReader(new InputStreamReader(errorStream));
-					String line;
-					boolean err = false;
-					while ((line = in.readLine()) != null)
-					{
-//						if (!err)
-//							eventHandler.onFinish(true);
-//						err = true;
-						System.err.println("Error: " + line);
-					}
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-				finally
-				{
-					eventHandler.done();
-					if (process.isAlive())
-					{
-						process.destroy();
-					}
-				}
-
-			}).start();
+//			InputStream errorStream = process.getErrorStream();
+//			// Error Thread
+//			new Thread(() ->
+//			{
+//				try
+//				{
+//					BufferedReader in = new BufferedReader(new InputStreamReader(errorStream));
+//					String line;
+//					boolean err = false;
+//					while ((line = in.readLine()) != null)
+//					{
+////						if (!err)
+////							eventHandler.onFinish(true);
+////						err = true;
+//						System.err.println("Error: " + line);
+//					}
+//				}
+//				catch (Exception e)
+//				{
+//					e.printStackTrace();
+//				}
+//				finally
+//				{
+//					eventHandler.done();
+//					if (process.isAlive())
+//					{
+//						process.destroy();
+//					}
+//				}
+//				System.out.println("ERR Done.");
+//
+//			}).start();
+		}
+		else
+		{
+			System.out.println("??");
 		}
 	}
 
@@ -255,6 +238,7 @@ public class CybokQueryHandler implements Runnable
 		while (query != null)
 		{
 
+			System.out.println("\nexecute query");
 			if (query.shouldRun())
 			{
 
