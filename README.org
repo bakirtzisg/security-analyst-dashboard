@@ -49,7 +49,7 @@
 **** Topology GraphML File
 
 	| Attribute 		| Description										|
-	+-------------------+---------------------------------------------------+
+	|-------------------+---------------------------------------------------|
 	| Entry Points		| How external devices interacts with the system	|
 	| Software			| What Software the node uses						|
 	| Firmware			| What Firmware the node uses						|
@@ -59,7 +59,7 @@
 **** Specifications GraphML File
 
 	| Attribute 	| Description											|
-	+---------------+-------------------------------------------------------+
+	|---------------+-------------------------------------------------------|
 	| Type			| Type of requirement; Structure, Mission, or Function	|
 	| Description	| Description of the requirement						|
 	
@@ -79,7 +79,7 @@
 ***	Toolbar Options:
 
 	| Button			| Description																					|
-	+-------------------+-----------------------------------------------------------------------------------------------+
+	|-------------------+-----------------------------------------------------------------------------------------------||
 	| =Load Topology= 	| File loading dialog to select the topology and (optionally) the system specification file.	|
 	| =Attack Surfaces= | Toggles the visibility of attack surfaces on the topology graph.								|
 	| =Analysis= 		| Performs the Attack Vector analysis on the topology graph using Cybok.						|
