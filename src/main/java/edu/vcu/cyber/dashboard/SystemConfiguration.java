@@ -21,12 +21,14 @@ public class SystemConfiguration
 			JOptionPane.showMessageDialog(null, "Invalid python version!\n" + PYTHON_VERSION);
 			return false;
 		}
-		else if ((CYBOK_INSTALL_DIR = findCybokInstall()) == null)
+
+		if ((CYBOK_INSTALL_DIR = findCybokInstall()) == null)
 		{
 			JOptionPane.showMessageDialog(null, "Couldn't find Cybok install!");
 			return false;
 		}
-		else if (!isCybokIndexUpdated())
+
+		if (!isCybokIndexUpdated())
 		{
 
 			int result = JOptionPane.showConfirmDialog(null, "Cybok isn't updated!\n Would you like to update? \n (This could take a while)", "Update Cybok?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -159,7 +161,7 @@ public class SystemConfiguration
 
 		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-		ProcessBuilder pb = new ProcessBuilder("python3", "cybok", "--update");
+		ProcessBuilder pb = new ProcessBuilder("python3", "-u", "cybok", "--update");
 		pb.directory(CYBOK_INSTALL_DIR);
 		pb.redirectErrorStream(true);
 
@@ -209,9 +211,6 @@ public class SystemConfiguration
 		}
 
 		return wasUpdatedSuccessfully;
-
-//		System.out.println("Done");
-
 	}
 
 

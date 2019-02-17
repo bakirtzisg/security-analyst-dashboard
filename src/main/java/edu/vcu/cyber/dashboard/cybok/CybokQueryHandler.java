@@ -85,10 +85,11 @@ public class CybokQueryHandler implements Runnable
 		this.eventHandler = query;
 		try
 		{
-			String[] command = new String[2 + query.searchQuery().length];
+			String[] command = new String[3 + query.searchQuery().length];
 			command[0] = "python3";
-			command[1] = "cybok";
-			System.arraycopy(query.searchQuery(), 0, command, 2, query.searchQuery().length);
+			command[1] = "-u";
+			command[2] = "cybok";
+			System.arraycopy(query.searchQuery(), 0, command, 3, query.searchQuery().length);
 
 			query.onExecute();
 
