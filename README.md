@@ -1,7 +1,6 @@
 # <p align="center"><img src=".github/logo.png" width="460" /></p>
 # <p align="center"><strong>Security Analyst Dashboard.</strong> <br> A dashboard for cyber-physical system design and analysis.</p>
 
-# Security Analyst Dashboard
 
 ## About the paper
    * Title: Looking for a Black Cat in a Dark Room: Security Visualization for Cyber-Physical System Design and Analysis
@@ -13,6 +12,9 @@
    This dashboard does not do any of the analysis, but rather provides a user interface to interactively visualize the data received by Cybok.
 
 ## Prerequisites
+
+   The following are required to run the dashboard.
+
    * Git
    * Java JDK 8
    * Python 3.6.x
@@ -20,7 +22,7 @@
 
 
 ## Building and Running
-The following script will automatically initialize the cybok-cli submodule, compile the code, and run the code.
+The following script will automatically load the newest stable copy of  [cybok-cli](https://github.com/bakirtzisg/cybok-cli), compile, and run the dashboard.
 
    Windows:
    ```bash
