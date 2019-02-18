@@ -49,7 +49,17 @@ public class SystemConfiguration
 	private static boolean pythonVersion(String line)
 	{
 		PYTHON_VERSION = line;
+
+		String args[] = line.split("\\.");
+		if (args.length > 2)
+		{
+			int major = Integer.parseInt(args[0]);
+			int minor = Integer.parseInt(args[1]);
+			int vers = major * 10 + minor;
+			return vers >= 36;
+		}
 		return line.contains("3.6");
+
 	}
 
 
