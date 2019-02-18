@@ -36,4 +36,5 @@ public interface Attributes
 	String UI_SIZE = "ui.size";
 	String LAYOUT_WEIGHT = "layout.weight";
 	String XYZ_POS = "xyz";
+	String DONT_SAVE = "ui.dns";
 }
