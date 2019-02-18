@@ -50,10 +50,10 @@ public class MainClass
 
 			CybokQueryHandler.setupHandler();
 
-			if (!CybokQueryHandler.isCybokInstalled())
-			{
-				SystemAnalysis.makePathDefaults();
-			}
+//			if (!CybokQueryHandler.isCybokInstalled())
+//			{
+//				SystemAnalysis.makePathDefaults();
+//			}
 
 			Application app = new Application();
 			app.run();

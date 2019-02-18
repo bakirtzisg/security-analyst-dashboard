@@ -197,6 +197,7 @@ public abstract class GraphActionListener
 			{
 				growSelection();
 			}
+
 		}
 	}
 

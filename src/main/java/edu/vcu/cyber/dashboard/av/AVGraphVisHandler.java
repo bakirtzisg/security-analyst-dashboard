@@ -52,6 +52,8 @@ public class AVGraphVisHandler extends AttackVectorVisualizer
 				node.setAttribute(Attributes.XYZ_POS, av.lastPosition.x, av.lastPosition.y, 0);
 			}
 
+			av.size = av.relations.size();
+
 			double size = av.size * Config.AV_NODE_SCALE;
 
 			double nodeSize = Math.sqrt(size) + Config.AV_NODE_MIN_SIZE;
