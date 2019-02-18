@@ -36,8 +36,8 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 	@Override
 	public String[] searchQuery()
 	{
-		Config.TEMP_DATA.mkdirs();
-		return new String[]{"-i", input, "-o", Config.TEMP_DATA.getAbsoluteFile().toString() + "/tmp"};
+		Config.HIDDEN_DATA.mkdirs();
+		return new String[]{"-i", input, "-o", Config.HIDDEN_DATA.getAbsoluteFile().toString() + "/tmp"};
 	}
 	
 	

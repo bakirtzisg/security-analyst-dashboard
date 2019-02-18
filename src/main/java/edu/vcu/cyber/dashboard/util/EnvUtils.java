@@ -67,7 +67,7 @@ public class EnvUtils
 			while (en.hasMoreElements())
 			{
 				URL url = en.nextElement();
-				System.out.println(url);
+//				System.out.println(url);
 			}
 			
 			

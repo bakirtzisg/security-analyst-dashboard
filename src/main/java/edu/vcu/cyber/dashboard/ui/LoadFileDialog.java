@@ -1,5 +1,7 @@
 package edu.vcu.cyber.dashboard.ui;
 
+import edu.vcu.cyber.dashboard.Config;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -112,6 +114,9 @@ public class LoadFileDialog extends JPanel implements ActionListener
 		topFileTF = new JTextField();
 		topFileTF.setPreferredSize(fileSize);
 
+		if (Config.LAST_TOPOLOGY_FILE != null)
+			topFileTF.setText(Config.LAST_TOPOLOGY_FILE.toString());
+
 		browseTopBtn = new JButton("...");
 		browseTopBtn.addActionListener(this);
 		browseTopBtn.setActionCommand("BrowseTop");
@@ -122,13 +127,16 @@ public class LoadFileDialog extends JPanel implements ActionListener
 		specFileTF = new JTextField();
 		specFileTF.setPreferredSize(fileSize);
 
+		if (Config.LAST_TOPOLOGY_FILE != null)
+			specFileTF.setText(Config.LAST_SPEC_FILE.toString());
+
 		browseSpecBtn = new JButton("...");
 		browseSpecBtn.addActionListener(this);
 		browseSpecBtn.setActionCommand("BrowseSpec");
 		browseSpecBtn.setPreferredSize(browseSize);
 
 		doAnalysisCheck = new JCheckBox("Perform analysis after opening");
-		doAnalysisCheck.setSelected(true);
+		doAnalysisCheck.setSelected(Config.LAST_DO_ANALYSIS);
 
 	}
 
@@ -172,6 +180,21 @@ public class LoadFileDialog extends JPanel implements ActionListener
 		panel.add(comp, c);
 	}
 
+	private File askFile(String title)
+	{
+		JFileChooser fc = new JFileChooser(Config.LAST_FILE_LOAD_DIRECTORY != null ? Config.LAST_FILE_LOAD_DIRECTORY : new File("./"));
+		fc.setDialogTitle(title);
+		fc.setFileFilter(new FileNameExtensionFilter("GraphML", "graphml"));
+
+		int ret = fc.showOpenDialog(content);
+		if (ret == JFileChooser.APPROVE_OPTION)
+		{
+			Config.LAST_FILE_LOAD_DIRECTORY = fc.getCurrentDirectory();
+			return fc.getSelectedFile();
+		}
+		return null;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent evt)
 	{
@@ -198,13 +221,10 @@ public class LoadFileDialog extends JPanel implements ActionListener
 
 			case "BrowseTop":
 			{
-				JFileChooser fc = new JFileChooser(new File("./"));
-				fc.setFileFilter(new FileNameExtensionFilter("GraphML", "graphml"));
-
-				int ret = fc.showOpenDialog(content);
-				if (ret == JFileChooser.APPROVE_OPTION)
+				File f = askFile("Select Topology Graph File");
+				if (f != null)
 				{
-					topFileTF.setText(fc.getSelectedFile().getAbsolutePath());
+					topFileTF.setText(f.getAbsolutePath());
 				}
 			}
 
@@ -213,13 +233,10 @@ public class LoadFileDialog extends JPanel implements ActionListener
 
 			case "BrowseSpec":
 			{
-				JFileChooser fc = new JFileChooser(new File("./"));
-				fc.setFileFilter(new FileNameExtensionFilter("GraphML", "graphml"));
-
-				int ret = fc.showOpenDialog(content);
-				if (ret == JFileChooser.APPROVE_OPTION)
+				File f = askFile("Select Specifications Graph File");
+				if (f != null)
 				{
-					specFileTF.setText(fc.getSelectedFile().getAbsolutePath());
+					specFileTF.setText(f.getAbsolutePath());
 				}
 			}
 			break;

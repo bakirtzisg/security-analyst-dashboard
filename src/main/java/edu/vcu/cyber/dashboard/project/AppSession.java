@@ -103,6 +103,10 @@ public class AppSession extends GraphHandler
 	{
 		clear();
 
+		Config.LAST_TOPOLOGY_FILE = topGraphFile;
+		Config.LAST_SPEC_FILE = specGraphFile;
+		Config.LAST_DO_ANALYSIS = analysis;
+
 		if (topGraphFile.exists())
 		{
 			System.out.println("Loading Topology Graph");

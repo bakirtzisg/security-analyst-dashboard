@@ -1,19 +1,14 @@
 package edu.vcu.cyber.dashboard.ui.search;
 
-import edu.vcu.cyber.dashboard.cybok2.info.SearchConfig;
 import edu.vcu.cyber.dashboard.ui.custom.HintTextField;
 import edu.vcu.cyber.dashboard.util.EnvUtils;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class SearchPanel extends JPanel implements ActionListener
 {
@@ -173,8 +168,8 @@ public class SearchPanel extends JPanel implements ActionListener
 
 				// TODO: Create the search query
 
-				SearchConfig.searchConfig.setSearchParams(new boolean[]{searchCAPEC.isSelected(), searchCWE.isSelected(), searchCVE.isSelected()});
-				SearchConfig.searchConfig.setReportedParams(new boolean[]{reportCAPEC.isSelected(), reportCWE.isSelected(), reportCVE.isSelected()});
+//				SearchConfig.searchConfig.setSearchParams(new boolean[]{searchCAPEC.isSelected(), searchCWE.isSelected(), searchCVE.isSelected()});
+//				SearchConfig.searchConfig.setReportedParams(new boolean[]{reportCAPEC.isSelected(), reportCWE.isSelected(), reportCVE.isSelected()});
 
 				attemptCloseWindow();
 				break;
