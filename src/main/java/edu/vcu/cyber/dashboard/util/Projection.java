@@ -44,6 +44,7 @@ public class Projection
 
 		node.setAttribute(Attributes.STYLE_CLASS, av.type.css);
 		NodeUtil.addCssClass(node, Attributes.CSS_ATTACK_VECTOR);
+		NodeUtil.addAttributeValue(node, Attributes.DONT_SAVE, true);
 	}
 
 	public static void addViolationEdge(String avid, String comp, Graph graph)

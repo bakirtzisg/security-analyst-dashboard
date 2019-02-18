@@ -89,7 +89,7 @@ public class DashboardUI extends JFrame implements ActionListener
 		contentPane.add(new ControlToolbar(), BorderLayout.NORTH);
 
 		sp = new JSplitPane();
-		sp.setPreferredSize(new Dimension(1400, 700));
+		sp.setPreferredSize(new Dimension(1600, 900));
 		sp.setDividerLocation(700);
 		sp.setDividerSize(5);
 
