@@ -24,7 +24,7 @@ public class ControlToolbar extends JToolBar
 	
 	private static final String CMD_LOAD_TOPOLOGY = "Load Topology";
 	
-	private static final String CMD_TOGGLE_ATTACK_SURFACES = "Attack Surfaces";
+	private static final String CMD_TOGGLE_ATTACK_SURFACES = "Attack Surface";
 	private static final String CMD_REDO_ANALYSIS = "Analysis";
 	
 	private static final String CMD_SHOW_DELETED = "Show Deleted";
