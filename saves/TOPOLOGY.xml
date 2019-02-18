@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <save>
     <viewer>
-        <camera x="0.0" y="0.0" z="1.0"/>
+        <camera x="2.138722565649395" y="1.3679703162400805" z="1.0"/>
     </viewer>
-    <nodes/>
+    <nodes>
+        <node id="Absolute Pressure Sensor" x="3.8651228136035276" y="1.9658084271382228"/>
+        <node id="Accelerometer Gyroscope Magnetometer" x="1.8658703102441174" y="2.6718069825572237"/>
+        <node id="Camera" x="0.31702544838347346" y="-0.5369753867684774"/>
+        <node id="Control Surface" x="0.6253664778298547" y="1.5043330627865488"/>
+        <node id="Differential Pressure Sensor" x="3.6207688094239154" y="1.414036609503236"/>
+        <node id="FCS Radio Module" x="3.084642345848399" y="0.6327020458805743"/>
+        <node id="GCS Radio Module" x="3.179305875443946" y="-0.7188626519351441"/>
+        <node id="Imagery Application Processor" x="1.2272145836669826" y="0.09702570268064274"/>
+        <node id="Imagery Radio Module" x="1.9757142676646795" y="-0.9338148664610054"/>
+        <node id="Laptop" x="2.3053052569592962" y="-0.2632154916668548"/>
+        <node id="NMEA GPS" x="1.5694714061056707" y="2.9318453118531527"/>
+        <node id="Primary Application Processor" x="2.7606740448216054" y="2.1074943754658375"/>
+        <node id="Safety Switch Processor" x="1.7319526813241375" y="1.6116577797928546"/>
+    </nodes>
 </save>

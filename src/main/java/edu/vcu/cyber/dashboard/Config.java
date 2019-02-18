@@ -1,5 +1,7 @@
 package edu.vcu.cyber.dashboard;
 
+import edu.vcu.cyber.dashboard.util.Logger;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
