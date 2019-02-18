@@ -60,6 +60,8 @@ public class AttackVector
 	public boolean shown;
 	public boolean shownInTree;
 
+	public boolean isProjected;
+
 	/**
 	 * Is the attack hidden?
 	 * i.e. CVEs are hidden by default and will never be visible

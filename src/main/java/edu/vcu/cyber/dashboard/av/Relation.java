@@ -1,5 +1,7 @@
 package edu.vcu.cyber.dashboard.av;
 
+import org.graphstream.graph.Graph;
+
 public class Relation
 {
 
@@ -77,6 +79,11 @@ public class Relation
 		return av.equals(parent) ? child : parent;
 	}
 
+	public boolean hasEdge(Graph graph)
+	{
+		return graph.getEdge(edgeId) != null;
+	}
+
 	/**
 	 * @return an edge ID that should be unique to just this relation
 	 */
@@ -88,7 +95,7 @@ public class Relation
 	@Override
 	public boolean equals(Object obj)
 	{
-		if(obj instanceof Relation)
+		if (obj instanceof Relation)
 		{
 			Relation rel = (Relation) obj;
 			return (rel.parent.equals(parent) && rel.child.equals(child)) || (rel.parent.equals(child) && rel.child.equals(parent));

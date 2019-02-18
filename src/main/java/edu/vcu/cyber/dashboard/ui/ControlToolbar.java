@@ -38,9 +38,9 @@ public class ControlToolbar extends JToolBar
 	public ControlToolbar()
 	{
 		// -------------- Poject Tools --------------
-		addButton(CMD_LOAD_TOPOLOGY, "open.png").addActionListener((evt) -> DashboardUI.askLoadTopology());
-		
-		addSeparator();
+//		addButton(CMD_LOAD_TOPOLOGY, "open.png").addActionListener((evt) -> DashboardUI.askLoadTopology());
+//
+//		addSeparator();
 		
 		// -------------- Analysis Tools --------------
 		addToggleButton(CMD_TOGGLE_ATTACK_SURFACES, null).addActionListener((evt) ->
@@ -51,24 +51,24 @@ public class ControlToolbar extends JToolBar
 		addButton(CMD_REDO_ANALYSIS, "analysis.png").addActionListener((evt) -> GraphAnalysis.analyseTopologyGraph());
 		
 		// -------------- VIEW TOGGLES --------------
-		addSeparator();
-		
-		addToggleButton(CMD_SHOW_DELETED, null).addActionListener((evt) ->
-		{
-			Config.showDeletedNodes = isSelected(evt);
-			AttackVectors.update();
-		});
-		addToggleButton(CMD_SHOW_HIDDEN, "hidden.png").addActionListener((evt) ->
-		{
-			Config.showHiddenNodes = isSelected(evt);
-			AttackVectors.update();
-		});
-		addToggleButton(CMD_SHOW_CVE, "vcve.png").addActionListener((evt) ->
-		{
-			Config.showCVENodes = isSelected(evt);
-//			AttackVectors.getAllAttackVectors().forEach(av -> av.hidden = av.type == AttackType.CVE ? !Config.showCVENodes : av.hidden);
-			AttackVectors.update();
-		});
+//		addSeparator();
+//
+//		addToggleButton(CMD_SHOW_DELETED, null).addActionListener((evt) ->
+//		{
+//			Config.showDeletedNodes = isSelected(evt);
+//			AttackVectors.update();
+//		});
+//		addToggleButton(CMD_SHOW_HIDDEN, "hidden.png").addActionListener((evt) ->
+//		{
+//			Config.showHiddenNodes = isSelected(evt);
+//			AttackVectors.update();
+//		});
+//		addToggleButton(CMD_SHOW_CVE, "vcve.png").addActionListener((evt) ->
+//		{
+//			Config.showCVENodes = isSelected(evt);
+////			AttackVectors.getAllAttackVectors().forEach(av -> av.hidden = av.type == AttackType.CVE ? !Config.showCVENodes : av.hidden);
+//			AttackVectors.update();
+//		});
 		
 		
 		// -------------- Attack Vector Tools --------------
@@ -84,19 +84,19 @@ public class ControlToolbar extends JToolBar
 				
 			}
 		});
-		addButton(CMD_DELETE_ATTACKS, "delete.png").addActionListener((evt) ->
-		{
-			GraphData graphData = AppSession.getInstance().getAvGraph();
-			for (NodeData nd : graphData.getSelectedNodes())
-			{
-				AttackVector attack = AttackVectors.getAttackVector(nd.getId());
-				if (attack != null)
-				{
-					attack.deleted = true;
-					AttackVectors.vis().removeAttack(attack);
-				}
-			}
-		});
+//		addButton(CMD_DELETE_ATTACKS, "delete.png").addActionListener((evt) ->
+//		{
+//			GraphData graphData = AppSession.getInstance().getAvGraph();
+//			for (NodeData nd : graphData.getSelectedNodes())
+//			{
+//				AttackVector attack = AttackVectors.getAttackVector(nd.getId());
+//				if (attack != null)
+//				{
+//					attack.deleted = true;
+//					AttackVectors.vis().removeAttack(attack);
+//				}
+//			}
+//		});
 //		addToggleButton(CMD_AV_LIST_VIEW, "delete.png").addActionListener((evt) ->
 //		{
 //			Application.getInstance().getGui().setAVVisComponent(isSelected(evt));

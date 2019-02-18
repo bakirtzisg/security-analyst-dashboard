@@ -1,6 +1,8 @@
 package edu.vcu.cyber.dashboard.graph.listeners;
 
 import edu.vcu.cyber.dashboard.Config;
+import edu.vcu.cyber.dashboard.actions.ActionManager;
+import edu.vcu.cyber.dashboard.actions.ActionNodeDelete;
 import edu.vcu.cyber.dashboard.av.AttackVector;
 import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.*;
@@ -15,6 +17,7 @@ import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.util.List;
 
@@ -86,16 +89,19 @@ public class IBDActionListener extends GraphActionListener
 			{
 				for (Node node : nodes)
 				{
-					markPaths(graphData, node);
-					node.setAttribute(Attributes.NODE_SELECTED);
-
-					if (Config.USE_SPEC_GRAPH)
+					if (!node.hasAttribute(Attributes.ATTACK_VECTOR))
 					{
-						NodeData data = other.getNode(node.getId());
-						if (data != null)
+						markPaths(graphData, node);
+						node.setAttribute(Attributes.NODE_SELECTED);
+
+						if (Config.USE_SPEC_GRAPH)
 						{
-							data.getNode().setAttribute(Attributes.NODE_SELECTED);
-							markPaths(other, data.getNode());
+							NodeData data = other.getNode(node.getId());
+							if (data != null)
+							{
+								data.getNode().setAttribute(Attributes.NODE_SELECTED);
+								markPaths(other, data.getNode());
+							}
 						}
 					}
 				}
@@ -167,7 +173,7 @@ public class IBDActionListener extends GraphActionListener
 			markPaths(node, true);
 			markPaths(node, false);
 		}
-		else
+		else if (!node.hasAttribute(Attributes.ATTACK_VECTOR))
 		{
 
 			SystemAnalysis.getAttackChains(node.getId(), chains ->
@@ -258,5 +264,25 @@ public class IBDActionListener extends GraphActionListener
 		}
 
 		node.removeAttribute(Attributes.PATH_MARK);
+	}
+
+	public void onKeyPress(KeyEvent evt)
+	{
+		super.onKeyPress(evt);
+		switch (evt.getKeyCode())
+		{
+			case KeyEvent.VK_DELETE: // delete -> delete the selected nodes from the graph
+
+				for (NodeData node : graphData.getSelectedNodes())
+				{
+					Node n = graph.getNode(node.getId());
+					if (n != null && n.hasAttribute(Attributes.ATTACK_VECTOR))
+						graph.removeNode(node.getNode().getId());
+				}
+
+				graphData.clearSelected();
+				break;
+
+		}
 	}
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public class AttackChainSearchQuery extends CybokQuery
 {
 
-	private static final String ATTACK_SEPARATOR = " -> ";
+	private static final String ATTACK_SEPARATOR = "↦";
 	private static final String READ_START_LINE = "Exploit chain analysis";
 
 	private final String input, target;
@@ -41,14 +41,31 @@ public class AttackChainSearchQuery extends CybokQuery
 		return new String[]{"-i", input, "-t", target};
 	}
 
+	private List<String> chain = new ArrayList<>();
+
+
 	@Override
 	public void onMessage(String line)
 	{
-		if (startRead && line.contains(ATTACK_SEPARATOR))
+		if (startRead && !line.startsWith("===="))
 		{
-//			System.out.println(line);
-			String[] chain = line.split(ATTACK_SEPARATOR);
-			attackChains.add(chain);
+			if (line.contains(ATTACK_SEPARATOR))
+			{
+//				System.out.println(line);
+				chain.add(line.split(ATTACK_SEPARATOR)[1].trim());
+				if (line.contains(target))
+				{
+					attackChains.add(chain.toArray(new String[]{}));
+					System.out.println(chain);
+					chain.clear();
+				}
+			}
+			else
+			{
+				chain.add(line);
+
+//				System.out.println(line);
+			}
 		}
 		else if (line.equals(READ_START_LINE))
 		{

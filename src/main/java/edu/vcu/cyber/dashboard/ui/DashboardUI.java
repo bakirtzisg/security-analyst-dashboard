@@ -169,7 +169,7 @@ public class DashboardUI extends JFrame implements ActionListener
 		fileMenu.add("Exit").addActionListener(this);
 
 		JMenu cybokMenu = new JMenu("Cybok");
-		cybokMenu.add("Configure").addActionListener(this);
+//		cybokMenu.add("Configure").addActionListener(this);
 		cybokMenu.add("Redo Analysis").addActionListener(this);
 		cybokMenu.add("Update Cybok").addActionListener(this);
 
@@ -178,7 +178,7 @@ public class DashboardUI extends JFrame implements ActionListener
 
 		JMenu filterMenu = new JMenu("Filter");
 		filterMenu.add(new JCheckBoxMenuItem("Show Deleted")).addActionListener(this);
-		filterMenu.add(new JCheckBoxMenuItem("Show Hidden")).addActionListener(this);
+//		filterMenu.add(new JCheckBoxMenuItem("Show Hidden")).addActionListener(this);
 		filterMenu.add(new JCheckBoxMenuItem("Show CVEs")).addActionListener(this);
 
 		menuBar.add(fileMenu);

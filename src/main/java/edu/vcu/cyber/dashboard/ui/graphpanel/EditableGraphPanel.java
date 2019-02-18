@@ -6,6 +6,7 @@ import edu.vcu.cyber.dashboard.data.GraphType;
 import edu.vcu.cyber.dashboard.data.NodeData;
 import edu.vcu.cyber.dashboard.ui.NodeEditorDialog;
 import edu.vcu.cyber.dashboard.util.Attributes;
+import edu.vcu.cyber.dashboard.util.Projection;
 import edu.vcu.cyber.dashboard.util.Utils;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ import java.awt.event.ActionListener;
 
 public class EditableGraphPanel extends GraphPanel implements ActionListener
 {
-	
+
 	public EditableGraphPanel(GraphType graphType)
 	{
 		super(graphType);
@@ -31,7 +32,7 @@ public class EditableGraphPanel extends GraphPanel implements ActionListener
 		}
 		setComponentPopupMenu(popupMenu);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -40,27 +41,38 @@ public class EditableGraphPanel extends GraphPanel implements ActionListener
 			case "Show Attack Surfaces":
 				Config.showAttackSurfaces = ((JCheckBoxMenuItem) e.getSource()).isSelected();
 				Utils.updateAttackSurfaces();
-				
+
 				break;
-			
+
 			case "Freeze Autolayout":
 				viewer.disableAutoLayout();
 				break;
-			
+
 			case "Properties":
-				
+
 				NodeData node = graph.getLastSelectedNode();
 				if (node != null)
 				{
 					NodeEditorDialog.edit(node);
 				}
-				
+
 				break;
-			
+
 			case "Show Attack Vectors":
 				AttackVectors.showInGraph(av -> av.inBucket);
+
+
+				AttackVectors.forEach(av ->
+				{
+					if (av.inBucket)
+					{
+						Projection.project(graph.getGraph(), av);
+					}
+				});
+
+
 				break;
-			
+
 			case "Clear Attack Vectors":
 				graph.getGraph().getNodeSet().removeIf(_n -> _n.hasAttribute(Attributes.ATTACK_VECTOR));
 				break;
