@@ -6,6 +6,7 @@ import edu.vcu.cyber.dashboard.cybok.queries.UpdateQuery;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.graph.interpreters.AVGraphInterpreter;
 import edu.vcu.cyber.dashboard.project.AppSession;
+import edu.vcu.cyber.dashboard.ui.custom.DockableTabs;
 import edu.vcu.cyber.dashboard.ui.custom.QuickFrame;
 import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTree;
 import edu.vcu.cyber.dashboard.ui.graphpanel.AVGraphPanel;
@@ -102,7 +103,7 @@ public class DashboardUI extends JFrame implements ActionListener
 		sp.setLeftComponent(topGraphPanel);
 //		setAVVisComponent(false);
 
-		tabs = new JTabbedPane();
+		tabs = new DockableTabs();
 		tabs.add("Attack Vector Space", avGraphPanel);
 		tabs.add("Attack Vector Tree", avTreePanel);
 		sp.setRightComponent(tabs);
@@ -127,22 +128,10 @@ public class DashboardUI extends JFrame implements ActionListener
 			if (useSpecGraph)
 			{
 				tabs.add("Specifications", specGraphPanel);
-//				//sp.setRightComponent(null);
-//				tabs = new JTabbedPane();
-////				tabs.add("AV Tree View", avTreePanel);
-//				tabs.add("Attack Vector Space", avGraphPanel);
-//				tabs.add("Attack Vector Tree", avTreePanel);
-//				tabs.add("Specifications", specGraphPanel);
-//				sp.setRightComponent(tabs);
 			}
 			else
 			{
 				tabs.remove(specGraphPanel);
-//				if (tabs != null)
-//				{
-//					tabs = null;
-//				}
-//				sp.setRightComponent(avGraphPanel);
 			}
 		}
 		sp.setDividerLocation(700);

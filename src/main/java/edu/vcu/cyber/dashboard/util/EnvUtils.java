@@ -51,7 +51,7 @@ public class EnvUtils
 			while(en.hasMoreElements())
 			{
 				URL url = en.nextElement();
-				System.out.println(url);
+//				System.out.println(url);
 			}
 
 			for (File f : Objects.requireNonNull(new File("./src/main/resources/font/").listFiles()))

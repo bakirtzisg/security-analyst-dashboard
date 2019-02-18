@@ -21,35 +21,35 @@ public class ControlToolbar extends JToolBar
 	private static final boolean useIcons = false;
 	private static final int iconWidth = 25;
 	private static final int iconHeight = 25;
-	
+
 	private static final String CMD_LOAD_TOPOLOGY = "Load Topology";
-	
+
 	private static final String CMD_TOGGLE_ATTACK_SURFACES = "Attack Surface";
-	private static final String CMD_REDO_ANALYSIS = "Analysis";
-	
+	private static final String CMD_REDO_ANALYSIS = "Perform Analysis";
+
 	private static final String CMD_SHOW_DELETED = "Show Deleted";
 	private static final String CMD_SHOW_HIDDEN = "Show Hidden";
 	private static final String CMD_SHOW_CVE = "Show CVE";
-	
+
 	private static final String CMD_ADD_BUCKET = "Add to Bucket";
 	private static final String CMD_DELETE_ATTACKS = "Delete Attacks";
 	private static final String CMD_AV_LIST_VIEW = "AV List View";
-	
+
 	public ControlToolbar()
 	{
 		// -------------- Poject Tools --------------
 //		addButton(CMD_LOAD_TOPOLOGY, "open.png").addActionListener((evt) -> DashboardUI.askLoadTopology());
 //
 //		addSeparator();
-		
+
 		// -------------- Analysis Tools --------------
-		addToggleButton(CMD_TOGGLE_ATTACK_SURFACES, null).addActionListener((evt) ->
+		addToggleButton(CMD_TOGGLE_ATTACK_SURFACES, null, "Toggles the visibility of attack surfaces on the topology graph.").addActionListener((evt) ->
 		{
 			edu.vcu.cyber.dashboard.Config.showAttackSurfaces = isSelected(evt);
 			Utils.updateAttackSurfaces();
 		});
-		addButton(CMD_REDO_ANALYSIS, "analysis.png").addActionListener((evt) -> GraphAnalysis.analyseTopologyGraph());
-		
+		addButton(CMD_REDO_ANALYSIS, "analysis.png", "Performs the Attack Vector analysis on the topology graph using Cybok.").addActionListener((evt) -> GraphAnalysis.analyseTopologyGraph());
+
 		// -------------- VIEW TOGGLES --------------
 //		addSeparator();
 //
@@ -69,8 +69,8 @@ public class ControlToolbar extends JToolBar
 ////			AttackVectors.getAllAttackVectors().forEach(av -> av.hidden = av.type == AttackType.CVE ? !Config.showCVENodes : av.hidden);
 //			AttackVectors.update();
 //		});
-		
-		
+
+
 		// -------------- Attack Vector Tools --------------
 		addSeparator();
 		addButton(CMD_ADD_BUCKET, null).addActionListener((evt) ->
@@ -81,7 +81,7 @@ public class ControlToolbar extends JToolBar
 				AttackVector attack = AttackVectors.getAttackVector(nd.getId());
 				if (attack != null)
 					BucketPanel.instance.addRow(attack);
-				
+
 			}
 		});
 //		addButton(CMD_DELETE_ATTACKS, "delete.png").addActionListener((evt) ->
@@ -101,22 +101,22 @@ public class ControlToolbar extends JToolBar
 //		{
 //			Application.getInstance().getGui().setAVVisComponent(isSelected(evt));
 //		});
-		
-		
+
+
 	}
-	
+
 	private ImageIcon createImageIcon(String name, String desc)
 	{
 		try
 		{
 			Image img = ImageIO.read(getClass().getResource("/icon/" + name));
-			
+
 			BufferedImage bi = new BufferedImage(iconWidth, iconHeight, BufferedImage.TYPE_INT_ARGB);
 			bi.getGraphics().drawImage(img, 0, 0, iconWidth, iconHeight, null, null);
-			
+
 			ImageIcon icon = new ImageIcon(bi);
 			return icon;
-			
+
 		}
 		catch (IOException e)
 		{
@@ -125,45 +125,55 @@ public class ControlToolbar extends JToolBar
 			return new ImageIcon();
 		}
 	}
-	
+
 	private JButton addButton(String text, String icon)
+	{
+		return addButton(text, icon, text);
+	}
+
+	private JButton addButton(String text, String icon, String tooltip)
 	{
 		JButton button;
 		if (icon != null && useIcons)
 		{
 			ImageIcon iconImage = createImageIcon(icon, "");
 			button = new JButton(iconImage);
-			button.setActionCommand(text);
-			button.setToolTipText(text);
 		}
 		else
 		{
 			button = new JButton(text);
 		}
+		button.setActionCommand(text);
+		button.setToolTipText(tooltip);
 		add(button);
 		button.setFocusable(false);
 		return button;
 	}
-	
+
 	private JToggleButton addToggleButton(String text, String icon)
+	{
+		return addToggleButton(text, icon, text);
+	}
+
+	private JToggleButton addToggleButton(String text, String icon, String tooltip)
 	{
 		JToggleButton button;
 		if (icon != null && useIcons)
 		{
 			ImageIcon iconImage = createImageIcon(icon, "");
 			button = new JToggleButton(iconImage);
-			button.setActionCommand(text);
-			button.setToolTipText(text);
 		}
 		else
 		{
 			button = new JToggleButton(text);
 		}
+		button.setActionCommand(text);
+		button.setToolTipText(tooltip);
 		add(button);
 		button.setFocusable(false);
 		return button;
 	}
-	
+
 	private boolean isSelected(ActionEvent evt)
 	{
 		return ((JToggleButton) evt.getSource()).isSelected();

@@ -39,10 +39,11 @@ public class MainClass
 	public static void main(String[] args)
 	{
 
+		Config.setup();
 		if (SystemConfiguration.verifyDependancies())
 		{
 
-			EnvUtils.listLookAndFeels();
+//			EnvUtils.listLookAndFeels();
 			EnvUtils.setLookAndFeel();
 			EnvUtils.setGraphStreamRenderer();
 			EnvUtils.registerFonts();
@@ -58,5 +59,6 @@ public class MainClass
 			Application app = new Application();
 			app.run();
 		}
+		Runtime.getRuntime().addShutdownHook(new Thread(Config::save));
 	}
 }
