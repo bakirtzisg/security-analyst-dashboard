@@ -57,6 +57,7 @@
     The specification is optional, only the system topology graph is necessary.
 
     For the system topology graph model you can look at this paper:
+
     Georgios Bakirtzis, Bryan T. Carter, Carl R. Elks, and Cody H. Fleming,
     "A Model-Based Approach to Security Analysis for Cyber-Physical Systems,"
     [[http://2018.ieeesyscon.org/][IEEE SysCon 2018]] [[[https://arxiv.org/abs/1710.11442][preprint]], [[https://ieeexplore.ieee.org/abstract/document/8369518][proceedings]]]
