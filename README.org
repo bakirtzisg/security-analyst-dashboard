@@ -4,9 +4,9 @@
 ** About the paper
 
   Georgios Bakirtzis, Brandon Simon, Cody Fleming, and Carl Elks,
-  *"Looking for a Black Cat in a Dark Room: Security Visualization
-  for Cyber-Physical System Design and Analysis,"* [[https://vizsec.org/vizsec2018/][IEEE VizSec 2018]]
-  [[[https://arxiv.org/abs/1808.08081][Preprint]]|[[https://vimeo.com/308133381][Talk]]]
+  "Looking for a Black Cat in a Dark Room: Security Visualization
+  for Cyber-Physical System Design and Analysis," [[https://vizsec.org/vizsec2018/][IEEE VizSec 2018]]
+  [[[https://arxiv.org/abs/1808.08081][preprint]]|[[https://vimeo.com/308133381][talk]]]
 
 ** Getting Started
 
@@ -17,7 +17,7 @@
 
    The following are required to run the dashboard:
    Java JDK 8, Python >=3.6.4 and the rest
-   of [[https://github.com/bakirtzisg/cybok-cli][cybok-cli]] prerequisites.
+   of [[https://github.com/bakirtzisg/cybok-cli][cybok-cli]]'s prerequisites.
 
 ** Building and Running
 
@@ -58,7 +58,7 @@
 
     For the system topology graph model you can look at this paper:
     Georgios Bakirtzis, Bryan T. Carter, Carl R. Elks, and Cody H. Fleming,
-    *"A Model-Based Approach to Security Analysis for Cyber-Physical Systems,"*
+    "A Model-Based Approach to Security Analysis for Cyber-Physical Systems,"
     [[http://2018.ieeesyscon.org/][IEEE SysCon 2018]] [[[https://arxiv.org/abs/1710.11442][preprint]], [[https://ieeexplore.ieee.org/abstract/document/8369518][proceedings]]]
 
     Briefly the following schema is used for the system topology:
@@ -79,16 +79,7 @@
     | Type        | Type of requirement; Structure, Mission, or Function |
     | Description | Description of the requirement                       |
 
-    #+BEGIN_SRC xml
-      <graphml>
-        <key attr.name="Hardware" attr.type="string" for="node" id="d5"/>
-        <key attr.name="Entry Points" attr.type="string" for="node" id="d4"/>
-        <key attr.name="Software" attr.type="string" for="node" id="d3"/>
-        <key attr.name="Firmware" attr.type="string" for="node" id="d2"/>
-        <key attr.name="Operating System" attr.type="string" for="node" id="d1"/>
-        <key attr.name="Device" attr.type="string" for="node" id="d0"/>
-      </graphml>
-    #+END_SRC
+    For specifics on writing such GraphML files you can look in the =data= folder.
 
 *** Toolbar options
 
