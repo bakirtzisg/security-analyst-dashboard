@@ -110,3 +110,6 @@
     | =DEL=    | deselects the current selection                                                      |
     | =DEL=    | (bucket) removes all checked entries from the bucket                                 |
 
+** Screenshot
+
+[[./github/screenshot.png]]
