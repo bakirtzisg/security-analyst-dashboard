@@ -110,7 +110,6 @@
     | =DEL=    | deselects the current selection                                                      |
     | =DEL=    | (bucket) removes all checked entries from the bucket                                 |
 
-* Authors
+** Screenshot
 
-Georgios Bakirtzis (bakirtzisg@ieee.org) [[bakirtzis.net]] \\
-Brandon Simon (simonbj@vcu.edu)
+[[./github/screenshot.png]]
