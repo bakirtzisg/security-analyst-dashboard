@@ -112,4 +112,4 @@
 
 ** Screenshot
 
-[[./github/screenshot.png]]
+#+html: <p align="left"><img src=".github/screenshot.png" width="460" /></p>
