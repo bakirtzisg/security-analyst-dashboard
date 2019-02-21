@@ -10,7 +10,7 @@
 
 ** Getting Started
 
-   This project works in conjunction with [[https://github.com/bakirtzisg/cybok-cli][cybok-cli]]
+   The dashboard works in conjunction with [[https://github.com/bakirtzisg/cybok-cli][cybok-cli]]
    & [[https://github.com/bakirtzisg/graphml_export][graphml_export]]---which produce the data requirements for this project.
 
 ** Prerequisites
@@ -52,9 +52,9 @@
 *** Accepted Models
 
     The dashboard is agnostic to modeling tool as long as a GraphML file is provided.
-    There two models that input into the dashboard: (1) system topology graph
+    There are two types of models that input into the dashboard: (1) system topology graph
     and (2) specification graph.
-    The specification is optional, only the system topology graph is necessary.
+    The specification is optional; that is, only the system topology graph is necessary.
 
     For the system topology graph model you can look at this paper:
 
