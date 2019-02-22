@@ -206,4 +206,9 @@ public abstract class AttackVectorVisualizer
 
 	}
 
+	public Predicate<AttackVector> getFilter()
+	{
+		return filter;
+	}
+
 }

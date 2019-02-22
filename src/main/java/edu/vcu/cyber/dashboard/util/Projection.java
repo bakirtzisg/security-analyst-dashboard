@@ -1,5 +1,6 @@
 package edu.vcu.cyber.dashboard.util;
 
+import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.av.AttackVector;
 import edu.vcu.cyber.dashboard.av.Relation;
 import org.graphstream.graph.Edge;
@@ -25,15 +26,15 @@ public class Projection
 
 		av.size = av.relations.size();
 
-		double size = av.size * Config.AV_NODE_SCALE;
+		double size = av.size * edu.vcu.cyber.dashboard.Config.AV_NODE_SCALE;
 
-		double nodeSize = Math.sqrt(size) + Config.AV_NODE_MIN_SIZE;
+		double nodeSize = Math.sqrt(size) + edu.vcu.cyber.dashboard.Config.AV_NODE_MIN_SIZE;
 		double layoutWeight = 2.0D / ((Math.sqrt(size) + 1) + 0.015);
 
 		if (av.size > Config.AV_LAYOUT_MIN_SIZE)
 			node.setAttribute(Attributes.LAYOUT_WEIGHT, layoutWeight);
 		else
-			node.setAttribute(Attributes.LAYOUT_WEIGHT, Config.AV_LAYOUT_WEIGHT_DEF);
+			node.setAttribute(Attributes.LAYOUT_WEIGHT, edu.vcu.cyber.dashboard.Config.AV_LAYOUT_WEIGHT_DEF);
 
 		node.setAttribute(Attributes.UI_SIZE, nodeSize);
 

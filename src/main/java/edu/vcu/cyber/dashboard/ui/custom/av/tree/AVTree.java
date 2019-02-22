@@ -30,6 +30,8 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 
 	private static final String CMD_GOTO_WEBSITE = "Website";
 	private static final String CMD_DELETE = "Delete";
+	private static final String CMD_DELETE_CHILDREN = "Delete Children";
+	private static final String CMD_DELETE_RECURSIVE = "Delete Recursive";
 
 	private boolean showDeleted;
 	private boolean filterChildren;
@@ -92,6 +94,8 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 //		popup.add(CMD_GRAPH_ADD_PATH).addActionListener(this);
 		popup.addSeparator();
 		popup.add(CMD_DELETE).addActionListener(this);
+		popup.add(CMD_DELETE_CHILDREN).addActionListener(this);
+//		popup.add(CMD_DELETE_RECURSIVE).addActionListener(this);
 	}
 
 	public void addTopNode(AttackVector av)
@@ -324,7 +328,7 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 
 			case CMD_GOTO_WEBSITE:
 				Object obj = tree.getLastSelectedPathComponent();
-				if(obj instanceof AVTreeNode)
+				if (obj instanceof AVTreeNode)
 				{
 					Utils.openWebPage(((AVTreeNode) obj).av.getURI());
 				}
@@ -339,7 +343,30 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 			case CMD_DELETE:
 				for (TreePath path : Objects.requireNonNull(tree.getSelectionPaths()))
 				{
-					removeNode(resolveNode(path));
+					AVTreeNode n = resolveNode(path);
+					if (n != null)
+						n.av.deleted = true;
+					removeNode(n);
+				}
+				break;
+			case CMD_DELETE_CHILDREN:
+				for (TreePath path : Objects.requireNonNull(tree.getSelectionPaths()))
+				{
+					AVTreeNode node = resolveNode(path);
+					if (node != null)
+					{
+						Enumeration<DefaultMutableTreeNode> enumer = node.children();
+						while (enumer.hasMoreElements())
+						{
+							AVTreeNode n = resolveNode(enumer.nextElement());
+							if (n != null)
+							{
+								n.av.deleted = true;
+							}
+							removeNode(n);
+						}
+						removeNode(node);
+					}
 				}
 				break;
 		}

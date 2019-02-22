@@ -1,8 +1,6 @@
 package edu.vcu.cyber.dashboard.data;
 
-import edu.vcu.cyber.dashboard.av.AttackVector;
-import edu.vcu.cyber.dashboard.av.AttackVectors;
-import edu.vcu.cyber.dashboard.util.Config;
+import edu.vcu.cyber.dashboard.Config;
 import org.graphstream.graph.Node;
 
 public enum AttackType
@@ -49,9 +47,9 @@ public enum AttackType
 		switch (this)
 		{
 			case CAPEC:
-				return Config.showCAPECNodes;
+				return edu.vcu.cyber.dashboard.Config.showCAPECNodes;
 			case CWE:
-				return Config.showCWENodes;
+				return edu.vcu.cyber.dashboard.Config.showCWENodes;
 			case CVE:
 				return Config.showCVENodes;
 			default:

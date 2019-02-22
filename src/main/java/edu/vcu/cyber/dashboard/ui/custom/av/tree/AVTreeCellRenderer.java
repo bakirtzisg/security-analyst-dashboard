@@ -1,11 +1,14 @@
 package edu.vcu.cyber.dashboard.ui.custom.av.tree;
 
 import edu.vcu.cyber.dashboard.av.AttackVector;
+import edu.vcu.cyber.dashboard.av.VisHandler;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
+import java.util.function.Predicate;
 
 import static edu.vcu.cyber.dashboard.ui.custom.av.list.AVListPanel.*;
 
@@ -40,6 +43,10 @@ public class AVTreeCellRenderer extends DefaultTreeCellRenderer
 //		return c;
 //	}
 
+	private static final Color FilteredColor = new Color(100, 100, 100);
+	private static final Border BucketBorder = new LineBorder(Color.darkGray, 1);
+	private static final Border NoBucketBorder = new LineBorder(Color.lightGray, 1);
+
 	@Override
 	public Component getTreeCellRendererComponent(JTree tree, Object val, boolean selected, boolean expanded, boolean leaf, int row, boolean focus)
 	{
@@ -48,14 +55,20 @@ public class AVTreeCellRenderer extends DefaultTreeCellRenderer
 		{
 			setOpaque(true);
 			AttackVector av = ((AVTreeNode) val).av;
+
+			Predicate<AttackVector> filter = VisHandler.treeVis().getFilter();
+			boolean filtered = filter == null || filter.test(av);
+
+
 			if (av.inBucket)
 			{
-				setBorder(new LineBorder(Color.darkGray, 2));
+				setBorder(BucketBorder);
 			}
 			else
 			{
-				setBorder(new LineBorder(Color.lightGray));
+				setBorder(NoBucketBorder);
 			}
+			setForeground(av.deleted ? Color.RED : filtered ? Color.BLACK : FilteredColor);
 
 			switch (((AVTreeNode) val).av.type)
 			{

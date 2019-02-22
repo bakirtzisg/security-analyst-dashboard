@@ -1,7 +1,7 @@
 package edu.vcu.cyber.dashboard.av;
 
+import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.data.AttackType;
-import edu.vcu.cyber.dashboard.util.Config;
 import edu.vcu.cyber.dashboard.util.Point2D;
 import org.graphstream.graph.Node;
 
@@ -172,7 +172,7 @@ public class AttackVector
 	 */
 	public boolean canShow()
 	{
-		return (forceShow || inBucket) || ((!deleted || Config.showDeletedNodes) && (!hidden || Config.showHiddenNodes) && type.canShow());
+		return (forceShow || inBucket) || ((!deleted || edu.vcu.cyber.dashboard.Config.showDeletedNodes) && (!hidden || edu.vcu.cyber.dashboard.Config.showHiddenNodes) && type.canShow());
 	}
 
 	/**

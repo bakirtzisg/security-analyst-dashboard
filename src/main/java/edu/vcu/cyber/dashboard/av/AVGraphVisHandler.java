@@ -1,9 +1,9 @@
 package edu.vcu.cyber.dashboard.av;
 
+import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.data.GraphData;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.util.Attributes;
-import edu.vcu.cyber.dashboard.util.Config;
 import edu.vcu.cyber.dashboard.util.NodeUtil;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
@@ -54,15 +54,15 @@ public class AVGraphVisHandler extends AttackVectorVisualizer
 
 			av.size = av.relations.size();
 
-			double size = av.size * Config.AV_NODE_SCALE;
+			double size = av.size * edu.vcu.cyber.dashboard.Config.AV_NODE_SCALE;
 
-			double nodeSize = Math.sqrt(size) + Config.AV_NODE_MIN_SIZE;
+			double nodeSize = Math.sqrt(size) + edu.vcu.cyber.dashboard.Config.AV_NODE_MIN_SIZE;
 			double layoutWeight = 2.0D / ((Math.sqrt(size) + 1) + 0.015);
 
 			if (av.size > Config.AV_LAYOUT_MIN_SIZE)
 				node.setAttribute(Attributes.LAYOUT_WEIGHT, layoutWeight);
 			else
-				node.setAttribute(Attributes.LAYOUT_WEIGHT, Config.AV_LAYOUT_WEIGHT_DEF);
+				node.setAttribute(Attributes.LAYOUT_WEIGHT, edu.vcu.cyber.dashboard.Config.AV_LAYOUT_WEIGHT_DEF);
 
 			node.setAttribute(Attributes.UI_SIZE, nodeSize);
 

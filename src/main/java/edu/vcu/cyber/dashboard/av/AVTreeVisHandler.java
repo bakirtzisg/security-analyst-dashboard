@@ -80,8 +80,4 @@ public class AVTreeVisHandler extends AttackVectorVisualizer
 
 	}
 
-	public Predicate<AttackVector> getFilter()
-	{
-		return filter;
-	}
 }

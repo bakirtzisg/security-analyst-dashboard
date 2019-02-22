@@ -1,5 +1,6 @@
 package edu.vcu.cyber.dashboard.ui;
 
+import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.av.*;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.UpdateQuery;
@@ -7,13 +8,10 @@ import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.graph.interpreters.AVGraphInterpreter;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.ui.custom.DockableTabs;
-import edu.vcu.cyber.dashboard.ui.custom.QuickFrame;
-import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTree;
 import edu.vcu.cyber.dashboard.ui.graphpanel.AVGraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.GraphPanel;
 import edu.vcu.cyber.dashboard.ui.graphpanel.EditableGraphPanel;
 import edu.vcu.cyber.dashboard.util.BucketData;
-import edu.vcu.cyber.dashboard.util.Config;
 import edu.vcu.cyber.dashboard.util.GraphExporter;
 
 import javax.swing.*;
@@ -146,6 +144,7 @@ public class DashboardUI extends JFrame implements ActionListener
 		JMenu fileMenu = new JMenu("File");
 //		fileMenu.add("Open").addActionListener(this);
 		fileMenu.add("Load").addActionListener(this);
+		fileMenu.add("Load Last").addActionListener(this);
 		fileMenu.add("Save").addActionListener(this);
 
 		JMenu exportMenu = (JMenu) fileMenu.add(new JMenu("Export"));
@@ -251,17 +250,17 @@ public class DashboardUI extends JFrame implements ActionListener
 				break;
 
 			case "Show Deleted":
-				Config.showDeletedNodes = !Config.showDeletedNodes;
+				edu.vcu.cyber.dashboard.Config.showDeletedNodes = !edu.vcu.cyber.dashboard.Config.showDeletedNodes;
 				AttackVectors.update();
 				break;
 
 			case "Show Hidden":
-				Config.showDeletedNodes = !Config.showDeletedNodes;
+				edu.vcu.cyber.dashboard.Config.showDeletedNodes = !edu.vcu.cyber.dashboard.Config.showDeletedNodes;
 				AttackVectors.update();
 				break;
 
 			case "Show CVEs":
-				Config.showCVENodes = !Config.showCVENodes;
+				edu.vcu.cyber.dashboard.Config.showCVENodes = !Config.showCVENodes;
 
 				AttackVectors.update();
 				break;
@@ -277,6 +276,14 @@ public class DashboardUI extends JFrame implements ActionListener
 //				ApplicationSettings.loadAll(this);
 				askLoadTopology();
 
+			}
+			break;
+			case "Load Last":
+			{
+//				ApplicationSettings.loadAll(this);
+
+				if (Config.LAST_TOPOLOGY_FILE != null)
+					AppSession.getInstance().load(Config.LAST_TOPOLOGY_FILE, Config.LAST_SPEC_FILE, Config.LAST_DO_ANALYSIS);
 			}
 			break;
 
