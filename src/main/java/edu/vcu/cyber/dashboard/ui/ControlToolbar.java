@@ -1,12 +1,10 @@
 package edu.vcu.cyber.dashboard.ui;
 
-import edu.vcu.cyber.dashboard.Application;
 import edu.vcu.cyber.dashboard.av.AttackVector;
 import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.project.AppSession;
 import edu.vcu.cyber.dashboard.project.GraphAnalysis;
-import edu.vcu.cyber.dashboard.util.Config;
 import edu.vcu.cyber.dashboard.util.Utils;
 
 import javax.imageio.ImageIO;

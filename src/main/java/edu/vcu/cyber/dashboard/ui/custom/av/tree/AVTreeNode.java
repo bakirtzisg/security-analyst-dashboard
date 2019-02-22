@@ -1,5 +1,6 @@
 package edu.vcu.cyber.dashboard.ui.custom.av.tree;
 
+import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.av.AttackVector;
 import edu.vcu.cyber.dashboard.av.Relation;
 import edu.vcu.cyber.dashboard.av.VisHandler;
@@ -122,19 +123,19 @@ public class AVTreeNode extends DefaultMutableTreeNode
 
 				List<AttackVector> relations = new ArrayList<>();
 
-				Predicate<AttackVector> filter = VisHandler.treeVis().getFilter();
+//				Predicate<AttackVector> filter = VisHandler.treeVis().getFilter();
 
 				int i = 0;
 				for (Relation rel : av.relations)
 				{
-					if(!rel.isParent(av))
+					if (!rel.isParent(av))
 					{
 						AttackVector other = rel.getOther(av);
-						if (filter != null && !filter.test(other))
-						{
-							continue;
-						}
-						if (!isInPath(other) && !other.deleted)
+//						if (filter != null && !filter.test(other))
+//						{
+//							continue;
+//						}
+						if (!isInPath(other) && (!other.deleted || Config.showDeletedNodes))
 						{
 							relations.add(other);
 						}

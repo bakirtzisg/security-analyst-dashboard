@@ -1,5 +1,6 @@
 package edu.vcu.cyber.dashboard.ui.graphpanel;
 
+import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.actions.ActionManager;
 import edu.vcu.cyber.dashboard.actions.ActionNodeDelete;
 import edu.vcu.cyber.dashboard.av.AttackVector;
@@ -7,13 +8,11 @@ import edu.vcu.cyber.dashboard.av.AttackVectors;
 import edu.vcu.cyber.dashboard.data.*;
 import edu.vcu.cyber.dashboard.graph.listeners.AVActionListener;
 import edu.vcu.cyber.dashboard.ui.FilterToolbar;
-import edu.vcu.cyber.dashboard.util.Config;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class AVGraphPanel extends GraphPanel implements ActionListener
 {
@@ -47,7 +46,7 @@ public class AVGraphPanel extends GraphPanel implements ActionListener
 		switch (e.getActionCommand())
 		{
 			case CMD_SHOW_CVE:
-				Config.showCVENodes = !Config.showCVENodes;
+				edu.vcu.cyber.dashboard.Config.showCVENodes = !Config.showCVENodes;
 				
 				NodeData node = graph.getLastSelectedNode();
 				if (node != null)
