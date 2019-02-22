@@ -44,8 +44,8 @@ public class EditableGraphPanel extends GraphPanel implements ActionListener
 					cb.setSelected(Config.showAttackSurfaces);
 				}
 			});
-			popupMenu.add("Show Attack Vectors").addActionListener(this);
-			popupMenu.add("Clear Attack Vectors").addActionListener(this);
+			popupMenu.add(CMD_SHOW_ATTACK_VECTORS).addActionListener(this);
+			popupMenu.add(CMD_CLEAR_ATTACK_VECTORS).addActionListener(this);
 			popupMenu.add(CMD_ADD_NODE).addActionListener(this);
 		}
 		setComponentPopupMenu(popupMenu);
@@ -66,7 +66,7 @@ public class EditableGraphPanel extends GraphPanel implements ActionListener
 			case "Freeze Autolayout":
 				viewer.disableAutoLayout();
 				break;
-			case "Show Attack Vectors":
+			case CMD_SHOW_ATTACK_VECTORS:
 				AttackVectors.showInGraph(av -> av.inBucket);
 
 				AttackVectors.forEach(av ->
@@ -80,7 +80,7 @@ public class EditableGraphPanel extends GraphPanel implements ActionListener
 
 				break;
 
-			case "Clear Attack Vectors":
+			case CMD_CLEAR_ATTACK_VECTORS:
 				graph.getGraph().getNodeSet().removeIf(_n -> _n.hasAttribute(Attributes.ATTACK_VECTOR));
 				break;
 
