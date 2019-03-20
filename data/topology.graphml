@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key attr.name="Communication" attr.type="string" for="edge" id="d6"/>
-<key attr.name="Hardware" attr.type="string" for="node" id="d5"/>
-<key attr.name="Entry Points" attr.type="string" for="node" id="d4"/>
-<key attr.name="Software" attr.type="string" for="node" id="d3"/>
-<key attr.name="Firmware" attr.type="string" for="node" id="d2"/>
-<key attr.name="Operating System" attr.type="string" for="node" id="d1"/>
-<key attr.name="Device" attr.type="string" for="node" id="d0"/>
+<key attr.name="Hardware" attr.type="string" for="node" id="Hardware"/>
+<key attr.name="Entry Points" attr.type="string" for="node" id="Entry Points"/>
+<key attr.name="Software" attr.type="string" for="node" id="Software"/>
+<key attr.name="Firmware" attr.type="string" for="node" id="Firmware"/>
+<key attr.name="Operating System" attr.type="string" for="node" id="Operating System"/>
+<key attr.name="Device" attr.type="string" for="node" id="Device"/>
 <graph edgedefault="directed"><node id="Primary Application Processor">
   <data key="Device">ARM STM32F4</data>
   <data key="Operating System">ChibiOS RTOS</data>

@@ -1,5 +1,6 @@
 package edu.vcu.cyber.dashboard.data;
 
+import edu.vcu.cyber.dashboard.Config;
 import edu.vcu.cyber.dashboard.cybok.CybokQuery;
 import edu.vcu.cyber.dashboard.cybok.CybokQueryHandler;
 import edu.vcu.cyber.dashboard.cybok.queries.AttackChainSearchQuery;
@@ -34,7 +35,7 @@ public class SystemAnalysis
 			{
 				searchingQueue.add(target);
 
-				String inputFile = new File("./data/topology.graphml").getAbsolutePath();
+				String inputFile = Config.LAST_TOPOLOGY_FILE.getAbsolutePath();
 				AttackChainSearchQuery query = new AttackChainSearchQuery(inputFile, target, res ->
 				{
 					List<String[]> attackChains = res.getAttackChains();

@@ -161,30 +161,32 @@ public class IBDActionListener extends GraphActionListener
 		NodeUtil.removeCssClass(e, Attributes.CSS_ATTACK_PATH);
 	}
 
-	private static void markPaths(GraphData graphData, Node node)
+	private static void markPaths(GraphData graphData, final Node node)
 	{
-		node = graphData.getGraph().getNode(node.getId());
+		Node n = graphData.getGraph().getNode(node.getId());
 
 		resetGraphAttributes(graphData.getGraph());
 
 		if (graphData.getGraphType() == GraphType.SPECIFICATIONS)
 		{
 
-			markPaths(node, true);
-			markPaths(node, false);
+			markPaths(n, true);
+			markPaths(n, false);
 		}
-		else if (!node.hasAttribute(Attributes.ATTACK_VECTOR))
+		else if (!n.hasAttribute(Attributes.ATTACK_VECTOR))
 		{
-
-			SystemAnalysis.getAttackChains(node.getId(), chains ->
+			SwingUtilities.invokeLater(() ->
 			{
-				if (chains != null)
+				SystemAnalysis.getAttackChains(node.getId(), chains ->
 				{
-					for (String[] path : chains)
+					if (chains != null)
 					{
-						markPath(graphData.getGraph(), path);
+						for (String[] path : chains)
+						{
+							markPath(graphData.getGraph(), path);
+						}
 					}
-				}
+				});
 			});
 
 //			List<String[]> paths = SystemAnalysis.attackPaths.get(node.getId());
@@ -200,11 +202,11 @@ public class IBDActionListener extends GraphActionListener
 
 	private static void markPath(Graph graph, String[] path)
 	{
-//		for (int i = 0; i < path.length; i++)
-//		{
-//			System.out.printf("%s, ", path[i]);
-//		}
-//		System.out.println("\n");
+		for (int i = 0; i < path.length; i++)
+		{
+			System.out.printf("%s, ", path[i]);
+		}
+		System.out.println("\n");
 
 		for (int i = 0; i < path.length; i++)
 		{
