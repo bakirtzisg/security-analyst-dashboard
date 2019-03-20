@@ -355,7 +355,7 @@ public class AVTree extends JPanel implements TreeWillExpandListener, MouseListe
 					AVTreeNode node = resolveNode(path);
 					if (node != null)
 					{
-						Enumeration<DefaultMutableTreeNode> enumer = node.children();
+						Enumeration enumer = node.children();
 						while (enumer.hasMoreElements())
 						{
 							AVTreeNode n = resolveNode(enumer.nextElement());
