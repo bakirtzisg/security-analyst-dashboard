@@ -82,7 +82,7 @@ public class NodeEditorDialog extends JDialog implements ActionListener
 			{
 				if (!key.startsWith("ui."))
 				{
-					attrModel.addRow(new String[]{key, val.toString()});
+					attrModel.addRow(new String[]{key.replace("attr.", ""), val.toString()});
 				}
 			});
 
@@ -297,7 +297,8 @@ public class NodeEditorDialog extends JDialog implements ActionListener
 				{
 					graph.getGraph().addEdge(node.getId() + "-" + n, node.getId(), n, true);
 				}
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 
 			}

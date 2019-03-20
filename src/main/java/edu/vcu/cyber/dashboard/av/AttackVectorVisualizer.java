@@ -160,7 +160,7 @@ public abstract class AttackVectorVisualizer
 		{
 			AttackVectors.getAllAttackVectors().forEach(av ->
 			{
-				if (!checkIfShown(av) && av.canShow())
+				if (av.canShow())
 				{
 					showAttack(av);
 				}
