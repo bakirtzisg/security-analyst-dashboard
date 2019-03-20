@@ -86,6 +86,8 @@ public class GraphData implements Sink
 	{
 		nodes.clear();
 		selectedNodes.clear();
+		if (graph != null)
+			graph.clear();
 	}
 
 	public void setSelectedNodes(List<Node> nodes)

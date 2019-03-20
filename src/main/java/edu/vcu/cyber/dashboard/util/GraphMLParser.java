@@ -26,6 +26,8 @@ public class GraphMLParser
 		try
 		{
 
+			graphData.clear();
+
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(file);
