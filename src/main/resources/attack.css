@@ -5,7 +5,7 @@ graph {
 node {
     size-mode: dyn-size;
     text-visibility-mode: under-zoom;
-    text-visibility: 0;
+    text-visibility: 0.15;
     text-alignment: above;
 }
 
