@@ -5,6 +5,7 @@ import org.graphstream.graph.Graph;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.naming.directory.AttributeInUseException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -37,24 +38,45 @@ public class GraphExporter
 				root.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
 				root.setAttribute("xsi:schemaLocation", "http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd");
 
+
+				if (graphData.getKeys() != null)
+				{
+					graphData.getKeys().forEach(key ->
+					{
+						Element n = doc.createElement("key");
+						n.setAttribute("attr.name", key.attrName);
+						n.setAttribute("attr.type", key.attrType);
+						n.setAttribute("for", key.forElement);
+						n.setAttribute("id", key.id);
+						root.appendChild(n);
+					});
+				}
+
 				Element graphNode = doc.createElement("graph");
 				graphNode.setAttribute("edgedefault", graphData.isDirected() ? "directed" : "undirected");
 
 				graphData.getNodes().forEach(node ->
 				{
-					Element ele = doc.createElement("node");
-					ele.setAttribute("id", node.getId());
-
-					node.getAttributes().forEach((key, val) ->
+					if (!node.hasAttribute(Attributes.ATTACK_SURFACE))
 					{
-						Element data = doc.createElement("data");
-						data.setAttribute("key", key);
-						data.setTextContent(val.toString());
+						Element ele = doc.createElement("node");
+						ele.setAttribute("id", node.getId());
 
-						ele.appendChild(data);
-					});
+						node.getAttributes().forEach((key, val) ->
+						{
+							if (key.startsWith("attr."))
+							{
+								key = key.substring(5);
+								Element data = doc.createElement("data");
+								data.setAttribute("key", key);
+								data.setTextContent(val.toString());
 
-					graphNode.appendChild(ele);
+								ele.appendChild(data);
+							}
+						});
+
+						graphNode.appendChild(ele);
+					}
 				});
 
 				graph.getEdgeSet().forEach(edge ->
@@ -80,7 +102,8 @@ public class GraphExporter
 
 				System.out.println("Exported to " + file.getAbsolutePath());
 			}
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			ex.printStackTrace();
 		}
@@ -105,7 +128,8 @@ public class GraphExporter
 			exportGraph(graphData, file);
 
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

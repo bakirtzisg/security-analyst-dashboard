@@ -30,11 +30,24 @@ public class GraphHandler
 		graphs.put(type, graphData);
 	}
 
+	public GraphData createIfNotExist(GraphType type)
+	{
+		return graphs.computeIfAbsent(type, GraphData::new);
+	}
+
 	public GraphData getGraph(GraphType type)
 	{
 		return graphs.get(type);
 	}
 
+	public void clear()
+	{
+		graphs.forEach((k, v) ->
+		{
+			v.getGraph().clear();
+			v.clear();
+		});
+	}
 
 	private boolean isAttackSurfaceVisible;
 

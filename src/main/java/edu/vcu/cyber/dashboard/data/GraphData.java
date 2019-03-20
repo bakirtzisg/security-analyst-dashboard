@@ -8,11 +8,27 @@ import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.AdjacencyListGraph;
 import org.graphstream.stream.Sink;
 
+import javax.swing.*;
 import java.util.*;
 import java.util.function.Predicate;
 
 public class GraphData implements Sink
 {
+
+
+	public static class GraphKey
+	{
+
+		public String attrName;
+		public String attrType;
+		public String forElement;
+		public String id;
+
+		public GraphKey()
+		{
+
+		}
+	}
 
 	private GraphType graphType;
 	private Map<String, NodeData> nodes;
@@ -21,8 +37,10 @@ public class GraphData implements Sink
 	private GraphInterpreter interpreter;
 
 	private List<NodeData> selectedNodes;
+	private List<GraphKey> keys;
 
 	private boolean frozen;
+	private boolean refreshing;
 
 	/**
 	 * @param graphType determines where the graph is used
@@ -34,6 +52,24 @@ public class GraphData implements Sink
 		this.selectedNodes = new ArrayList<>();
 
 		interpreter = graphType.getInterpreter();
+	}
+
+	public void addKey(GraphKey key)
+	{
+		if (keys == null)
+			keys = new ArrayList<>();
+		keys.add(key);
+	}
+
+	public List<GraphKey> getKeys()
+	{
+		return keys;
+	}
+
+	public void clear()
+	{
+		nodes.clear();
+		selectedNodes.clear();
 	}
 
 	public void setSelectedNodes(List<Node> nodes)
@@ -91,9 +127,9 @@ public class GraphData implements Sink
 	/**
 	 * @return the graph object
 	 */
-	public Graph getGraph()
+	public synchronized Graph getGraph()
 	{
-		if (graph == null)
+		if (graph == null || refreshing)
 			generateGraph();
 		return graph;
 	}
@@ -136,6 +172,14 @@ public class GraphData implements Sink
 	}
 
 	/**
+	 * creates and returns a node with the given id
+	 */
+	public NodeData addNode(NodeData node)
+	{
+		return nodes.computeIfAbsent(node.getId(), n -> node);
+	}
+
+	/**
 	 * Creates an edge between two nodes
 	 */
 	public void addEdge(String source, String target)
@@ -145,28 +189,51 @@ public class GraphData implements Sink
 		if (sourceNode != null && targetNode != null)
 		{
 			targetNode.addSource(sourceNode);
+			sourceNode.addTarget(targetNode);
 		}
+	}
+
+	public void refreshGraph()
+	{
+		refreshing = true;
+		SwingUtilities.invokeLater(this::getGraph);
+	}
+
+	public void generateGraph()
+	{
+		generateGraph(false);
 	}
 
 	/**
 	 * Uses the node data provided to generate a full graph
 	 */
-	public void generateGraph()
+	public void generateGraph(boolean clear)
 	{
-		graph = new AdjacencyListGraph(graphType.name());
+		if (clear && graph != null)
+		{
+			clear();
+		}
+		if (graph == null)
+		{
+			graph = new AdjacencyListGraph(graphType.name());
+		}
+		graph.removeSink(this);
+
 		if (interpreter != null)
 		{
 			interpreter.init(graph);
 		}
 
-
 		graph.setAttribute(Attributes.GRAPH_ANTIALIAS, true);
 		graph.setAttribute(Attributes.GRAPH_STYLESHEET, "url('./src/main/resources/" + graphType.stylesheet + "')");
+
 
 		nodes.forEach((key, val) -> val.setNode(graph.addNode(key)));
 		nodes.forEach((key, val) -> val.sources.forEach(node -> graph.addEdge(key + "-" + node.id, val.id, node.id, isDirectedEdges)));
 
 		graph.addSink(this);
+
+		refreshing = false;
 	}
 
 
@@ -231,7 +298,7 @@ public class GraphData implements Sink
 	{
 		selectedNodes.forEach(nd ->
 		{
-			if (nd.getNode() != null)
+			if (nd != null && nd.getNode() != null)
 				nd.getNode().removeAttribute(Attributes.NODE_SELECTED);
 		});
 		this.selectedNodes.clear();

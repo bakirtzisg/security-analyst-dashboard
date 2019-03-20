@@ -13,10 +13,8 @@ import edu.vcu.cyber.dashboard.util.Utils;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
 
 public class EditableGraphPanel extends GraphPanel implements ActionListener
 {

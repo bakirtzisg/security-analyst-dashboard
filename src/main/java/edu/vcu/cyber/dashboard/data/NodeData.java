@@ -13,6 +13,7 @@ public class NodeData
 	protected String id;
 	protected Map<String, Object> attributes;
 	protected List<NodeData> sources;
+	protected List<NodeData> targets;
 
 	protected boolean hidden;
 
@@ -23,6 +24,7 @@ public class NodeData
 		this.id = id;
 		this.attributes = new HashMap<>();
 		this.sources = new ArrayList<>();
+		this.targets = new ArrayList<>();
 	}
 
 	public void addSource(NodeData src)
@@ -30,6 +32,14 @@ public class NodeData
 		if (!sources.contains(src))
 		{
 			sources.add(src);
+		}
+	}
+
+	public void addTarget(NodeData src)
+	{
+		if (!targets.contains(src))
+		{
+			targets.add(src);
 		}
 	}
 
@@ -46,6 +56,11 @@ public class NodeData
 	public List<NodeData> getSources()
 	{
 		return sources;
+	}
+
+	public List<NodeData> getTargets()
+	{
+		return targets;
 	}
 
 

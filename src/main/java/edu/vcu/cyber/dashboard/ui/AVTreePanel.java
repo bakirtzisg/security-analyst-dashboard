@@ -1,6 +1,5 @@
 package edu.vcu.cyber.dashboard.ui;
 
-import com.alee.extended.layout.WrapFlowLayout;
 import edu.vcu.cyber.dashboard.av.VisHandler;
 import edu.vcu.cyber.dashboard.ui.custom.av.tree.AVTree;
 

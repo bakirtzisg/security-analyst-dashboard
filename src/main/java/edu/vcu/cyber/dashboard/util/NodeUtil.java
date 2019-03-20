@@ -4,6 +4,7 @@ import edu.vcu.cyber.dashboard.data.AttackType;
 import edu.vcu.cyber.dashboard.data.GraphData;
 import edu.vcu.cyber.dashboard.data.GraphType;
 import edu.vcu.cyber.dashboard.data.NodeData;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Element;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -16,6 +17,12 @@ import java.util.Map;
 public class NodeUtil
 {
 
+	/**
+	 * Prints all values of an attribute for a graph element
+	 *
+	 * @param e   - the graph element
+	 * @param key - the key of the desired attribute
+	 */
 	public static void printAttribute(Element e, String key)
 	{
 		System.out.print(e.getId() + " [" + key + " = ");
@@ -42,12 +49,18 @@ public class NodeUtil
 		System.out.print("]\n");
 	}
 
+	/**
+	 * Purges all the attributes of a specified key from a graph
+	 */
 	public static void clearAllAttributesOf(Graph graph, String key)
 	{
 		graph.getNodeSet().forEach(n -> n.removeAttribute(key));
 		graph.getEdgeSet().forEach(e -> e.removeAttribute(key));
 	}
 
+	/**
+	 * Adds a specified css style to a graph element
+	 */
 	public static void addCssClass(Element element, String cls)
 	{
 		if (!element.hasAttribute("ui.cls." + cls))
@@ -57,6 +70,9 @@ public class NodeUtil
 		}
 	}
 
+	/**
+	 * removes a specified css style to a graph element
+	 */
 	public static void removeCssClass(Element element, String cls)
 	{
 		if (element.hasAttribute("ui.cls." + cls))
@@ -66,6 +82,11 @@ public class NodeUtil
 		}
 	}
 
+	/**
+	 * Adds a single value to an attribute
+	 * - If the attribute key already exists, the value will be appended to the existing value
+	 * - If the attribute key doesn't exist, the value will be added as value
+	 */
 	public static void addAttributeValue(Element element, String key, Object cls)
 	{
 		if (element.hasAttribute(key))
@@ -106,6 +127,11 @@ public class NodeUtil
 
 	}
 
+	/**
+	 * Removes a single value to an attribute
+	 * - If multiple values for an attribute key exists, just the specified value will be removed
+	 * - If only the specified value exists, the entire attribute will be removed
+	 */
 	public static void removeAttributeValue(Element element, String key, Object cls)
 	{
 		if (element.hasAttribute(key))
@@ -143,39 +169,12 @@ public class NodeUtil
 					element.setAttribute(key, newArr);
 				}
 			}
-
 		}
 	}
 
-	public static String generateHtmlString(NodeData node)
-	{
-
-		StringBuilder builder = new StringBuilder();
-
-		builder.append("<html>");
-
-		builder.append("<h3>").append(node.getId()).append("</h3>");
-
-		Map<String, Object> attributes = node.getAttributes();
-
-		for (Map.Entry<String, Object> entry : attributes.entrySet())
-		{
-
-			builder.append("<p><b>")
-					.append(entry.getKey())
-					.append(": </b>")
-					.append(entry.getValue())
-					.append("</p>");
-
-		}
-
-
-		builder.append("</html>");
-
-		return builder.toString();
-
-	}
-
+	/**
+	 * Creates a list of text containing the node id and all attributes
+	 */
 	public static List<String> getInfoTextArray(NodeData node)
 	{
 		List<String> info = new ArrayList<>();
@@ -211,6 +210,9 @@ public class NodeUtil
 
 	}
 
+	/**
+	 * collapses or expands a node base on higherarchy
+	 */
 	public static void toggleConsumed(GraphData graphData, String nodeId)
 	{
 		NodeData nodeData = graphData.getNode(nodeId);
@@ -237,4 +239,21 @@ public class NodeUtil
 
 	}
 
+	public static Edge addEdge(Graph graph, String source, String target)
+	{
+		return addEdge(graph, source, target, false);
+	}
+
+	public static Edge addEdge(Graph graph, String source, String target, boolean directed)
+	{
+
+		String edgeId = source + "-" + target;
+		Edge edge = graph.getEdge(edgeId);
+		if (edge == null)
+		{
+			return graph.addEdge(edgeId, source, target, directed);
+		}
+
+		return edge;
+	}
 }
