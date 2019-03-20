@@ -56,7 +56,7 @@ public class NodeEditorDialog extends JDialog implements ActionListener
 		});
 	}
 
-	public void setNode(NodeData node)
+	public void setNode(NodeData node, GraphData graphData)
 	{
 		this.node = node;
 		if (node != null)
@@ -78,13 +78,20 @@ public class NodeEditorDialog extends JDialog implements ActionListener
 
 			DefaultTableModel attrModel = new DefaultTableModel();
 			attrModel.setColumnIdentifiers(attrColumnNames);
-			node.getAttributes().forEach((key, val) ->
+//			node.getAttributes().forEach((key, val) ->
+//			{
+//				if (!key.startsWith("ui."))
+//				{
+//					attrModel.addRow(new String[]{key.replace("attr.", ""), val.toString()});
+//				}
+//			});
+
+			graphData.getKeys().forEach(key ->
 			{
-				if (!key.startsWith("ui."))
-				{
-					attrModel.addRow(new String[]{key.replace("attr.", ""), val.toString()});
-				}
+				String val = node.getAttributes().getOrDefault("attr." + key.id, "").toString();
+				attrModel.addRow(new String[]{key.attrName, val});
 			});
+
 
 			attrModel.addTableModelListener(e ->
 			{
@@ -114,6 +121,7 @@ public class NodeEditorDialog extends JDialog implements ActionListener
 			});
 
 			attrModel.addRow(new String[]{"", ""});
+
 
 			attributesTable.setModel(attrModel);
 
@@ -272,6 +280,11 @@ public class NodeEditorDialog extends JDialog implements ActionListener
 				{
 					value = "true";
 				}
+
+				key = graph.getKeyId(key);
+
+				if (!key.startsWith("attr."))
+					key = "attr." + key;
 				node.setAttribute(key, value);
 			}
 		}
@@ -310,7 +323,7 @@ public class NodeEditorDialog extends JDialog implements ActionListener
 		dispose();
 	}
 
-	public static void edit(NodeData node)
+	public static void edit(NodeData node, GraphData graphData)
 	{
 		if (node != null)
 		{
@@ -322,7 +335,7 @@ public class NodeEditorDialog extends JDialog implements ActionListener
 			else
 			{
 				instance = new NodeEditorDialog();
-				instance.setNode(node);
+				instance.setNode(node, graphData);
 			}
 		}
 	}

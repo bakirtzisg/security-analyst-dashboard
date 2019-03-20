@@ -178,14 +178,17 @@ public class NodeUtil
 	public static List<String> getInfoTextArray(NodeData node)
 	{
 		List<String> info = new ArrayList<>();
-		info.add(node.getId());
+		if (node.hasAttribute("ui.label"))
+			info.add(node.getAttribute("ui.label"));
+		else
+			info.add(node.getId());
 
 		Map<String, Object> attributes = node.getAttributes();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet())
 		{
 
-			if (!entry.getValue().equals(""))
+			if (!entry.getValue().equals("") && !entry.getValue().toString().startsWith("ui."))
 			{
 
 				String key = entry.getKey().replace("attr.", "");

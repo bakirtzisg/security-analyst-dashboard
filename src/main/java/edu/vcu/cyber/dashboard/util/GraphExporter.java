@@ -60,7 +60,10 @@ public class GraphExporter
 					if (!node.hasAttribute(Attributes.ATTACK_SURFACE))
 					{
 						Element ele = doc.createElement("node");
-						ele.setAttribute("id", node.getId());
+						if (node.hasAttribute("ui.label"))
+							ele.setAttribute("id", node.getAttribute("ui.label"));
+						else
+							ele.setAttribute("id", node.getId());
 
 						node.getAttributes().forEach((key, val) ->
 						{

@@ -61,6 +61,22 @@ public class GraphData implements Sink
 		keys.add(key);
 	}
 
+	public String getKeyName(String id)
+	{
+		for (GraphKey key : keys)
+			if (key.id.equals(id))
+				return key.attrName;
+		return id;
+	}
+
+	public String getKeyId(String name)
+	{
+		for (GraphKey key : keys)
+			if (key.attrName.equals(name))
+				return key.id;
+		return name;
+	}
+
 	public List<GraphKey> getKeys()
 	{
 		return keys;

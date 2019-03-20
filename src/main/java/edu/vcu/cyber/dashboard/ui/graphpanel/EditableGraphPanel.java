@@ -87,16 +87,19 @@ public class EditableGraphPanel extends GraphPanel implements ActionListener
 				NodeData node = graph.getLastSelectedNode();
 				if (node != null)
 				{
-					NodeEditorDialog.edit(node);
+					NodeEditorDialog.edit(node, graph);
 				}
 
 				break;
 			case CMD_ADD_NODE:
 			{
 				String id = JOptionPane.showInputDialog("Node Name: ");
-				while (graph.getGraph().getNode(id) != null)
-					id += "_";
-				graph.getGraph().addNode(id);
+				if (id != null && id.length() > 0)
+				{
+					while (graph.getGraph().getNode(id) != null)
+						id += "_";
+					graph.getGraph().addNode(id);
+				}
 
 			}
 			break;
