@@ -202,11 +202,11 @@ public class IBDActionListener extends GraphActionListener
 
 	private static void markPath(Graph graph, String[] path)
 	{
-		for (int i = 0; i < path.length; i++)
-		{
-			System.out.printf("%s, ", path[i]);
-		}
-		System.out.println("\n");
+//		for (int i = 0; i < path.length; i++)
+//		{
+//			System.out.printf("%s, ", path[i]);
+//		}
+//		System.out.println("\n");
 
 		for (int i = 0; i < path.length; i++)
 		{

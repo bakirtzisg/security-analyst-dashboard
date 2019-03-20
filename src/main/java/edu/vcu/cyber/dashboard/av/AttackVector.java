@@ -172,7 +172,7 @@ public class AttackVector
 	 */
 	public boolean canShow()
 	{
-		return (forceShow || inBucket) || ((!deleted || edu.vcu.cyber.dashboard.Config.showDeletedNodes) && (!hidden || edu.vcu.cyber.dashboard.Config.showHiddenNodes) && type.canShow());
+		return (forceShow || inBucket) || ((!deleted || edu.vcu.cyber.dashboard.Config.showDeletedNodes) && type.canShow());
 	}
 
 	/**

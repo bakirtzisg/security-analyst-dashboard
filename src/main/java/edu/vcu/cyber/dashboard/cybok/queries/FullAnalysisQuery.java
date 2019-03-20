@@ -113,6 +113,9 @@ public class FullAnalysisQuery extends CybokQuery<FullAnalysisQuery> implements 
 		// load attack vector information
 		AttackVectors.clearAll();
 		CSVParser.readCSV(Config.FILE_AV_GRAPH);
+		CSVParser.readCSV(Config.FILE_ATTACK_SURFACE_EV);
+		AttackVectors.resolveAttacks();
+		AttackVectors.printStats();
 //		AttackVectors.getAllAttackVectors().forEach(av -> av.addToGraph(AppSession.getInstance().getAvGraph().getGraph()));
 		
 		// reset the visualizer to and display all nodes

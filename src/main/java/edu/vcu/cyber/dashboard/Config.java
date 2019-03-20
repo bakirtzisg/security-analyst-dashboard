@@ -21,6 +21,7 @@ public class Config
 	public static final File FILE_FULL_ANALYSIS = new File(HIDDEN_DATA, TEMP_DATA_NAME + "_full_analysis.graphml");
 	public static final File FILE_SYS_TOPOLOGY = new File(HIDDEN_DATA, TEMP_DATA_NAME + "_system_topology.graphml");
 	public static final File FILE_ATTACK_SURFACE = new File(HIDDEN_DATA, TEMP_DATA_NAME + "_attack_surface_graph.graphml");
+	public static final File FILE_ATTACK_SURFACE_EV = new File(HIDDEN_DATA, TEMP_DATA_NAME + "__attack_surface_evidence.csv");
 
 
 	public static final File FILE_SETTINGS = new File(HIDDEN_DATA, "settings.xml");

@@ -106,7 +106,7 @@ public abstract class AttackVectorVisualizer
 		this.filter = filter;
 		AttackVectors.forEach(av ->
 		{
-			boolean pred = filter == null || filter.test(av);
+			boolean pred = (filter == null || filter.test(av)) && av.canShow();
 			boolean shown = isShown(av);
 			if (pred && !shown)
 				attemptAddAttack(av);
@@ -160,11 +160,19 @@ public abstract class AttackVectorVisualizer
 		{
 			AttackVectors.getAllAttackVectors().forEach(av ->
 			{
-				av.shown = isShown(av);
+				if (!checkIfShown(av) && av.canShow())
+				{
+					showAttack(av);
+				}
+				else
+				{
+					removeAttack(av);
+				}
 			});
 
 			purgeFlagged();
 		}
+
 	}
 
 	/**
