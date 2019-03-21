@@ -247,7 +247,7 @@ public class GraphData implements Sink
 
 
 		nodes.forEach((key, val) -> val.setNode(graph.addNode(key)));
-		nodes.forEach((key, val) -> val.sources.forEach(node -> graph.addEdge(key + "-" + node.id, val.id, node.id, isDirectedEdges)));
+		nodes.forEach((key, val) -> val.sources.forEach(node -> graph.addEdge(key + "-" + node.id, node.id, val.id, isDirectedEdges)));
 
 		graph.addSink(this);
 

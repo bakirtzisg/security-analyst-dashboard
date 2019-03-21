@@ -1,0 +1,24 @@
+<graphml xmlns=“http://graphml.graphdrawing.org/xmlns” xmlns:xsi=“http://www.w3.org/2001/XMLSchema-instance” xsi:schemaLocation=“http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd”>
+<graph edgedefault=“directed”>
+<node id=“Operator”></node>
+<node id=“Control Station”></node>
+<node id=“Obstacle”></node>
+<node id=“Obstacle State”></node>
+<node id=“Visual Sensors”></node>
+<node id=“Denied Area State”></node>
+<node id=“Characterization Sensors”></node>
+<node id=“Outcome Matrix”></node>
+<edge source=“Operator” target=“Control Station”></edge>
+<edge source=“Control Station” target=“Operator”></edge>
+<edge source=“Control Station” target=“Obstacle”></edge>
+<edge source=“Control Station” target=“Visual Sensors”></edge>
+<edge source=“Obstacle” target=“Obstacle State”></edge>
+<edge source=“Obstacle State” target=“Control Station”></edge>
+<edge source=“Obstacle State” target=“Outcome Matrix”></edge>
+<edge source=“Obstacle State” target=“Visual Sensors”></edge>
+<edge source=“Visual Sensors” target=“Control Station”></edge>
+<edge source=“Visual Sensors” target=“Denied Area State”></edge>
+<edge source=“Denied Area State” target=“Outcome Matrix”></edge>
+<edge source=“Denied Area State” target=“Characterization Sensors”></edge>
+<edge source=“Characterization Sensors” target=“Control Station”></edge>
+        </graph></graphml>
