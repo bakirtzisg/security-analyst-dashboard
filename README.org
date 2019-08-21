@@ -6,7 +6,7 @@
   Georgios Bakirtzis, Brandon Simon, Cody Fleming, and Carl Elks,
   "Looking for a Black Cat in a Dark Room: Security Visualization
   for Cyber-Physical System Design and Analysis," [[https://vizsec.org/vizsec2018/][IEEE VizSec 2018]]
-  [[[https://arxiv.org/abs/1808.08081][preprint]]|[[https://vimeo.com/308133381][talk]]]
+  [[[https://ieeexplore.ieee.org/document/8709187][proceedings]], [[https://arxiv.org/abs/1808.08081][preprint]], [[https://vimeo.com/308133381][talk]]]
 
 ** Getting Started
 
@@ -112,4 +112,10 @@
 
 ** Screenshot
 
-#+html: <p align="left"><img src=".github/screenshot.png" width="460" /></p>
+#+html: <p align="left"><img src=".github/screenshot.png" width="690" /></p>
+
+** Authors
+
+   Georgios Bakirtzis (bakirtzis@virginia.edu) [[http://bakirtzis.net][bakirtzis.net]]
+   Brandon Simon (simonbj@vcu.edu)
+
