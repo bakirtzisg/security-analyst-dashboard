@@ -116,6 +116,6 @@
 
 ** Authors
 
-   Georgios Bakirtzis (bakirtzis@virginia.edu) [[http://bakirtzis.net][bakirtzis.net]]
+   Georgios Bakirtzis (bakirtzis@virginia.edu) [[http://bakirtzis.net][bakirtzis.net]] \\
    Brandon Simon (simonbj@vcu.edu)
 
