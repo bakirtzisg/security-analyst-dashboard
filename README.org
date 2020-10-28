@@ -1,13 +1,17 @@
 #+html: <p align="center"><img src=".github/logo.png" width="460" /></p>
 #+html: <p align="center"><strong>Security Analyst Dashboard.</strong> A dashboard for cyber-physical system design and analysis.</p>
 
-** About the paper
+** About the papers
 
   Georgios Bakirtzis, Brandon Simon, Cody Fleming, and Carl Elks,
   "Looking for a Black Cat in a Dark Room: Security Visualization
   for Cyber-Physical System Design and Analysis," [[https://vizsec.org/vizsec2018/][IEEE VizSec 2018]]
   [[[https://ieeexplore.ieee.org/document/8709187][proceedings]], [[https://arxiv.org/abs/1808.08081][preprint]], [[https://vimeo.com/308133381][talk]]]
 
+  /Rationale/. Georgios Bakirtzis, Garrett Ward, Christopher Deloglos, Carl Elks, Barry Horowitz, 
+  and Cody Fleming, "Fundamental Challenges of Cyber-Physical Systems Security Modeling" [[https://dsn2020.webs.upv.es/][IEEE/IFIP DSN 2020]]
+  [[[https://ieeexplore.ieee.org/document/9159140][proceedings]], [[https://arxiv.org/abs/2005.00043][preprint]]]
+  
 ** Getting Started
 
    The dashboard works in conjunction with [[https://github.com/bakirtzisg/cybok-cli][cybok-cli]]
