@@ -1,4 +1,8 @@
-#+html: <p align="center"><img src=".github/logo.png" width="460" /></p>
+/This software is no longer maintained and there are no plans for a future release./
+Having said that the basic principles of the software herein and on the cited papers below are still relevant to model-based security
+and the software /should/ run given that the user installs the versions of dependent software stated below.
+
+#+html: <p align="center"><img src=".github/logo.png" width="460" /></p>bakirtzisg/security-analyst-dashboard
 #+html: <p align="center"><strong>Security Analyst Dashboard.</strong> A dashboard for cyber-physical system design and analysis.</p>
 
 ** About the papers
